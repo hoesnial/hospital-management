@@ -11,6 +11,7 @@ class BookingDiagnostic extends Model
     protected $fillable = [
         'user_id',
         'diagnostic_service_id',
+        'appointment_booking_id',
         'doctor_id',
         'booking_date',
         'booking_time',

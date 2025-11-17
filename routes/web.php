@@ -69,6 +69,7 @@ Route::get('/diagnostic/services/all', [DiagnosticServiceController::class, 'pub
 Route::get('/diagnostic/schedule/{service_id}', [DiagnosticBookingController::class, 'create'])->name('diagnostic.booking.create');
 Route::post('/diagnostic/bookings', [DiagnosticBookingController::class, 'store'])->name('diagnostic.bookings.store');
 Route::get('/diagnostic/bookings/{booking}/download-pdf', [DiagnosticBookingController::class, 'downloadPdf'])->name('diagnostic.bookings.download-pdf');
+Route::get('/api/appointments/{bookingId}', [AppointmentController::class, 'getByBookingId'])->name('api.appointments.show');
 
 require __DIR__.'/auth.php';
 

@@ -794,6 +794,222 @@ const getIconSvg = (icon) => {
                 @mousedown="startResize"
             ></div>
         </aside>
+        <!-- Doctor Sidebar -->
+        <aside
+            v-if="isDoctor && !isMobile"
+            :style="{
+                width: isSidebarCollapsed ? '130px' : sidebarWidth + 'px',
+            }"
+            class="bg-white/10 backdrop-blur-2xl border-r border-white/80 shadow-2xl flex flex-col relative transition-all duration-300"
+        >
+            <!-- Sidebar Header -->
+            <div class="p-8 border-b border-white/10">
+                <div class="flex items-center space-x-4">
+                    <button
+                        @click="toggleSidebar"
+                        class="p-2 hover:bg-white/20 rounded-xl transition-colors duration-200"
+                        :class="{ 'mx-auto': isSidebarCollapsed }"
+                    >
+                        <svg
+                            class="w-5 h-5 text-slate-700"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                :d="
+                                    isSidebarCollapsed
+                                        ? 'M9 5l7 7-7 7'
+                                        : 'M15 19l-7-7 7-7'
+                                "
+                            />
+                        </svg>
+                    </button>
+                    <div
+                        v-if="!isSidebarCollapsed"
+                        class="flex items-center space-x-4"
+                    >
+                        <div>
+                            <h2 class="text-xl font-bold text-slate-800">
+                                Doctor Portal
+                            </h2>
+                            <p class="text-slate-600 mt-1 text-sm">
+                                Welcome back, {{ user.name }} 👋
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="flex-1 p-6 space-y-3 overflow-y-auto">
+                <Link
+                    :href="route('dashboard')"
+                    class="flex items-center space-x-4 px-4 py-2 text-slate-700 hover:bg-sky-200 hover:shadow-lg rounded-2xl transition-all duration-300 group border border-white/0 hover:border-white/80"
+                    :class="{
+                        'bg-sky-200 shadow-lg border-white/80':
+                            isRouteActive('dashboard'),
+                    }"
+                >
+                    <div
+                        class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-blue-500 transition-colors duration-300"
+                        :class="{ 'mx-auto': isSidebarCollapsed }"
+                    >
+                        <svg
+                            class="w-5 h-5 text-blue-600 group-hover:text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                            />
+                        </svg>
+                    </div>
+                    <span v-if="!isSidebarCollapsed" class="font-semibold"
+                        >Dashboard</span
+                    >
+                </Link>
+
+                <Link
+                    :href="route('doctor.schedules')"
+                    class="flex items-center space-x-4 px-4 py-2 text-slate-700 hover:bg-sky-200 hover:shadow-lg rounded-2xl transition-all duration-300 group border border-white/0 hover:border-white/80"
+                    :class="{
+                        'bg-sky-200 shadow-lg border-white/80':
+                            isRouteActive('doctor.schedules'),
+                    }"
+                >
+                    <div
+                        class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center group-hover:bg-green-500 transition-colors duration-300"
+                        :class="{ 'mx-auto': isSidebarCollapsed }"
+                    >
+                        <svg
+                            class="w-5 h-5 text-green-600 group-hover:text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                            />
+                        </svg>
+                    </div>
+                    <span v-if="!isSidebarCollapsed" class="font-semibold"
+                        >My Schedules</span
+                    >
+                </Link>
+
+                <Link
+                    :href="route('doctor.appointments.index')"
+                    class="flex items-center space-x-4 px-4 py-2 text-slate-700 hover:bg-sky-200 hover:shadow-lg rounded-2xl transition-all duration-300 group border border-white/0 hover:border-white/80"
+                    :class="{
+                        'bg-sky-200 shadow-lg border-white/80': isRouteActive(
+                            'doctor.appointments.index'
+                        ),
+                    }"
+                >
+                    <div
+                        class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center group-hover:bg-purple-500 transition-colors duration-300"
+                        :class="{ 'mx-auto': isSidebarCollapsed }"
+                    >
+                        <svg
+                            class="w-5 h-5 text-purple-600 group-hover:text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                            />
+                        </svg>
+                    </div>
+                    <span v-if="!isSidebarCollapsed" class="font-semibold"
+                        >Appointments</span
+                    >
+                </Link>
+
+                <Link
+                    :href="route('doctor.messages')"
+                    class="flex items-center space-x-4 px-4 py-2 text-slate-700 hover:bg-sky-200 hover:shadow-lg rounded-2xl transition-all duration-300 group border border-white/0 hover:border-white/80"
+                    :class="{
+                        'bg-sky-200 shadow-lg border-white/80':
+                            isRouteActive('doctor.messages'),
+                    }"
+                >
+                    <div
+                        class="w-10 h-10 bg-cyan-100 rounded-xl flex items-center justify-center group-hover:bg-cyan-500 transition-colors duration-300"
+                        :class="{ 'mx-auto': isSidebarCollapsed }"
+                    >
+                        <svg
+                            class="w-5 h-5 text-cyan-600 group-hover:text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                            />
+                        </svg>
+                    </div>
+                    <span v-if="!isSidebarCollapsed" class="font-semibold"
+                        >Messages</span
+                    >
+                </Link>
+            </nav>
+
+            <!-- Logout -->
+            <div class="p-6 border-t border-white/10">
+                <Link
+                    :href="route('logout')"
+                    method="post"
+                    as="button"
+                    class="flex items-center space-x-4 w-full px-4 py-2 text-red-600 hover:bg-red-50 hover:shadow-lg rounded-2xl transition-all duration-300 group border border-white/0 hover:border-red-100"
+                >
+                    <div
+                        class="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center group-hover:bg-red-500 transition-colors duration-300"
+                    >
+                        <svg
+                            class="w-5 h-5 group-hover:text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                            />
+                        </svg>
+                    </div>
+                    <span v-if="!isSidebarCollapsed" class="font-semibold"
+                        >Log Out</span
+                    >
+                </Link>
+            </div>
+
+            <!-- Resize Handle -->
+            <div
+                class="absolute top-0 right-0 w-1 h-full bg-gray-300 cursor-col-resize hover:bg-gray-400 transition-colors"
+                @mousedown="startResize"
+            ></div>
+        </aside>
+        <!-- Doctor Sidebar -->
 
         <!-- Mobile Sidebar Overlay -->
         <div

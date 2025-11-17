@@ -50,6 +50,7 @@ class DiagnosticBookingController extends Controller
             'booking_time' => 'required|string',
             'address' => 'required|string|max:500',
             'diagnostic_service_id' => 'required|exists:diagnostic_services,id',
+            'appointment_booking_id' => 'nullable|string|exists:appointments,booking_id',
             'doctor_id' => 'nullable|exists:users,id',
             'payment_method' => 'required|in:cash,card,online',
             'additional_notes' => 'nullable|string|max:1000',

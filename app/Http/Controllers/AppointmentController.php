@@ -197,4 +197,15 @@ class AppointmentController extends Controller
 
         return $pdf->download('appointment_' . $appointment->booking_id . '.pdf');
     }
+
+    public function getByBookingId($bookingId)
+    {
+        $appointment = Appointment::where('booking_id', $bookingId)->first();
+
+        if (!$appointment) {
+            return response()->json(['error' => 'Appointment not found'], 404);
+        }
+
+        return response()->json($appointment);
+    }
 }

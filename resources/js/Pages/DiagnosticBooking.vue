@@ -24,14 +24,50 @@ const form = ref({
     bookingDate: "",
     bookingTime: "",
     address: "",
+    appointmentBookingId: "",
     doctorId: "",
-    paymentMethod: "cash",
     additionalNotes: "",
 });
 
+// Computed property for appointment booking ID with prefix and uppercase handling
+const appointmentBookingId = computed({
+    get() {
+        return form.value.appointmentBookingId;
+    },
+    set(value) {
+        // Ensure starts with APT-
+        if (!value.startsWith("APT-")) {
+            value = "APT-" + value.replace(/^APT-/, "");
+        }
+        // Limit the part after APT- to 8 characters
+        const prefix = "APT-";
+        const suffix = value.slice(prefix.length).slice(0, 8);
+        value = prefix + suffix;
+        // Convert to uppercase
+        value = value.toUpperCase();
+        form.value.appointmentBookingId = value;
+    },
+});
+
+// Function to handle focus on appointment booking ID input
+const onFocusAppointmentId = () => {
+    if (!form.value.appointmentBookingId) {
+        form.value.appointmentBookingId = "APT-";
+    }
+};
+
+// Function to handle blur on appointment booking ID input
+const onBlurAppointmentId = () => {
+    if (form.value.appointmentBookingId === "APT-") {
+        form.value.appointmentBookingId = "";
+    }
+};
+
 const submitting = ref(false);
 const showSuccessModal = ref(false);
+const showPaymentModal = ref(false);
 const successBooking = ref(null);
+const paymentMethod = ref("cash");
 
 // Computed property for minimum date (today)
 const minDate = computed(() => {
@@ -39,8 +75,19 @@ const minDate = computed(() => {
     return today.toISOString().split("T")[0];
 });
 
+// Computed property for selected doctor
+const selectedDoctor = computed(() => {
+    if (!form.value.doctorId) return null;
+    return doctors.find((doctor) => doctor.id == form.value.doctorId);
+});
+
 const submitForm = async () => {
+    showPaymentModal.value = true;
+};
+
+const confirmPayment = async () => {
     submitting.value = true;
+    showPaymentModal.value = false;
     try {
         const response = await fetch("/diagnostic/bookings", {
             method: "POST",
@@ -63,8 +110,9 @@ const submitForm = async () => {
                 booking_time: form.value.bookingTime,
                 address: form.value.address,
                 diagnostic_service_id: service.id,
+                appointment_booking_id: form.value.appointmentBookingId,
                 doctor_id: form.value.doctorId || null,
-                payment_method: form.value.paymentMethod,
+                payment_method: paymentMethod.value,
                 additional_notes: form.value.additionalNotes || "",
             }),
         });
@@ -144,6 +192,29 @@ const availableDates = computed(() => {
     return dates;
 });
 
+// Function to fetch appointment details
+const fetchAppointmentDetails = async () => {
+    const bookingId = form.value.appointmentBookingId.trim();
+    if (!bookingId) {
+        form.value.doctorId = "";
+        return;
+    }
+
+    try {
+        const response = await fetch(`/api/appointments/${bookingId}`);
+        if (response.ok) {
+            const appointment = await response.json();
+            form.value.doctorId = appointment.doctor_id;
+        } else {
+            form.value.doctorId = "";
+            console.warn("Appointment not found or invalid booking ID");
+        }
+    } catch (error) {
+        console.error("Error fetching appointment details:", error);
+        form.value.doctorId = "";
+    }
+};
+
 // Watch for doctor changes to reset date and time selection
 watch(
     () => form.value.doctorId,
@@ -184,6 +255,7 @@ const downloadBookingDetails = async (bookingId) => {
 
 const closeModal = () => {
     showSuccessModal.value = false;
+    showPaymentModal.value = false;
     successBooking.value = null;
     // Reset form
     form.value = {
@@ -196,10 +268,11 @@ const closeModal = () => {
         bookingDate: "",
         bookingTime: "",
         address: "",
+        appointmentBookingId: "",
         doctorId: "",
-        paymentMethod: "cash",
         additionalNotes: "",
     };
+    paymentMethod.value = "cash";
 };
 
 // Benefits information
@@ -432,32 +505,68 @@ const hospitalStats = ref([
                                     <div>
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
-                                            >Preferred Doctor (Optional)</label
-                                        >
-                                        <select
-                                            v-model="form.doctorId"
+                                            >Appointment Booking ID
+                                        </label>
+                                        <input
+                                            v-model="appointmentBookingId"
+                                            type="text"
                                             :disabled="submitting"
-                                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 appearance-none bg-white disabled:bg-gray-100 disabled:cursor-not-allowed"
+                                            maxlength="12"
+                                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 placeholder-gray-400 disabled:bg-gray-100 disabled:cursor-not-allowed"
+                                            placeholder="Enter appointment booking ID (e.g., APT-ABC12345)"
+                                            @input="fetchAppointmentDetails"
+                                            @focus="onFocusAppointmentId"
+                                            @blur="onBlurAppointmentId"
+                                        />
+                                        <p class="text-sm text-gray-500 mt-1">
+                                            Enter your appointment booking ID to
+                                            automatically select the associated
+                                            doctor
+                                        </p>
+                                        <div
+                                            v-if="selectedDoctor"
+                                            class="mt-2 p-3 bg-blue-50 rounded-lg border border-blue-200"
                                         >
-                                            <option value="">
-                                                Select Doctor (Optional)
-                                            </option>
-                                            <option
-                                                v-for="doctor in doctors"
-                                                :key="doctor.id"
-                                                :value="doctor.id"
+                                            <div
+                                                class="flex items-center gap-2"
                                             >
-                                                {{ doctor.user.name }} -
-                                                {{ doctor.speciality }}
-                                            </option>
-                                        </select>
+                                                <div
+                                                    class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-sm"
+                                                >
+                                                    👨‍⚕️
+                                                </div>
+                                                <div>
+                                                    <p
+                                                        class="text-sm font-semibold text-gray-900"
+                                                    >
+                                                        Selected Doctor:
+                                                        {{
+                                                            selectedDoctor.user
+                                                                .name
+                                                        }}
+                                                    </p>
+                                                    <p
+                                                        class="text-xs text-gray-600"
+                                                    >
+                                                        {{
+                                                            selectedDoctor.speciality
+                                                        }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="grid md:grid-cols-2 gap-6 mt-5">
                                     <div>
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
-                                            >Preferred Date *</label
+                                            >Preferred Date
+                                            <span class="text-red-500"
+                                                ><span class="text-red-500"
+                                                    >*</span
+                                                ></span
+                                            ></label
                                         >
                                         <select
                                             v-model="form.bookingDate"
@@ -480,7 +589,10 @@ const hospitalStats = ref([
                                     <div>
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
-                                            >Preferred Time *</label
+                                            >Preferred Time
+                                            <span class="text-red-500"
+                                                >*</span
+                                            ></label
                                         >
                                         <select
                                             v-model="form.bookingTime"
@@ -519,7 +631,10 @@ const hospitalStats = ref([
                                     <div>
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
-                                            >First Name *</label
+                                            >First Name
+                                            <span class="text-red-500"
+                                                >*</span
+                                            ></label
                                         >
                                         <input
                                             v-model="form.firstName"
@@ -533,7 +648,10 @@ const hospitalStats = ref([
                                     <div>
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
-                                            >Last Name *</label
+                                            >Last Name
+                                            <span class="text-red-500"
+                                                >*</span
+                                            ></label
                                         >
                                         <input
                                             v-model="form.lastName"
@@ -549,7 +667,10 @@ const hospitalStats = ref([
                                     <div>
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
-                                            >Email Address *</label
+                                            >Email Address
+                                            <span class="text-red-500"
+                                                >*</span
+                                            ></label
                                         >
                                         <input
                                             v-model="form.email"
@@ -563,7 +684,10 @@ const hospitalStats = ref([
                                     <div>
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
-                                            >Phone Number *</label
+                                            >Phone Number
+                                            <span class="text-red-500"
+                                                >*</span
+                                            ></label
                                         >
                                         <input
                                             v-model="form.phone"
@@ -579,7 +703,10 @@ const hospitalStats = ref([
                                     <div>
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
-                                            >Gender *</label
+                                            >Gender
+                                            <span class="text-red-500"
+                                                >*</span
+                                            ></label
                                         >
                                         <select
                                             v-model="form.gender"
@@ -600,7 +727,10 @@ const hospitalStats = ref([
                                     <div>
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
-                                            >Age *</label
+                                            >Age
+                                            <span class="text-red-500"
+                                                >*</span
+                                            ></label
                                         >
                                         <input
                                             v-model="form.age"
@@ -617,7 +747,10 @@ const hospitalStats = ref([
                                 <div class="mt-6">
                                     <label
                                         class="block text-sm font-semibold text-gray-700 mb-1"
-                                        >Address *</label
+                                        >Address
+                                        <span class="text-red-500"
+                                            >*</span
+                                        ></label
                                     >
                                     <textarea
                                         v-model="form.address"
@@ -628,26 +761,7 @@ const hospitalStats = ref([
                                         class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 placeholder-gray-400 resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
                                     ></textarea>
                                 </div>
-                                <div class="grid md:grid-cols-2 gap-6 mt-6">
-                                    <div>
-                                        <label
-                                            class="block text-sm font-semibold text-gray-700 mb-1"
-                                            >Payment Method *</label
-                                        >
-                                        <select
-                                            v-model="form.paymentMethod"
-                                            required
-                                            :disabled="submitting"
-                                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 appearance-none bg-white disabled:bg-gray-100 disabled:cursor-not-allowed"
-                                        >
-                                            <option value="cash">Cash</option>
-                                            <option value="card">Card</option>
-                                            <option value="online">
-                                                Online
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
+
                                 <div class="mt-6">
                                     <label
                                         class="block text-sm font-semibold text-gray-700 mb-1"
@@ -789,6 +903,162 @@ const hospitalStats = ref([
         </div>
     </main>
     <Footer />
+
+    <!-- Payment Modal -->
+    <div
+        v-if="showPaymentModal"
+        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+        @click="closeModal"
+    >
+        <div
+            class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8 text-center relative"
+            @click.stop
+        >
+            <!-- Close Button -->
+            <button
+                @click="closeModal"
+                class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+            >
+                <svg
+                    class="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"
+                    />
+                </svg>
+            </button>
+
+            <!-- Payment Icon -->
+            <div
+                class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+                <svg
+                    class="w-10 h-10 text-blue-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                    />
+                </svg>
+            </div>
+
+            <!-- Title -->
+            <h2 class="text-2xl font-black text-gray-900 mb-4">
+                Payment Method
+            </h2>
+
+            <!-- Message -->
+            <p class="text-gray-600 mb-6 leading-relaxed">
+                Please select your preferred payment method to complete the
+                booking.
+            </p>
+
+            <!-- Payment Options -->
+            <div class="space-y-4 mb-8">
+                <label
+                    class="flex items-center p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-blue-500 transition-colors"
+                >
+                    <input
+                        type="radio"
+                        v-model="paymentMethod"
+                        value="cash"
+                        class="mr-3"
+                    />
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center"
+                        >
+                            💵
+                        </div>
+                        <div class="text-left">
+                            <div class="font-semibold text-gray-900">Cash</div>
+                            <div class="text-sm text-gray-600">
+                                Pay at the lab
+                            </div>
+                        </div>
+                    </div>
+                </label>
+
+                <label
+                    class="flex items-center p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-blue-500 transition-colors"
+                >
+                    <input
+                        type="radio"
+                        v-model="paymentMethod"
+                        value="card"
+                        class="mr-3"
+                    />
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center"
+                        >
+                            💳
+                        </div>
+                        <div class="text-left">
+                            <div class="font-semibold text-gray-900">Card</div>
+                            <div class="text-sm text-gray-600">
+                                Credit/Debit card
+                            </div>
+                        </div>
+                    </div>
+                </label>
+
+                <label
+                    class="flex items-center p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-blue-500 transition-colors"
+                >
+                    <input
+                        type="radio"
+                        v-model="paymentMethod"
+                        value="online"
+                        class="mr-3"
+                    />
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center"
+                        >
+                            🌐
+                        </div>
+                        <div class="text-left">
+                            <div class="font-semibold text-gray-900">
+                                Online
+                            </div>
+                            <div class="text-sm text-gray-600">
+                                Digital payment
+                            </div>
+                        </div>
+                    </div>
+                </label>
+            </div>
+
+            <!-- Pay Now Button -->
+            <button
+                @click="confirmPayment"
+                :disabled="submitting"
+                class="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-3 rounded-lg font-bold hover:shadow-lg transition-all duration-300 mb-4"
+            >
+                {{ submitting ? "💳 Processing..." : "💳 Pay Now" }}
+            </button>
+
+            <!-- Cancel Button -->
+            <button
+                @click="closeModal"
+                class="w-full bg-gray-100 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-all duration-300"
+            >
+                Cancel
+            </button>
+        </div>
+    </div>
 
     <!-- Success Modal -->
     <div
