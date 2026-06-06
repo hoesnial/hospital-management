@@ -1,7 +1,12 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import axios from "axios";
+import DOMPurify from "dompurify";
 import { Head, usePage, Link } from "@inertiajs/vue3";
+
+const sanitizedContent = computed(() => {
+    return news.value?.content ? DOMPurify.sanitize(news.value.content) : "";
+});
 
 const page = usePage();
 const news = ref(null);
@@ -95,7 +100,7 @@ onMounted(() => {
                         </p>
 
                         <div
-                            v-html="news.content"
+                            v-html="sanitizedContent"
                             class="text-gray-700 leading-relaxed"
                         ></div>
                     </div>

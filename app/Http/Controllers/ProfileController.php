@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
@@ -17,12 +18,9 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function update(Request $request)
+    public function update(ProfileUpdateRequest $request)
     {
-        $validated = $request->validate([
-            'name'  => ['required','string','max:255'],
-            'email' => ['required','email','max:255'],
-        ]);
+        $validated = $request->validated();
 
         $user = $request->user();
         $user->fill($validated);

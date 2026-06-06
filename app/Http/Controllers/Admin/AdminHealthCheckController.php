@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreHealthCheckRequest;
+use App\Http\Requests\Admin\UpdateHealthCheckRequest;
 use App\Models\HealthCheck;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class AdminHealthCheckController extends Controller
@@ -31,16 +32,9 @@ class AdminHealthCheckController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreHealthCheckRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required|string|max:255',
-            'features' => 'required|array',
-            'popular' => 'boolean',
-        ]);
-
-        HealthCheck::create($request->all());
+        HealthCheck::create($request->validated());
 
         return redirect()->route('admin.health-checks.index')->with('success', 'Health check created successfully.');
     }
@@ -67,17 +61,10 @@ class AdminHealthCheckController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $health_check)
+    public function update(UpdateHealthCheckRequest $request, string $health_check)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required|string|max:255',
-            'features' => 'required|array',
-            'popular' => 'boolean',
-        ]);
-
         $healthCheck = HealthCheck::findOrFail($health_check);
-        $healthCheck->update($request->all());
+        $healthCheck->update($request->validated());
 
         return redirect()->route('admin.health-checks.index')->with('success', 'Health check updated successfully.');
     }

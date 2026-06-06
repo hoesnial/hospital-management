@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreMentionRequest;
 use App\Mail\DoctorMentionMail;
 use App\Models\Schedule;
 use App\Models\DoctorMessage;
@@ -40,14 +41,9 @@ class AdminScheduleController extends Controller
     	return response()->json($rows, 200);
     }
 
-    public function mention(Request $request)
+    public function mention(StoreMentionRequest $request)
     {
-    	$data = $request->validate([
-
-    		'doctor_id' => ['required','exists:doctors,id'],
-    		'schedule_id' => ['nullable','exists:schedules,id'],
-    		'message' => ['required','string','max:5000'],
-    	]);
+    	$data = $request->validated();
 
     	$msg = DoctorMessage::create([
 

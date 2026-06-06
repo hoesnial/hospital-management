@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Diagnostic;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Diagnostic\StoreBookingRequest;
 use App\Models\BookingDiagnostic;
 use App\Models\DiagnosticService;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -36,35 +36,10 @@ class DiagnosticBookingController extends Controller
     /**
      * Store a newly created diagnostic booking.
      */
-    public function store(Request $request)
+    public function store(StoreBookingRequest $request)
     {
-        // Manual validation for better error handling
-        $validator = Validator::make($request->all(), [
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'phone' => 'required|string|max:20',
-            'gender' => 'required|in:male,female,other',
-            'age' => 'required|integer|min:1|max:99',
-            'booking_date' => 'required|date|after_or_equal:today',
-            'booking_time' => 'required|string',
-            'address' => 'required|string|max:500',
-            'diagnostic_service_id' => 'required|exists:diagnostic_services,id',
-            'appointment_booking_id' => 'nullable|string|exists:appointments,booking_id',
-            'doctor_id' => 'nullable|exists:users,id',
-            'payment_method' => 'required|in:cash,card,online',
-            'additional_notes' => 'nullable|string|max:1000',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'message' => 'Validation failed',
-                'errors' => $validator->errors()
-            ], 422);
-        }
-
         try {
-            $validated = $validator->validated();
+            $validated = $request->validated();
 
             // Handle empty doctor_id
             if (isset($validated['doctor_id']) && $validated['doctor_id'] === '') {

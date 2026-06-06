@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Doctor;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Doctor\UpdateAppointmentRequest;
+use App\Http\Requests\Doctor\StorePrescriptionRequest;
 use App\Models\Appointment;
 use App\Models\Prescription;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -47,7 +48,7 @@ class AppointmentController extends Controller
         ]);
     }
 
-    public function update(Request $request, Appointment $appointment)
+    public function update(UpdateAppointmentRequest $request, Appointment $appointment)
     {
         $user = Auth::user();
         $doctor = $user->doctor;
@@ -56,9 +57,7 @@ class AppointmentController extends Controller
             abort(403, 'Unauthorized');
         }
 
-        $validated = $request->validate([
-            'status' => 'required|in:pending,confirmed,cancelled',
-        ]);
+        $validated = $request->validated();
 
         $appointment->update($validated);
 
@@ -68,7 +67,7 @@ class AppointmentController extends Controller
         ]);
     }
 
-    public function storePrescription(Request $request, Appointment $appointment)
+    public function storePrescription(StorePrescriptionRequest $request, Appointment $appointment)
     {
         $user = Auth::user();
         $doctor = $user->doctor;
@@ -77,9 +76,7 @@ class AppointmentController extends Controller
             abort(403, 'Unauthorized');
         }
 
-        $validated = $request->validate([
-            'prescription_text' => 'required|string',
-        ]);
+        $validated = $request->validated();
 
         $prescription = Prescription::create([
             'appointment_id' => $appointment->id,

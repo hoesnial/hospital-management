@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreDoctorRequest;
+use App\Http\Requests\Admin\UpdateDoctorRequest;
 use App\Mail\DoctorWelcomeMail;
 use App\Models\Doctor;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\Password;
 
 class DoctorController extends Controller
 {
@@ -36,19 +35,9 @@ class DoctorController extends Controller
         return response()->json($rows, 200);
     }
 
-    // Create + send email
-    public function store(Request $request)
+    public function store(StoreDoctorRequest $request)
     {
-        $data = $request->validate([
-            'name'         => ['required','string','max:255'],
-            'email'        => ['required','email','max:255', Rule::unique('users','email')],
-            'password'     => ['required', Password::min(8)],
-            'designation'  => ['nullable','string','max:255'],
-            'speciality'   => ['nullable','string','max:255'],
-            'phone'        => ['nullable','string','max:50'],
-            'about'        => ['nullable','string','max:2000'],
-            'photo'        => ['nullable','image','max:2048'],
-        ]);
+        $data = $request->validated();
 
         $plain = $data['password'];
 
@@ -104,20 +93,11 @@ class DoctorController extends Controller
     }
 
     
-    public function update(Request $request, Doctor $doctor)
+    public function update(UpdateDoctorRequest $request, Doctor $doctor)
     {
         $user = $doctor->user;
 
-        $data = $request->validate([
-            'name'         => ['required','string','max:255'],
-            'email'        => ['required','email','max:255', Rule::unique('users','email')->ignore($user?->id)],
-            'password'     => ['nullable', Password::min(8)],
-            'designation'  => ['nullable','string','max:255'],
-            'speciality'   => ['nullable','string','max:255'],
-            'phone'        => ['nullable','string','max:50'],
-            'about'        => ['nullable','string','max:2000'],
-            'photo'        => ['nullable','image','max:2048'],
-        ]);
+        $data = $request->validated();
 
         DB::transaction(function () use ($data, $user, $doctor) {
             $user->name  = $data['name'];

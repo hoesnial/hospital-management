@@ -32,6 +32,7 @@ A modern **Hospital Management System** built with **Laravel** + **Vue 3** using
 -   **Build**: Vite 7, laravel-vite-plugin 2.x
 -   **UI**: Tailwind CSS 3.x, @tailwindcss/forms
 -   **DB**: MySQL
+-   **Security**: Argon2id hashing, DOMPurify XSS sanitization, rate limiting
 
 > If you are using Inertia.js: `@inertiajs/vue3` is supported.
 
@@ -138,6 +139,28 @@ routes/
     Use `tailwindcss` and `autoprefixer` in `postcss.config.cjs` (no `@tailwindcss/vite` on Tailwind v3).
 -   **Node version**
     Vite 7 requires Node **18+**.
+
+---
+
+## 🔒 Security
+
+Security controls implemented (Phase 1):
+
+| Control | Detail |
+|---------|--------|
+| **Password Hashing** | Argon2id (memory-hard, resistant to GPU/ASIC attacks) |
+| **Password Complexity** | 12+ chars, uppercase, lowercase, number, special character |
+| **Session Timeout** | 15 minutes inactivity |
+| **Session Fixation** | Regenerated on every login; `logoutOtherDevices()` enabled |
+| **Rate Limiting** | Login: 5 attempts / 15 min lockout; API: 60 req/min |
+| **XSS Protection** | DOMPurify sanitizes rich text output; all Blade uses `{{ }}` |
+| **CSRF** | Sanctum XSRF cookies + meta tag + Axios interceptor |
+| **Input Validation** | All controllers use dedicated Form Request classes |
+| **SQL Injection** | No raw SQL with user input; all queries parameterized |
+| **File Upload** | Restricted to `jpg,jpeg,png,pdf` (2MB max), randomized filenames |
+| **Role-Based Access** | Middleware-enforced for admin/doctor/staff/diagnostic/patient |
+
+Full details in [`SECURITY_PHASE_1.md`](SECURITY_PHASE_1.md).
 
 ---
 

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreNewsRequest;
+use App\Http\Requests\Admin\UpdateNewsRequest;
+use App\Http\Requests\Admin\UploadImageRequest;
 use App\Models\News;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -32,27 +35,9 @@ class NewsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreNewsRequest $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'excerpt' => 'required|string',
-            'content' => [
-                'required',
-                'string',
-                function ($attribute, $value, $fail) {
-                    $stripped = strip_tags($value);
-                    if (empty(trim($stripped))) {
-                        $fail('The content field is required.');
-                    }
-                },
-            ],
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:2048',
-            'category' => 'required|string|max:255',
-            'date' => 'required|date',
-        ]);
-
-        $data = $request->only(['title','excerpt','content','category','date']);
+        $data = $request->validated();
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('news', 'public');
@@ -92,29 +77,11 @@ class NewsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateNewsRequest $request, string $id)
     {
         $news = News::findOrFail($id);
 
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'excerpt' => 'required|string',
-            'content' => [
-                'required',
-                'string',
-                function ($attribute, $value, $fail) {
-                    $stripped = strip_tags($value);
-                    if (empty(trim($stripped))) {
-                        $fail('The content field is required.');
-                    }
-                },
-            ],
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:2048',
-            'category' => 'required|string|max:255',
-            'date' => 'required|date',
-        ]);
-
-        $data = $request->only(['title','excerpt','content','category','date']);
+        $data = $request->validated();
 
         if ($request->hasFile('image')) {
             // delete old file if exists
@@ -154,11 +121,9 @@ class NewsController extends Controller
     /**
      * Upload image for Quill editor.
      */
-    public function uploadImage(Request $request)
+    public function uploadImage(UploadImageRequest $request)
     {
-        $request->validate([
-            'image' => 'required|image|mimes:jpg,jpeg,png,gif,webp|max:2048',
-        ]);
+        $validated = $request->validated();
 
         $path = $request->file('image')->store('news', 'public');
         $url = Storage::disk('public')->url($path);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\StorePackageBookingRequest;
 use App\Models\PackageBooking;
 use App\Models\HealthCheck;
 use Illuminate\Http\Request;
@@ -22,17 +23,14 @@ class PackageBookingController extends Controller
         return response()->json($bookings);
     }
 
-    public function store(Request $request)
+    public function store(StorePackageBookingRequest $request)
     {
-        $request->validate([
-            'health_check_id' => 'required|exists:health_checks,id',
-            'payment_type' => 'required|in:50%,100%',
-        ]);
+        $validated = $request->validated();
 
-        $healthCheck = HealthCheck::findOrFail($request->health_check_id);
+        $healthCheck = HealthCheck::findOrFail($validated['health_check_id']);
         $price = (float) preg_replace('/[^0-9.]/', '', $healthCheck->price);
 
-        $paymentType = $request->payment_type;
+        $paymentType = $validated['payment_type'];
         $amountPaid = $paymentType === '50%' ? $price * 0.5 : $price;
         $totalAmount = $price;
 
@@ -45,7 +43,7 @@ class PackageBookingController extends Controller
 
         $booking = PackageBooking::create([
             'user_id' => Auth::id(),
-            'health_check_id' => $request->health_check_id,
+            'health_check_id' => $validated['health_check_id'],
             'payment_type' => $paymentType,
             'amount_paid' => $amountPaid,
             'total_amount' => $totalAmount,

@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -35,6 +36,8 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         $request->session()->regenerateToken();
+
+        Auth::logoutOtherDevices($request->password, 'argon2id');
 
         return Inertia::location(route('dashboard'));
     }

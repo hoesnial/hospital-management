@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\UpdatePackageBookingRequest;
 use App\Mail\CancellationNotificationMail;
 use App\Models\PackageBooking;
 use Illuminate\Http\Request;
@@ -60,16 +61,11 @@ class AdminPackageBookingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdatePackageBookingRequest $request, string $id)
     {
         $packageBooking = PackageBooking::findOrFail($id);
 
-        $request->validate([
-            'status' => 'required|in:pending,confirmed,cancelled',
-            'cancellation_reason' => 'nullable|string|max:1000',
-        ]);
-
-        $packageBooking->update($request->only(['status', 'cancellation_reason']));
+        $packageBooking->update($request->validated());
 
         // Send email notification if status is cancelled
         if ($packageBooking->status === 'cancelled' && $packageBooking->cancellation_reason) {

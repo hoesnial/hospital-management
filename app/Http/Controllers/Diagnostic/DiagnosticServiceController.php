@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Diagnostic;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Diagnostic\StoreDiagnosticServiceRequest;
+use App\Http\Requests\Diagnostic\UpdateDiagnosticServiceRequest;
 use App\Models\DiagnosticService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -95,19 +97,9 @@ class DiagnosticServiceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreDiagnosticServiceRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'price' => 'required|numeric|min:0',
-            'category' => 'nullable|string|max:255',
-            'sample_type' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
-            'duration' => 'nullable|integer|min:0',
-            'home_collection_available' => 'boolean',
-            'report_time' => 'nullable|integer|min:0',
-        ]);
+        $validated = $request->validated();
 
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('diagnostic-services', 'public');
@@ -145,19 +137,9 @@ class DiagnosticServiceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, DiagnosticService $service)
+    public function update(UpdateDiagnosticServiceRequest $request, DiagnosticService $service)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'price' => 'required|numeric|min:0',
-            'category' => 'nullable|string|max:255',
-            'sample_type' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
-            'duration' => 'nullable|integer|min:0',
-            'home_collection_available' => 'boolean',
-            'report_time' => 'nullable|integer|min:0',
-        ]);
+        $validated = $request->validated();
 
         if ($request->hasFile('image')) {
             // Delete old image if exists

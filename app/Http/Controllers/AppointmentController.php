@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Admin\UpdateAdminAppointmentRequest;
+use App\Http\Requests\Patient\StoreAppointmentRequest;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
-
 use App\Mail\AppointmentConfirmationMail;
 use App\Mail\DoctorAppointmentNotificationMail;
-
 use App\Models\Doctor;
 use App\Models\Schedule;
 use App\Models\Appointment;
@@ -53,21 +52,9 @@ class AppointmentController extends Controller
     }
     
 
-    public function store(Request $request)
+    public function store(StoreAppointmentRequest $request)
     {
-        $validated = $request->validate([
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'phone' => 'required|string|max:20',
-            'gender' => 'required|in:male,female,other',
-            'age' => 'required|integer|min:1|max:99',
-            'preferred_date' => 'required|date|after:today',
-            'preferred_time' => 'required|string',
-            'speciality' => 'required|string|max:255',
-            'doctor_id' => 'nullable|exists:doctors,id',
-            'additional_notes' => 'nullable|string',
-        ]);
+        $validated = $request->validated();
 
         // Check if doctor is fully booked for the selected date
         if ($validated['doctor_id']) {
@@ -180,11 +167,9 @@ class AppointmentController extends Controller
         ]);
     }
 
-    public function update(Request $request, Appointment $appointment)
+    public function update(UpdateAdminAppointmentRequest $request, Appointment $appointment)
     {
-        $validated = $request->validate([
-            'status' => 'required|in:pending,confirmed,cancelled',
-        ]);
+        $validated = $request->validated();
 
         $appointment->update($validated);
 
