@@ -23,7 +23,7 @@ class JwtAuthController extends Controller
     public function __construct(JwtService $jwtService)
     {
         $this->jwtService = $jwtService;
-        $this->middleware('jwt.auth', except: ['login', 'refresh']);
+        $this->middleware('jwt.auth', ['except' => ['login', 'refresh']]);
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\SetupMfaRequest;
 use App\Http\Requests\Auth\VerifyMfaRequest;
+use App\Models\User;
 use App\Services\TotpService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -270,8 +271,10 @@ class MfaController extends Controller
         $newBackupCodes = $this->totpService->generateBackupCodes();
 
         // Save new backup codes
-        $user->mfa_backup_codes = encrypt(json_encode($newBackupCodes));
-        $user->save();
+        if ($user instanceof User) {
+            $user->mfa_backup_codes = encrypt(json_encode($newBackupCodes));
+            $user->save();
+        }
 
         // Log backup code regeneration
         // This will be enhanced in Phase 5 - Security Logging
