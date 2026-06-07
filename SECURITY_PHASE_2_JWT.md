@@ -1,0 +1,662 @@
+# PHASE 2 - JWT Authentication Implementation
+
+**Status**: ✅ COMPLETED  
+**Date Implemented**: June 7, 2026
+
+---
+
+## Overview
+
+JWT (JSON Web Token) authentication provides modern, stateless API authentication ideal for mobile apps, SPA frontends, and microservices. This implementation uses Firebase PHP-JWT library with support for token expiration, refresh tokens, and token blacklisting.
+
+---
+
+## Files Created/Modified
+
+### New Files (7)
+
+1. **config/jwt.php** - JWT configuration
+2. **app/Services/JwtService.php** - JWT token management service
+3. **app/Http/Middleware/JwtAuthenticate.php** - JWT authentication middleware
+4. **app/Http/Controllers/Api/JwtAuthController.php** - JWT API endpoints
+5. **app/Http/Requests/Api/JwtLoginRequest.php** - Login validation
+6. **app/Http/Requests/Api/JwtRefreshRequest.php** - Token refresh validation
+7. **app/Console/Commands/JwtGenerateCommand.php** - Command to generate JWT secret
+
+### Modified Files (3)
+
+1. **composer.json** - Added firebase/php-jwt dependency
+2. **app/Http/Kernel.php** - Added jwt.auth middleware alias
+3. **routes/api.php** - Added JWT authentication routes
+4. **.env.example** - Added JWT configuration variables
+
+---
+
+## Implementation Details
+
+### 1. JWT Service (JwtService)
+
+**Location**: `app/Services/JwtService.php`
+
+**Features**:
+- Generate access tokens (short-lived, default 1 hour)
+- Generate refresh tokens (long-lived, default 7 days)
+- Decode and validate tokens
+- Token blacklisting/revocation
+- User token revocation (logout from all devices)
+- JTI (JWT ID) tracking for additional security
+
+**Key Methods**:
+```php
+// Generate tokens
+$accessToken = $jwtService->generateAccessToken($user);
+$refreshToken = $jwtService->generateRefreshToken($user);
+
+// Validate tokens
+$payload = $jwtService->decodeToken($token);
+$isValid = $jwtService->validateToken($token);
+
+// Get user from token
+$user = $jwtService->getUserFromToken($token);
+
+// Revoke tokens
+$jwtService->revokeToken($token);
+$jwtService->revokeAllUserTokens($user);
+```
+
+### 2. JWT Middleware (JwtAuthenticate)
+
+**Location**: `app/Http/Middleware/JwtAuthenticate.php`
+
+**Features**:
+- Extracts JWT from multiple sources:
+  - `Authorization: Bearer <token>` (standard)
+  - `Authorization: Token <token>` (alternative)
+  - `X-API-Token` header
+  - `api_token` query parameter (development)
+- Validates token signature and expiration
+- Checks token blacklist
+- Verifies user is active
+- Enforces email verification (if configured)
+- Attaches user and payload to request
+
+**Usage in Routes**:
+```php
+Route::middleware('jwt.auth')->group(function () {
+    // Protected routes
+    Route::get('/profile', [JwtAuthController::class, 'profile']);
+});
+```
+
+### 3. JWT Auth Controller
+
+**Location**: `app/Http/Controllers/Api/JwtAuthController.php`
+
+**Endpoints**:
+
+#### POST /api/auth/login
+Authenticate user with email and password. Returns access and refresh tokens.
+
+**Request**:
+```json
+{
+    "email": "user@example.com",
+    "password": "password123"
+}
+```
+
+**Response (200)**:
+```json
+{
+    "message": "Login successful",
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGc...",
+    "refresh_token": "eyJ0eXAiOiJKV1QiLCJhbGc...",
+    "token_type": "Bearer",
+    "expires_in": 3600,
+    "user": {
+        "id": 1,
+        "name": "John Doe",
+        "email": "john@example.com",
+        "role": "doctor",
+        "email_verified": true
+    }
+}
+```
+
+**Error (401)**:
+```json
+{
+    "message": "Invalid credentials",
+    "error": "invalid_credentials"
+}
+```
+
+#### POST /api/auth/refresh
+Refresh the access token using a valid refresh token.
+
+**Request**:
+```json
+{
+    "refresh_token": "eyJ0eXAiOiJKV1QiLCJhbGc..."
+}
+```
+
+**Response (200)**:
+```json
+{
+    "message": "Token refreshed successfully",
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGc...",
+    "token_type": "Bearer",
+    "expires_in": 3600
+}
+```
+
+#### GET /api/auth/profile
+Get authenticated user profile (requires valid access token).
+
+**Headers**:
+```
+Authorization: Bearer <access_token>
+```
+
+**Response (200)**:
+```json
+{
+    "user": {
+        "id": 1,
+        "name": "John Doe",
+        "email": "john@example.com",
+        "role": "doctor",
+        "email_verified": true,
+        "created_at": "2024-01-15T10:30:00Z",
+        "updated_at": "2024-01-15T10:30:00Z"
+    }
+}
+```
+
+#### POST /api/auth/logout
+Revoke current token (logout from current device).
+
+**Headers**:
+```
+Authorization: Bearer <access_token>
+```
+
+**Response (200)**:
+```json
+{
+    "message": "Logged out successfully"
+}
+```
+
+#### POST /api/auth/logout-all
+Revoke all tokens for the user (logout from all devices).
+
+**Headers**:
+```
+Authorization: Bearer <access_token>
+```
+
+**Response (200)**:
+```json
+{
+    "message": "Logged out from all devices successfully"
+}
+```
+
+---
+
+## Configuration
+
+### Environment Variables
+
+Add to `.env`:
+
+```env
+# JWT Configuration
+JWT_SECRET=base64:... (generated by php artisan jwt:generate)
+JWT_ALGORITHM=HS256
+JWT_EXPIRATION=3600              # Access token: 1 hour
+JWT_REFRESH_EXPIRATION=604800    # Refresh token: 7 days
+JWT_ISSUER=Hospital Management
+JWT_AUDIENCE=http://localhost
+JWT_ENABLE_BLACKLIST=true
+JWT_BLACKLIST_CACHE=database
+JWT_REQUIRE_EMAIL_VERIFIED=true  # Enforce email verification
+JWT_REQUIRE_MFA=false            # Set to true after Phase 3
+JWT_LEEWAY=0
+```
+
+### Generating JWT Secret
+
+Run the command:
+```bash
+php artisan jwt:generate
+```
+
+This creates a secure random JWT_SECRET and updates your `.env` file.
+
+---
+
+## Installation & Setup
+
+### 1. Install Firebase JWT Package
+
+```bash
+composer require firebase/php-jwt:^6.0
+```
+
+### 2. Generate JWT Secret
+
+```bash
+php artisan jwt:generate
+```
+
+### 3. Update Configuration (if needed)
+
+Edit `config/jwt.php` to customize token expiration, algorithm, etc.
+
+### 4. Test JWT Endpoints
+
+**Login Request**:
+```bash
+curl -X POST http://localhost:8000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "admin@example.com",
+    "password": "your_password"
+  }'
+```
+
+**Get Profile (with token)**:
+```bash
+curl -X GET http://localhost:8000/api/auth/profile \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
+```
+
+**Refresh Token**:
+```bash
+curl -X POST http://localhost:8000/api/auth/refresh \
+  -H "Content-Type: application/json" \
+  -d '{
+    "refresh_token": "YOUR_REFRESH_TOKEN"
+  }'
+```
+
+---
+
+## Security Features
+
+### 1. Token Expiration
+- **Access tokens**: Short-lived (default 1 hour) - less risk if compromised
+- **Refresh tokens**: Long-lived (default 7 days) - used to get new access tokens
+- Expired tokens are automatically rejected
+
+### 2. Token Blacklisting
+- Revoked tokens are stored in cache with TTL
+- Prevents token reuse after logout
+- Enabled by default, can be disabled in config
+- Uses database cache driver (survives app restart)
+
+### 3. Email Verification
+- JWT login requires email verification (configurable)
+- Prevents compromised accounts from obtaining tokens
+
+### 4. MFA Integration (prepared)
+- `JWT_REQUIRE_MFA` config ready for Phase 3
+- Login can require MFA verification before issuing tokens
+
+### 5. User Logout
+- Individual device logout revokes specific token
+- "Logout all devices" revokes all user tokens
+- Useful after password change or security breach
+
+### 6. Token Integrity
+- HMAC-SHA256 signature protects against tampering
+- Invalid signatures are rejected
+- JTI (JWT ID) prevents token reuse
+
+---
+
+## API Authentication Flow
+
+### Initial Login
+```
+Client                           API Server
+  |                                |
+  |-- POST /api/auth/login ------->|
+  |                                |
+  |    {email, password}           |
+  |                                |
+  |<--- Return JWT Tokens ----------|
+  |                                |
+  |    {access_token,              |
+  |     refresh_token,             |
+  |     expires_in: 3600}          |
+  |                                |
+```
+
+### Accessing Protected Resource
+```
+Client                           API Server
+  |                                |
+  |-- GET /api/resource -----------|
+  |   Authorization: Bearer token  |
+  |                                |
+  |<--- Return Protected Data ------|
+  |                                |
+  |    {data...}                   |
+  |                                |
+```
+
+### Token Refresh (access token expired)
+```
+Client                           API Server
+  |                                |
+  |-- POST /api/auth/refresh ------|
+  |   {refresh_token}              |
+  |                                |
+  |<--- Return New Access Token ----|
+  |                                |
+  |    {access_token,              |
+  |     expires_in: 3600}          |
+  |                                |
+```
+
+### Logout (Revoke Token)
+```
+Client                           API Server
+  |                                |
+  |-- POST /api/auth/logout -------|
+  |   Authorization: Bearer token  |
+  |                                |
+  |<--- Success Response -----------|
+  |                                |
+  |    {message: "Logged out"}     |
+  |                                |
+  | Token is blacklisted and       |
+  | cannot be reused               |
+  |                                |
+```
+
+---
+
+## Testing
+
+### Unit Tests
+
+Create `tests/Feature/JwtAuthTest.php`:
+
+```php
+<?php
+
+namespace Tests\Feature;
+
+use App\Models\User;
+use Tests\TestCase;
+
+class JwtAuthTest extends TestCase
+{
+    public function test_user_can_login_with_jwt()
+    {
+        $user = User::factory()->create([
+            'password' => bcrypt('password123'),
+            'email_verified_at' => now(),
+        ]);
+
+        $response = $this->postJson('/api/auth/login', [
+            'email' => $user->email,
+            'password' => 'password123',
+        ]);
+
+        $response->assertStatus(200)
+            ->assertJsonStructure([
+                'access_token',
+                'refresh_token',
+                'token_type',
+                'expires_in',
+            ]);
+    }
+
+    public function test_invalid_credentials_return_401()
+    {
+        $response = $this->postJson('/api/auth/login', [
+            'email' => 'nonexistent@example.com',
+            'password' => 'wrong',
+        ]);
+
+        $response->assertStatus(401)
+            ->assertJson(['error' => 'invalid_credentials']);
+    }
+
+    public function test_user_can_access_profile_with_jwt()
+    {
+        $user = User::factory()->create([
+            'email_verified_at' => now(),
+        ]);
+
+        $token = \App\Services\JwtService::generateAccessToken($user);
+
+        $response = $this->getJson('/api/auth/profile', [
+            'Authorization' => "Bearer {$token}",
+        ]);
+
+        $response->assertStatus(200)
+            ->assertJson(['user.email' => $user->email]);
+    }
+
+    public function test_invalid_token_returns_401()
+    {
+        $response = $this->getJson('/api/auth/profile', [
+            'Authorization' => 'Bearer invalid_token',
+        ]);
+
+        $response->assertStatus(401)
+            ->assertJson(['error' => 'invalid_token']);
+    }
+}
+```
+
+### Manual Testing
+
+Use Postman, Insomnia, or similar API testing tools:
+
+1. Login and save tokens
+2. Use access token for protected endpoints
+3. Test token expiration after JWT_EXPIRATION seconds
+4. Test token refresh
+5. Test logout and token revocation
+6. Test logout-all across multiple logins
+
+---
+
+## Role-Based Access with JWT
+
+Existing role middleware works seamlessly with JWT:
+
+```php
+Route::middleware(['jwt.auth', 'role:doctor'])->group(function () {
+    Route::get('/doctor/dashboard', [DoctorController::class, 'dashboard']);
+    Route::post('/doctor/prescription', [PrescriptionController::class, 'store']);
+});
+
+Route::middleware(['jwt.auth', 'role:admin'])->group(function () {
+    Route::get('/admin/users', [AdminController::class, 'users']);
+});
+```
+
+The user is automatically authenticated via JWT and role check is performed.
+
+---
+
+## Integration with Existing Auth
+
+- **Session-based (web)**: Unchanged - continues to work
+- **Sanctum tokens**: Continues to work alongside JWT
+- **JWT tokens**: New authentication method for API
+- **Role middleware**: Works with both JWT and session auth
+- **Authorization policies**: Work with JWT authenticated users
+
+No breaking changes to existing authentication.
+
+---
+
+## Migration from Sanctum to JWT
+
+If you later want to migrate from Sanctum tokens to JWT:
+
+1. Both can coexist during transition period
+2. Create a migration endpoint that converts Sanctum tokens to JWT
+3. Update frontend clients to use JWT endpoints
+4. Deprecate Sanctum endpoints after transition
+
+---
+
+## Common Use Cases
+
+### Mobile App Authentication
+```javascript
+// Mobile App (React Native, Flutter, etc.)
+async function login(email, password) {
+    const response = await fetch('https://api.hospital.local/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+    });
+    
+    const data = await response.json();
+    
+    // Store tokens securely
+    await SecureStore.setItem('access_token', data.access_token);
+    await SecureStore.setItem('refresh_token', data.refresh_token);
+}
+
+async function getProfile() {
+    const token = await SecureStore.getItem('access_token');
+    
+    const response = await fetch('https://api.hospital.local/api/auth/profile', {
+        headers: { 'Authorization': `Bearer ${token}` }
+    });
+    
+    return response.json();
+}
+
+async function refreshToken() {
+    const refreshToken = await SecureStore.getItem('refresh_token');
+    
+    const response = await fetch('https://api.hospital.local/api/auth/refresh', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ refresh_token: refreshToken })
+    });
+    
+    const data = await response.json();
+    await SecureStore.setItem('access_token', data.access_token);
+}
+```
+
+### JavaScript SPA (Vue, React, etc.)
+```javascript
+// Axios interceptor for automatic token handling
+import axios from 'axios';
+
+const apiClient = axios.create({
+    baseURL: '/api'
+});
+
+apiClient.interceptors.request.use(config => {
+    const token = localStorage.getItem('access_token');
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+});
+
+apiClient.interceptors.response.use(
+    response => response,
+    async error => {
+        if (error.response?.status === 401) {
+            const refreshToken = localStorage.getItem('refresh_token');
+            const response = await axios.post('/api/auth/refresh', {
+                refresh_token: refreshToken
+            });
+            
+            localStorage.setItem('access_token', response.data.access_token);
+            
+            // Retry original request
+            error.config.headers.Authorization = 
+                `Bearer ${response.data.access_token}`;
+            return apiClient(error.config);
+        }
+        return Promise.reject(error);
+    }
+);
+```
+
+---
+
+## Troubleshooting
+
+### "JWT_SECRET is not configured" error
+
+**Solution**: Run `php artisan jwt:generate`
+
+### Invalid Signature Error
+
+**Cause**: JWT secret mismatch between encoding and decoding
+
+**Solution**: Ensure JWT_SECRET is the same in production and all environments
+
+### Token Expired Error
+
+**Cause**: Access token has exceeded JWT_EXPIRATION seconds
+
+**Solution**: Use refresh token to get new access token
+
+### Email Not Verified Error
+
+**Cause**: User email not verified but JWT_REQUIRE_EMAIL_VERIFIED=true
+
+**Solution**: Either verify email or set JWT_REQUIRE_EMAIL_VERIFIED=false
+
+### Token Blacklist Not Working
+
+**Cause**: JWT_ENABLE_BLACKLIST=false or cache not configured properly
+
+**Solution**: Ensure JWT_ENABLE_BLACKLIST=true and CACHE_STORE is accessible
+
+---
+
+## What's Next (Phase 3)
+
+- Implement Multi-Factor Authentication (TOTP)
+- JWT login will require MFA verification
+- QR code generation for authenticator apps
+- Backup codes for account recovery
+
+---
+
+## Summary
+
+✅ **Implemented**:
+- JWT token generation with customizable expiration
+- Token refresh mechanism
+- Token blacklisting/revocation
+- Email verification enforcement
+- MFA preparation
+- Comprehensive JWT auth controller
+- Multiple token source extraction
+- Role-based access control integration
+- Error handling and validation
+
+✅ **Ready for**:
+- Mobile app authentication
+- SPA frontend integration
+- Microservices authentication
+- API gateway integration
+- OAuth/OpenID Connect (future)
+
+---
+
+**Documentation Updated**: June 7, 2026  
+**Next Phase**: Phase 3 - MFA/2FA Implementation
