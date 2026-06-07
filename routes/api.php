@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\PackageBookingController;
 use App\Http\Controllers\Api\EmailCheckController;
 use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\Api\DoctorController;
+use App\Http\Controllers\Api\JwtAuthController;
 use App\Http\Controllers\Diagnostic\DiagnosticServiceController;
 
 /*
@@ -21,6 +22,26 @@ use App\Http\Controllers\Diagnostic\DiagnosticServiceController;
 */
 
 use App\Http\Controllers\Api\BookingController;
+
+/*
+|--------------------------------------------------------------------------
+| JWT Authentication Routes
+|--------------------------------------------------------------------------
+|
+| Modern JWT-based API authentication endpoints.
+| Provides login, logout, token refresh, and profile access.
+|
+*/
+Route::prefix('auth')->group(function () {
+    Route::post('/login', [JwtAuthController::class, 'login'])->name('api.auth.login');
+    Route::post('/refresh', [JwtAuthController::class, 'refresh'])->name('api.auth.refresh');
+    
+    Route::middleware('jwt.auth')->group(function () {
+        Route::get('/profile', [JwtAuthController::class, 'profile'])->name('api.auth.profile');
+        Route::post('/logout', [JwtAuthController::class, 'logout'])->name('api.auth.logout');
+        Route::post('/logout-all', [JwtAuthController::class, 'logoutAll'])->name('api.auth.logout-all');
+    });
+});
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
