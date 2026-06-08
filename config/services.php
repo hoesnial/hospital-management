@@ -35,4 +35,15 @@ return [
         ],
     ],
 
+    /**
+     * Telegram Configuration (PHASE 6 - Security Alerts)
+     *
+     * Required for sending real-time security alerts.
+     * Setup instructions in SECURITY_PHASE_5_8_MONITORING.md
+     */
+    'telegram' => [
+        'bot_token' => env('TELEGRAM_BOT_TOKEN'),
+        'chat_id' => env('TELEGRAM_CHAT_ID'),
+    ],
+
 ];
