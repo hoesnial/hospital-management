@@ -10,7 +10,7 @@ const props = defineProps({
 const healthChecks = ref(props.healthChecks);
 
 const deleteHealthCheck = (id) => {
-    if (confirm("Are you sure you want to delete this health check?")) {
+    if (confirm("Apakah Anda yakin ingin menghapus paket kesehatan ini?")) {
         axios
             .delete(route("admin.health-checks.destroy", id))
             .then((response) => {
@@ -19,21 +19,21 @@ const deleteHealthCheck = (id) => {
                     (healthCheck) => healthCheck.id !== id
                 );
                 // Show success message
-                alert("Health check deleted successfully.");
+                alert("Paket kesehatan berhasil dihapus.");
             })
             .catch((error) => {
                 console.error("Error:", error);
-                alert("An error occurred while deleting the health check.");
+                alert("Terjadi kesalahan saat menghapus paket kesehatan.");
             });
     }
 };
 </script>
 
 <template>
-    <AppLayout title="Health Checks">
+    <AppLayout title="Paket Kesehatan">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Health Checks Management
+                Kelola Paket Kesehatan
             </h2>
         </template>
 
@@ -43,13 +43,13 @@ const deleteHealthCheck = (id) => {
                     <div class="p-6">
                         <div class="flex justify-between items-center mb-6">
                             <h3 class="text-lg font-medium text-gray-900">
-                                Health Checks
+                                Paket Kesehatan
                             </h3>
                             <Link
                                 :href="route('admin.health-checks.create')"
                                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                             >
-                                Add New Health Check
+                                Tambah Paket Kesehatan Baru
                             </Link>
                         </div>
 
@@ -60,27 +60,27 @@ const deleteHealthCheck = (id) => {
                                         <th
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                         >
-                                            Name
+                                            Nama
                                         </th>
                                         <th
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                         >
-                                            Price
+                                            Harga
                                         </th>
                                         <th
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                         >
-                                            Features
+                                            Fitur
                                         </th>
                                         <th
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                         >
-                                            Popular
+                                            Populer
                                         </th>
                                         <th
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                         >
-                                            Actions
+                                            Tindakan
                                         </th>
                                     </tr>
                                 </thead>
@@ -141,7 +141,7 @@ const deleteHealthCheck = (id) => {
                                                 "
                                                 class="text-indigo-600 hover:text-indigo-900 mr-3"
                                             >
-                                                Edit
+                                                Ubah
                                             </Link>
                                             <button
                                                 @click="
@@ -151,7 +151,7 @@ const deleteHealthCheck = (id) => {
                                                 "
                                                 class="text-red-600 hover:text-red-900"
                                             >
-                                                Delete
+                                                Hapus
                                             </button>
                                         </td>
                                     </tr>

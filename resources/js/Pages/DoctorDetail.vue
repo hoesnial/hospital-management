@@ -13,7 +13,7 @@ const { canLogin, canRegister, doctor } = defineProps({
 
 <template>
     <Head
-        :title="`${doctor.user.name} - Doctor Details - Xet Specialized Hospital`"
+        :title="`${doctor.user.name} - Detail Dokter - Xet Specialized Hospital`"
     />
 
     <!-- Header -->
@@ -43,7 +43,7 @@ const { canLogin, canRegister, doctor } = defineProps({
                             d="M15 19l-7-7 7-7"
                         ></path>
                     </svg>
-                    Back to Find Doctor
+                    Kembali ke Cari Dokter
                 </Link>
             </div>
 
@@ -103,7 +103,7 @@ const { canLogin, canRegister, doctor } = defineProps({
                         <h2
                             class="text-xl sm:text-2xl font-bold text-gray-900 mb-4"
                         >
-                            About
+                            Tentang
                         </h2>
                         <p
                             class="text-gray-700 leading-relaxed text-sm sm:text-base"
@@ -117,7 +117,7 @@ const { canLogin, canRegister, doctor } = defineProps({
                         <h2
                             class="text-xl sm:text-2xl font-bold text-gray-900 mb-4"
                         >
-                            Contact Information
+                            Informasi Kontak
                         </h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div
@@ -142,7 +142,7 @@ const { canLogin, canRegister, doctor } = defineProps({
                                 </div>
                                 <div>
                                     <h3 class="font-semibold text-gray-900">
-                                        Phone
+                                        Telepon
                                     </h3>
                                     <p class="text-gray-600">
                                         {{ doctor.phone }}
@@ -171,7 +171,7 @@ const { canLogin, canRegister, doctor } = defineProps({
                                 </div>
                                 <div>
                                     <h3 class="font-semibold text-gray-900">
-                                        Email
+                                        Surel
                                     </h3>
                                     <p class="text-gray-600">
                                         {{ doctor.user.email }}
@@ -188,13 +188,13 @@ const { canLogin, canRegister, doctor } = defineProps({
                                 :href="`tel:${doctor.phone}`"
                                 class="flex-1 bg-blue-600 text-white px-4 sm:px-6 py-3 rounded-xl font-semibold shadow hover:bg-blue-700 transition-all duration-300 text-center text-sm sm:text-base"
                             >
-                                📞 Call Now
+                                📞 Hubungi Sekarang
                             </a>
                             <Link
                                 :href="`/appointment-booking?doctor=${doctor.id}`"
                                 class="flex-1 bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-4 sm:px-6 py-3 rounded-xl font-semibold shadow hover:scale-105 transition-all duration-300 text-center text-sm sm:text-base"
                             >
-                                📋 Book Appointment
+                                📋 Buat Janji Temu
                             </Link>
                         </div>
                     </div>

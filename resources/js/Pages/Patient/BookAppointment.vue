@@ -21,7 +21,7 @@ function closeModal() {
 }
 </script>
 <template>
-    <Head title="Book Appointment" />
+    <Head title="Janji Temu" />
 
     <AuthenticatedLayout>
         <div
@@ -36,21 +36,21 @@ function closeModal() {
                         <li
                             class="inline-flex items-center gap-2 rounded-xl bg-red-300 text-black px-3 sm:px-4 py-1 text-xs sm:text-sm font-medium shadow-sm hover:bg-blue-800 hover:text-white transition-colors"
                         >
-                            <Link href="/dashboard">Back</Link>
+                            <Link href="/dashboard">Kembali</Link>
                         </li>
                         <li aria-hidden="true" class="mx-1 text-slate-400">
                             /
                         </li>
-                        <li class="text-slate-700 font-medium">Dashboard</li>
+                        <li class="text-slate-700 font-medium">Dasbor</li>
                     </ol>
                 </nav>
                 <h2
                     class="font-bold text-xl sm:text-2xl text-slate-800 leading-tight"
                 >
-                    Appointment
+                    Janji Temu
                 </h2>
                 <p class="text-slate-600 mt-1 text-sm sm:text-base">
-                    Explore preventive care and manage your booked appointment.
+                    Jelajahi perawatan pencegahan dan kelola janji temu Anda.
                 </p>
             </div>
             <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
@@ -71,7 +71,7 @@ function closeModal() {
                             d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                         />
                     </svg>
-                    Book Appointment
+                    Buat Janji Temu
                 </Link>
             </div>
         </div>
@@ -82,7 +82,7 @@ function closeModal() {
                 class="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-white/20"
             >
                 <h3 class="font-bold text-lg sm:text-xl text-slate-800 mb-4">
-                    Your Booked Appointments
+                    Janji Temu Anda
                 </h3>
                 <div
                     v-if="appointments && appointments.length > 0"
@@ -117,11 +117,11 @@ function closeModal() {
                                 <p
                                     class="font-medium text-slate-800 text-sm sm:text-base"
                                 >
-                                    Booking ID: {{ appointment.booking_id }}
+                                    ID Pemesanan: {{ appointment.booking_id }}
                                 </p>
                                 <p class="text-xs sm:text-sm text-slate-600">
                                     {{ appointment.speciality }} -
-                                    {{ appointment.preferred_date }} at
+                                    {{ appointment.preferred_date }} pukul
                                     {{ appointment.preferred_time }}
                                 </p>
                                 <p class="text-xs text-slate-500">
@@ -136,7 +136,7 @@ function closeModal() {
                                 @click="openModal(appointment)"
                                 class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1.5 sm:px-3 sm:py-1 rounded-lg text-xs sm:text-sm"
                             >
-                                View
+                                Lihat
                             </button>
                             <a
                                 :href="
@@ -148,7 +148,7 @@ function closeModal() {
                                 data-inertia="false"
                                 download
                                 class="bg-green-500 hover:bg-green-600 text-white px-3 py-1.5 sm:px-3 sm:py-1 rounded-lg text-xs sm:text-sm"
-                                >Receipt
+                                >Struk
                             </a>
                         </div>
                     </div>
@@ -168,12 +168,12 @@ function closeModal() {
                         ></path>
                     </svg>
                     <p class="text-slate-600 text-sm sm:text-base">
-                        No booked appointments yet.
+                        Belum ada janji temu.
                     </p>
                     <Link
                         href="/book-appointment"
                         class="text-blue-600 hover:text-blue-800 mt-2 inline-block text-sm sm:text-base"
-                        >Book your first appointment</Link
+                        >Pesan janji temu pertama Anda</Link
                     >
                 </div>
             </div>
@@ -188,23 +188,23 @@ function closeModal() {
                 class="bg-white rounded-lg p-4 sm:p-6 max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto"
             >
                 <h3 class="text-base sm:text-lg font-bold mb-4">
-                    Appointment Details
+                    Detail Janji Temu
                 </h3>
                 <div v-if="selectedAppointment" class="space-y-3 sm:space-y-2">
                     <p class="text-sm sm:text-base">
-                        <strong>Booking ID:</strong>
+                        <strong>ID Pemesanan:</strong>
                         {{ selectedAppointment.booking_id }}
                     </p>
                     <p class="text-sm sm:text-base">
-                        <strong>Speciality:</strong>
+                        <strong>Spesialisasi:</strong>
                         {{ selectedAppointment.speciality }}
                     </p>
                     <p class="text-sm sm:text-base">
-                        <strong>Date:</strong>
+                        <strong>Tanggal:</strong>
                         {{ selectedAppointment.preferred_date }}
                     </p>
                     <p class="text-sm sm:text-base">
-                        <strong>Time:</strong>
+                        <strong>Waktu:</strong>
                         {{ selectedAppointment.preferred_time }}
                     </p>
                     <p class="text-sm sm:text-base">
@@ -219,7 +219,7 @@ function closeModal() {
                         @click="closeModal"
                         class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg text-sm sm:text-base order-2 sm:order-1"
                     >
-                        OK
+                        Tutup
                     </button>
                     <a
                         :href="
@@ -232,7 +232,7 @@ function closeModal() {
                         download
                         class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm sm:text-base text-center order-1 sm:order-2"
                     >
-                        Receipt
+                        Struk
                     </a>
                 </div>
             </div>

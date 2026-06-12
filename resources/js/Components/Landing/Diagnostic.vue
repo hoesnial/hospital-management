@@ -25,21 +25,20 @@ onMounted(() => {
         <div class="mx-auto overflow-hidden">
             <div class="text-card">
                 <h2 class="text-2xl md:text-3xl font-semibold text-gray-900">
-                    Diagnostic
+
                     <span
                         class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500"
                     >
-                        Services
+                        Layanan Diagnostik
                     </span>
                 </h2>
                 <p class="text-base text-gray-600 max-w-2xl mt-2">
-                    Advanced diagnostic services with state-of-the-art equipment
-                    for accurate and timely results.
+                    Layanan diagnostik canggih dengan peralatan terkini untuk hasil yang akurat dan tepat waktu.
                 </p>
             </div>
 
             <div v-if="diagnosticServices.length === 0" class="text-center">
-                <p class="text-gray-500">Loading diagnostic services...</p>
+                <p class="text-gray-500">Memuat layanan diagnostik...</p>
             </div>
 
             <div v-else class="marquee-container space-y-3">
@@ -86,7 +85,7 @@ onMounted(() => {
                                                   0,
                                                   50
                                               ) + "..."
-                                            : "No description available"
+                                            : "Tidak ada deskripsi"
                                     }}
                                 </div>
                                 <div
@@ -101,14 +100,14 @@ onMounted(() => {
                                     class="overlay-btn bg-gradient-to-r from-blue-500 to-blue-700 text-white px-4 py-2 rounded-lg text-xs font-medium hover:from-blue-600 hover:to-blue-800 hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-1"
                                 >
                                     <ChevronRightIcon class="w-4 h-4" />
-                                    See All
+                                    Lihat Semua
                                 </Link>
                                 <Link
                                     :href="`/diagnostic/schedule/${service.id}`"
                                     class="overlay-btn bg-gradient-to-r from-green-500 to-green-700 text-white px-4 py-2 rounded-lg text-xs font-medium hover:from-green-600 hover:to-green-800 hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-1"
                                 >
                                     <CalendarDaysIcon class="w-4 h-4" />
-                                    Schedule Test
+                                    Jadwalkan Tes
                                 </Link>
                             </div>
                         </Link>
@@ -156,7 +155,7 @@ onMounted(() => {
                                                   0,
                                                   50
                                               ) + "..."
-                                            : "No description available"
+                                            : "Tidak ada deskripsi"
                                     }}
                                 </div>
                                 <div
@@ -171,14 +170,14 @@ onMounted(() => {
                                     class="overlay-btn bg-gradient-to-r from-blue-500 to-blue-700 text-white px-4 py-2 rounded-lg text-xs font-medium hover:from-blue-600 hover:to-blue-800 hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-1"
                                 >
                                     <ChevronRightIcon class="w-4 h-4" />
-                                    See All
+                                    Lihat Semua
                                 </Link>
                                 <Link
                                     :href="`/diagnostic/schedule/${service.id}`"
                                     class="overlay-btn bg-gradient-to-r from-green-500 to-green-700 text-white px-4 py-2 rounded-lg text-xs font-medium hover:from-green-600 hover:to-green-800 hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-1"
                                 >
                                     <CalendarDaysIcon class="w-4 h-4" />
-                                    Schedule Test
+                                    Jadwalkan Tes
                                 </Link>
                             </div>
                         </Link>

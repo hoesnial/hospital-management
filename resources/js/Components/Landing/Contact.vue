@@ -8,13 +8,12 @@
                     <h2
                         class="text-2xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-2"
                     >
-                        Get In Touch
+                        Hubungi Kami
                     </h2>
                     <p
                         class="text-base md:text-lg text-gray-600 leading-relaxed mb-6 md:mb-8"
                     >
-                        Have questions or need to schedule an appointment? Our
-                        team is here to help you with all your healthcare needs.
+                        Punya pertanyaan atau perlu menjadwalkan janji? Tim kami siap membantu Anda dengan semua kebutuhan kesehatan Anda.
                     </p>
 
                     <div class="space-y-4 md:space-y-6">
@@ -42,7 +41,7 @@
                                 <h4
                                     class="font-bold text-gray-900 text-sm md:text-base"
                                 >
-                                    Emergency
+                                    Darurat
                                 </h4>
                                 <p class="text-gray-600 text-sm md:text-base">
                                     (555) 123-HELP
@@ -74,7 +73,7 @@
                                 <h4
                                     class="font-bold text-gray-900 text-sm md:text-base"
                                 >
-                                    Location
+                                    Lokasi
                                 </h4>
                                 <p class="text-gray-600 text-sm md:text-base">
                                     123 Medical Avenue, Healthcare District
@@ -106,10 +105,10 @@
                                 <h4
                                     class="font-bold text-gray-900 text-sm md:text-base"
                                 >
-                                    Working Hours
+                                    Jam Kerja
                                 </h4>
                                 <p class="text-gray-600 text-sm md:text-base">
-                                    Emergency: 24/7 | OPD: 8AM-8PM
+                                    Darurat: 24/7 | Rawat Jalan: 08.00-20.00
                                 </p>
                             </div>
                         </div>
@@ -123,14 +122,14 @@
                     <h3
                         class="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6"
                     >
-                        Send us a Message
+                        Kirim Pesan
                     </h3>
                     <form class="space-y-4 md:space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label
                                     class="block text-sm font-medium text-gray-700 mb-2"
-                                    >First Name</label
+                                    >Nama Depan</label
                                 >
                                 <input
                                     type="text"
@@ -140,7 +139,7 @@
                             <div>
                                 <label
                                     class="block text-sm font-medium text-gray-700 mb-2"
-                                    >Last Name</label
+                                    >Nama Belakang</label
                                 >
                                 <input
                                     type="text"
@@ -161,7 +160,7 @@
                         <div>
                             <label
                                 class="block text-sm font-medium text-gray-700 mb-2"
-                                >Message</label
+                                    >Pesan</label
                             >
                             <textarea
                                 rows="4"
@@ -172,7 +171,7 @@
                             type="submit"
                             class="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-3 md:py-4 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm md:text-base"
                         >
-                            Send Message
+                            Kirim Pesan
                         </button>
                     </form>
                 </div>

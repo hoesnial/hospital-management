@@ -21,20 +21,20 @@ const submit = () => {
 
 <template>
     <GuestLayout>
-        <Head title="Forgot Password" />
+        <Head title="Lupa Kata Sandi" />
 
         <div class="flex flex-col items-center justify-center px-4">
             <div
                 class="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 transition-all duration-300"
             >
                 <h2 class="text-2xl font-semibold text-center mb-2">
-                    Forgot Your Password?
+                    Lupa Kata Sandi?
                 </h2>
                 <p
                     class="text-sm text-gray-600 dark:text-gray-400 text-center mb-6"
                 >
-                    No worries — just enter your email address below and we’ll
-                    send you a reset link.
+                    Jangan khawatir — cukup masukkan alamat email Anda di bawah
+                    dan kami akan mengirimkan tautan reset.
                 </p>
 
                 <div
@@ -46,7 +46,7 @@ const submit = () => {
 
                 <form @submit.prevent="submit" class="space-y-5">
                     <div>
-                        <InputLabel for="email" value="Email Address" />
+                        <InputLabel for="email" value="Alamat Surel" />
                         <TextInput
                             id="email"
                             type="email"
@@ -55,7 +55,7 @@ const submit = () => {
                             required
                             autofocus
                             autocomplete="username"
-                            placeholder="you@example.com"
+                            placeholder="anda@contoh.com"
                         />
                         <InputError
                             class="mt-2 text-red-600"
@@ -69,7 +69,7 @@ const submit = () => {
                             :class="{ 'opacity-25': form.processing }"
                             :disabled="form.processing"
                         >
-                            Email Password Reset Link
+                            Kirim Tautan Reset Kata Sandi
                         </PrimaryButton>
                     </div>
                 </form>
@@ -79,7 +79,7 @@ const submit = () => {
                         href="/login"
                         class="text-sm text-indigo-200 hover:text-indigo-300 dark:text-indigo-400 dark:hover:text-indigo-300 font-medium transition-colors"
                     >
-                        Back to Login
+                        Kembali ke Masuk
                     </a>
                 </div>
             </div>

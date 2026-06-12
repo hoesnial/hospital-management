@@ -29,10 +29,10 @@ const submit = () => {
 </script>
 
 <template>
-    <AppLayout title="Create Health Check">
+    <AppLayout title="Buat Paket Kesehatan">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Create New Health Check
+                Buat Paket Kesehatan Baru
             </h2>
         </template>
 
@@ -45,7 +45,7 @@ const submit = () => {
                                 <label
                                     for="name"
                                     class="block text-sm font-medium text-gray-700"
-                                    >Name</label
+                                    >Nama</label
                                 >
                                 <input
                                     v-model="form.name"
@@ -66,7 +66,7 @@ const submit = () => {
                                 <label
                                     for="price"
                                     class="block text-sm font-medium text-gray-700"
-                                    >Price</label
+                                    >Harga</label
                                 >
                                 <input
                                     v-model="form.price"
@@ -87,14 +87,14 @@ const submit = () => {
                                 <label
                                     for="features"
                                     class="block text-sm font-medium text-gray-700"
-                                    >Features</label
+                                    >Fitur</label
                                 >
                                 <textarea
                                     v-model="featuresText"
                                     id="features"
                                     rows="5"
                                     class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                                    placeholder="Enter each feature on a new line"
+                                    placeholder="Masukkan setiap fitur pada baris baru"
                                     required
                                 ></textarea>
                                 <div
@@ -114,7 +114,7 @@ const submit = () => {
                                         type="checkbox"
                                         class="mr-2"
                                     />
-                                    Popular
+                                    Populer
                                 </label>
                             </div>
 
@@ -123,14 +123,14 @@ const submit = () => {
                                     :href="route('admin.health-checks.index')"
                                     class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
                                 >
-                                    Cancel
+                                    Batal
                                 </Link>
                                 <button
                                     type="submit"
                                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                                     :disabled="form.processing"
                                 >
-                                    Create Health Check
+                                    Buat Paket Kesehatan
                                 </button>
                             </div>
                         </form>

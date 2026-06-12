@@ -37,25 +37,24 @@ onMounted(() => {
                     <h2
                         class="text-2xl md:text-4xl font-semibold text-gray-900"
                     >
-                        News & Media
+                        Berita & Media
                     </h2>
                     <p
                         class="text-base md:text-lg text-gray-600 max-w-lg md:max-w-2xl mt-2"
                     >
-                        Stay updated with the latest news, innovations, and
-                        community initiatives from Xet Hospital.
+                        Ikuti perkembangan berita terbaru, inovasi, dan inisiatif komunitas dari Xet Hospital.
                     </p>
                 </div>
                 <a
                     href="/news-all"
                     class="bg-blue-600 text-white px-6 md:px-8 py-2 md:py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300 text-center"
                 >
-                    All News
+                    Semua Berita
                 </a>
             </div>
 
             <div v-if="newsItems.length === 0" class="text-center">
-                <p class="text-gray-500">Loading news...</p>
+                <p class="text-gray-500">Memuat berita...</p>
             </div>
 
             <div v-else class="marquee-container space-y-6">
@@ -92,7 +91,7 @@ onMounted(() => {
                                         >{{
                                             new Date(
                                                 news.date
-                                            ).toLocaleDateString("en-US", {
+                                            ).toLocaleDateString("id-ID", {
                                                 month: "short",
                                                 day: "numeric",
                                                 year: "numeric",
@@ -116,7 +115,7 @@ onMounted(() => {
                                 <span
                                     class="text-blue-600 font-semibold text-sm md:text-base"
                                 >
-                                    Read More →
+                                    Baca Selengkapnya →
                                 </span>
                             </div>
                         </a>

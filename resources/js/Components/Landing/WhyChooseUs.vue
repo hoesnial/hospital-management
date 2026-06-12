@@ -3,26 +3,26 @@ import { Link } from "@inertiajs/vue3";
 const features = [
     {
         link: "/find-doctor",
-        title: "Expert Specialists",
-        desc: "200+ renowned medical specialists across all departments",
+        title: "Spesialis Ahli",
+        desc: "200+ spesialis medis ternama di semua departemen",
         icon: "👨‍⚕️",
     },
     {
         link: "#",
-        title: "Advanced Technology",
-        desc: "State-of-the-art medical equipment and facilities",
+        title: "Teknologi Canggih",
+        desc: "Peralatan dan fasilitas medis tercanggih",
         icon: "🔬",
     },
     {
         link: "#",
-        title: "24/7 Emergency",
-        desc: "Round-the-clock emergency and critical care services",
+        title: "Darurat 24/7",
+        desc: "Layanan darurat dan perawatan kritis 24 jam",
         icon: "🚨",
     },
     {
         link: "#",
-        title: "Patient First",
-        desc: "Personalized care plans and compassionate treatment",
+        title: "Pasien Utama",
+        desc: "Rencana perawatan pribadi dan perawatan penuh kasih",
         icon: "❤️",
     },
 ];
@@ -33,7 +33,7 @@ const features = [
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-card">
                 <h2 class="text-2xl md:text-3xl font-semibold text-gray-900">
-                    Why Choose
+                    Mengapa Memilih
                     <span
                         class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500"
                     >
@@ -43,8 +43,7 @@ const features = [
                 <p
                     class="text-base md:text-lg text-gray-600 max-w-lg md:max-w-2xl mt-2"
                 >
-                    Experience healthcare excellence with our patient-centered
-                    approach and cutting-edge medical technology.
+                    Rasakan keunggulan layanan kesehatan dengan pendekatan yang berpusat pada pasien dan teknologi medis mutakhir.
                 </p>
             </div>
 

@@ -26,27 +26,27 @@ const navItems = computed(() => {
     const items = [];
     if (isAdmin.value) {
         items.push({
-            name: "Home",
+            name: "Beranda",
             routeName: "dashboard",
             icon: "home",
         });
         items.push({
-            name: "Doctors",
+            name: "Dokter",
             routeName: "admin.doctors.index",
             icon: "users",
         });
         items.push({
-            name: "Staff",
+            name: "Staf",
             routeName: "admin.staff.index",
             icon: "users",
         });
         items.push({
-            name: "Schedules",
+            name: "Jadwal",
             routeName: "admin.schedules.index",
             icon: "calendar",
         });
         items.push({
-            name: "Logout",
+            name: "Keluar",
             routeName: "logout",
             icon: "logout",
         });
@@ -57,27 +57,27 @@ const navItems = computed(() => {
         // });
     } else if (isDoctor.value) {
         items.push({
-            name: "Home",
+            name: "Beranda",
             routeName: "dashboard",
             icon: "home",
         });
         items.push({
-            name: "Schedules",
+            name: "Jadwal",
             routeName: "doctor.schedules",
             icon: "calendar",
         });
         items.push({
-            name: "Appointments",
+            name: "Janji Temu",
             routeName: "doctor.appointments.index",
             icon: "calendar",
         });
         items.push({
-            name: "Messages",
+            name: "Pesan",
             routeName: "doctor.messages",
             icon: "message",
         });
         items.push({
-            name: "Logout",
+            name: "Keluar",
             routeName: "logout",
             icon: "logout",
             method: "post",
@@ -90,27 +90,27 @@ const navItems = computed(() => {
         // });
     } else if (isDiagnostic.value) {
         items.push({
-            name: "Home",
+            name: "Beranda",
             routeName: "dashboard",
             icon: "home",
         });
         items.push({
-            name: "Services",
+            name: "Layanan",
             routeName: "diagnostic.services.index",
             icon: "flask",
         });
         items.push({
-            name: "Bookings",
+            name: "Pemesanan",
             routeName: "diagnostic.services.index",
             icon: "calendar-check",
         });
         items.push({
-            name: "Test Results",
+            name: "Hasil Tes",
             routeName: "diagnostic.services.index",
             icon: "file-medical",
         });
         items.push({
-            name: "Logout",
+            name: "Keluar",
             routeName: "logout",
             icon: "logout",
             method: "post",
@@ -118,27 +118,27 @@ const navItems = computed(() => {
         });
     } else {
         items.push({
-            name: "Home",
+            name: "Beranda",
             routeName: "welcome",
             icon: "home",
         });
         items.push({
-            name: "Search",
+            name: "Cari",
             routeName: "find.doctor",
             icon: "search",
         });
         items.push({
-            name: "Dashboard",
+            name: "Dasbor",
             routeName: "dashboard",
             icon: "home",
         });
         items.push({
-            name: "Appointments",
+            name: "Janji Temu",
             routeName: "appointments.index",
             icon: "calendar",
         });
         items.push({
-            name: "Logout",
+            name: "Keluar",
             routeName: "logout",
             icon: "logout",
             method: "post",
@@ -272,10 +272,10 @@ const getIconSvg = (icon) => {
                     >
                         <div>
                             <h2 class="text-xl font-bold text-slate-800">
-                                Admin Panel
+                                Panel Admin
                             </h2>
                             <p class="text-slate-600 mt-1 text-sm">
-                                Welcome back, {{ user.name }} 👋
+                                Selamat Datang Kembali, {{ user.name }} 👋
                             </p>
                         </div>
                     </div>
@@ -311,7 +311,7 @@ const getIconSvg = (icon) => {
                         </svg>
                     </div>
                     <span v-if="!isSidebarCollapsed" class="font-semibold"
-                        >Dashboard</span
+                        >Dasbor</span
                     >
                 </Link>
 
@@ -343,7 +343,7 @@ const getIconSvg = (icon) => {
                         </svg>
                     </div>
                     <span v-if="!isSidebarCollapsed" class="font-semibold"
-                        >Manage Doctors</span
+                        >Kelola Dokter</span
                     >
                 </Link>
 
@@ -374,7 +374,7 @@ const getIconSvg = (icon) => {
                         </svg>
                     </div>
                     <span v-if="!isSidebarCollapsed" class="font-semibold"
-                        >Manage Staff</span
+                        >Kelola Staf</span
                     >
                 </Link>
 
@@ -406,7 +406,7 @@ const getIconSvg = (icon) => {
                         </svg>
                     </div>
                     <span v-if="!isSidebarCollapsed" class="font-semibold"
-                        >Doctors Schedules</span
+                        >Jadwal Dokter</span
                     >
                 </Link>
 
@@ -438,7 +438,7 @@ const getIconSvg = (icon) => {
                         </svg>
                     </div>
                     <span v-if="!isSidebarCollapsed" class="font-semibold"
-                        >Booking Package</span
+                        >Pemesanan Paket</span
                     >
                 </Link>
 
@@ -470,7 +470,7 @@ const getIconSvg = (icon) => {
                         </svg>
                     </div>
                     <span v-if="!isSidebarCollapsed" class="font-semibold"
-                        >Dr. Appointments</span
+                        >Janji Dokter</span
                     >
                 </Link>
 
@@ -502,7 +502,7 @@ const getIconSvg = (icon) => {
                         </svg>
                     </div>
                     <span v-if="!isSidebarCollapsed" class="font-semibold"
-                        >Manage Packages</span
+                        >Kelola Paket</span
                     >
                 </Link>
 
@@ -533,7 +533,7 @@ const getIconSvg = (icon) => {
                         </svg>
                     </div>
                     <span v-if="!isSidebarCollapsed" class="font-semibold"
-                        >Manage News</span
+                        >Kelola Berita</span
                     >
                 </Link>
             </nav>
@@ -564,7 +564,7 @@ const getIconSvg = (icon) => {
                         </svg>
                     </div>
                     <span v-if="!isSidebarCollapsed" class="font-semibold"
-                        >Log Out</span
+                        >Keluar</span
                     >
                 </Link>
             </div>
@@ -617,10 +617,10 @@ const getIconSvg = (icon) => {
                     >
                         <div>
                             <h2 class="text-xl font-bold text-slate-800">
-                                Diagnostic Portal
+                                Portal Diagnostik
                             </h2>
                             <p class="text-slate-600 mt-1 text-sm">
-                                Welcome back, {{ user.name }} 👋
+                                Selamat Datang Kembali, {{ user.name }} 👋
                             </p>
                         </div>
                     </div>
@@ -656,7 +656,7 @@ const getIconSvg = (icon) => {
                         </svg>
                     </div>
                     <span v-if="!isSidebarCollapsed" class="font-semibold"
-                        >Dashboard</span
+                        >Dasbor</span
                     >
                 </Link>
 
@@ -688,7 +688,7 @@ const getIconSvg = (icon) => {
                         </svg>
                     </div>
                     <span v-if="!isSidebarCollapsed" class="font-semibold"
-                        >Diagnostic Services</span
+                        >Layanan Diagnostik</span
                     >
                 </Link>
 
@@ -783,7 +783,7 @@ const getIconSvg = (icon) => {
                         </svg>
                     </div>
                     <span v-if="!isSidebarCollapsed" class="font-semibold"
-                        >Log Out</span
+                        >Keluar</span
                     >
                 </Link>
             </div>
@@ -834,10 +834,10 @@ const getIconSvg = (icon) => {
                     >
                         <div>
                             <h2 class="text-xl font-bold text-slate-800">
-                                Doctor Portal
+                                Portal Dokter
                             </h2>
                             <p class="text-slate-600 mt-1 text-sm">
-                                Welcome back, {{ user.name }} 👋
+                                Selamat Datang Kembali, {{ user.name }} 👋
                             </p>
                         </div>
                     </div>
@@ -873,7 +873,7 @@ const getIconSvg = (icon) => {
                         </svg>
                     </div>
                     <span v-if="!isSidebarCollapsed" class="font-semibold"
-                        >Dashboard</span
+                        >Dasbor</span
                     >
                 </Link>
 
@@ -904,7 +904,7 @@ const getIconSvg = (icon) => {
                         </svg>
                     </div>
                     <span v-if="!isSidebarCollapsed" class="font-semibold"
-                        >My Schedules</span
+                        >Jadwal Saya</span
                     >
                 </Link>
 
@@ -936,7 +936,7 @@ const getIconSvg = (icon) => {
                         </svg>
                     </div>
                     <span v-if="!isSidebarCollapsed" class="font-semibold"
-                        >Appointments</span
+                        >Janji Temu</span
                     >
                 </Link>
 
@@ -967,7 +967,7 @@ const getIconSvg = (icon) => {
                         </svg>
                     </div>
                     <span v-if="!isSidebarCollapsed" class="font-semibold"
-                        >Messages</span
+                        >Pesan</span
                     >
                 </Link>
             </nav>
@@ -998,7 +998,7 @@ const getIconSvg = (icon) => {
                         </svg>
                     </div>
                     <span v-if="!isSidebarCollapsed" class="font-semibold"
-                        >Log Out</span
+                        >Keluar</span
                     >
                 </Link>
             </div>
@@ -1086,21 +1086,21 @@ const getIconSvg = (icon) => {
                     href="/doctor"
                     class="block px-4 py-3 text-slate-700 hover:bg-slate-50 rounded-xl transition-all duration-200 font-medium"
                     :class="{ 'bg-slate-50': isActive('/doctor') }"
-                    >Doctor Portal</Link
+                    >Portal Dokter</Link
                 >
                 <Link
                     v-if="user?.role === 'doctor'"
                     href="/doctor/schedules"
                     class="block px-4 py-3 text-slate-700 hover:bg-slate-50 rounded-xl transition-all duration-200 font-medium"
                     :class="{ 'bg-slate-50': isActive('/doctor/schedules') }"
-                    >My Schedules</Link
+                    >Jadwal Saya</Link
                 >
                 <Link
                     v-if="user?.role === 'doctor'"
                     href="/doctor/messages"
                     class="block px-4 py-3 text-slate-700 hover:bg-slate-50 rounded-xl transition-all duration-200 font-medium"
                     :class="{ 'bg-slate-50': isActive('/doctor/messages') }"
-                    >Messages</Link
+                    >Pesan</Link
                 >
             </nav>
         </aside>
@@ -1182,7 +1182,7 @@ const getIconSvg = (icon) => {
                                         d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
                                     />
                                 </svg>
-                                <span class="font-medium">Logout</span>
+                                <span class="font-medium">Keluar</span>
                             </Link>
                         </div>
                     </div>
@@ -1206,7 +1206,7 @@ const getIconSvg = (icon) => {
                                 {{ title }}
                             </h2>
                             <p class="text-slate-600 mt-1">
-                                Manage your medical dashboard
+                                Kelola dasbor medis Anda
                             </p>
                         </div>
                     </div>

@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Encryptable;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Prescription;
 
 class Appointment extends Model
 {
+    use Encryptable;
+
     protected $fillable = [
         'booking_id',
         'first_name',
@@ -21,6 +24,10 @@ class Appointment extends Model
         'doctor_id',
         'additional_notes',
         'status',
+    ];
+
+    protected array $encryptable = [
+        'additional_notes',
     ];
 
     public function doctor()

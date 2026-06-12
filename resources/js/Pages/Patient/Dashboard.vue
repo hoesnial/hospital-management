@@ -4,7 +4,7 @@ import { Head, Link } from "@inertiajs/vue3";
 </script>
 
 <template>
-    <Head title="Patients Profile" />
+    <Head title="Profil Pasien" />
 
     <AuthenticatedLayout>
         <template #header>
@@ -15,10 +15,10 @@ import { Head, Link } from "@inertiajs/vue3";
                     <h2
                         class="font-bold text-xl sm:text-2xl text-slate-800 leading-tight"
                     >
-                        Hospital Management Dashboard
+                        Dasbor Manajemen Rumah Sakit
                     </h2>
                     <p class="text-slate-600 mt-1">
-                        Welcome back! Manage your health and appointments.
+                        Selamat datang! Kelola kesehatan dan janji temu Anda.
                     </p>
                 </div>
                 <div class="flex items-center space-x-4">
@@ -73,12 +73,12 @@ import { Head, Link } from "@inertiajs/vue3";
                             <h3
                                 class="text-xl sm:text-2xl font-bold text-slate-800"
                             >
-                                Welcome to Our Hospital
+                                Selamat Datang di Rumah Sakit Kami
                             </h3>
                             <p class="text-slate-600 mt-2">
-                                Access your medical records, book appointments,
-                                and manage your health packages all in one
-                                place.
+                                Akses rekam medis Anda, buat janji temu,
+                                dan kelola paket kesehatan Anda dalam satu
+                                tempat.
                             </p>
                         </div>
                     </div>
@@ -116,10 +116,10 @@ import { Head, Link } from "@inertiajs/vue3";
                                 <h4
                                     class="font-semibold text-slate-800 text-sm sm:text-base"
                                 >
-                                    Book Appointment
+                                    Janji Temu
                                 </h4>
                                 <p class="text-xs sm:text-sm text-slate-600">
-                                    Schedule with our doctors
+                                    Jadwal dengan dokter kami
                                 </p>
                             </div>
                         </div>
@@ -127,7 +127,7 @@ import { Head, Link } from "@inertiajs/vue3";
                             :href="route('patient.book-appointment')"
                             class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-xl transition-colors duration-300 text-center block text-sm sm:text-base"
                         >
-                            Booked Appointment
+                            Pesan Janji Temu
                         </Link>
                     </div>
 
@@ -159,10 +159,10 @@ import { Head, Link } from "@inertiajs/vue3";
                                 <h4
                                     class="font-semibold text-slate-800 text-sm sm:text-base"
                                 >
-                                    Health Packages
+                                    Paket Kesehatan
                                 </h4>
                                 <p class="text-xs sm:text-sm text-slate-600">
-                                    Explore preventive care
+                                    Jelajahi perawatan pencegahan
                                 </p>
                             </div>
                         </div>
@@ -170,7 +170,7 @@ import { Head, Link } from "@inertiajs/vue3";
                             :href="route('patient.health-packages')"
                             class="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-xl transition-colors duration-300 text-center block text-sm sm:text-base"
                         >
-                            View Packages
+                            Lihat Paket
                         </Link>
                     </div>
 
@@ -202,10 +202,10 @@ import { Head, Link } from "@inertiajs/vue3";
                                 <h4
                                     class="font-semibold text-slate-800 text-sm sm:text-base"
                                 >
-                                    Medical Records
+                                    Rekam Medis
                                 </h4>
                                 <p class="text-xs sm:text-sm text-slate-600">
-                                    Access your health history
+                                    Akses riwayat kesehatan Anda
                                 </p>
                             </div>
                         </div>
@@ -213,7 +213,7 @@ import { Head, Link } from "@inertiajs/vue3";
                             :href="route('patient.medical-records')"
                             class="w-full bg-purple-500 hover:bg-purple-600 text-white font-medium py-2 px-4 rounded-xl transition-colors duration-300 text-center block text-sm sm:text-base"
                         >
-                            View Records
+                            Lihat Rekam
                         </Link>
                     </div>
 
@@ -245,10 +245,10 @@ import { Head, Link } from "@inertiajs/vue3";
                                 <h4
                                     class="font-semibold text-slate-800 text-sm sm:text-base"
                                 >
-                                    Emergency
+                                    Darurat
                                 </h4>
                                 <p class="text-xs sm:text-sm text-slate-600">
-                                    24/7 emergency services
+                                    Layanan darurat 24/7
                                 </p>
                             </div>
                         </div>
@@ -256,7 +256,7 @@ import { Head, Link } from "@inertiajs/vue3";
                             href="tel:999"
                             class="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-xl transition-colors duration-300 text-center block text-sm sm:text-base"
                         >
-                            Call Now
+                            Hubungi Sekarang
                         </a>
                     </div>
 
@@ -288,10 +288,10 @@ import { Head, Link } from "@inertiajs/vue3";
                                 <h4
                                     class="font-semibold text-slate-800 text-sm sm:text-base"
                                 >
-                                    Health Tips
+                                    Tips Kesehatan
                                 </h4>
                                 <p class="text-xs sm:text-sm text-slate-600">
-                                    Daily wellness advice
+                                    Saran kesehatan harian
                                 </p>
                             </div>
                         </div>
@@ -299,7 +299,7 @@ import { Head, Link } from "@inertiajs/vue3";
                             :href="route('patient.health-tips')"
                             class="w-full bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded-xl transition-colors duration-300 text-center block text-sm sm:text-base"
                         >
-                            Read More
+                            Baca Selengkapnya
                         </Link>
                     </div>
 
@@ -331,10 +331,10 @@ import { Head, Link } from "@inertiajs/vue3";
                                 <h4
                                     class="font-semibold text-slate-800 text-sm sm:text-base"
                                 >
-                                    Profile
+                                    Profil
                                 </h4>
                                 <p class="text-xs sm:text-sm text-slate-600">
-                                    Manage your account
+                                    Kelola akun Anda
                                 </p>
                             </div>
                         </div>
@@ -342,7 +342,7 @@ import { Head, Link } from "@inertiajs/vue3";
                             :href="route('patient.profile')"
                             class="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-2 px-4 rounded-xl transition-colors duration-300 text-center block text-sm sm:text-base"
                         >
-                            Edit Profile
+                            Ubah Profil
                         </Link>
                     </div>
                 </div>
@@ -354,7 +354,7 @@ import { Head, Link } from "@inertiajs/vue3";
                     <h4
                         class="font-bold text-lg sm:text-xl text-slate-800 mb-4"
                     >
-                        Recent Activity
+                        Aktivitas Terbaru
                     </h4>
                     <div class="space-y-3 sm:space-y-4">
                         <div
@@ -381,14 +381,14 @@ import { Head, Link } from "@inertiajs/vue3";
                                 <p
                                     class="font-medium text-slate-800 text-sm sm:text-base"
                                 >
-                                    Appointment booked with Dr. Smith
+                                    Janji temu dengan Dr. Smith
                                 </p>
                                 <p class="text-xs sm:text-sm text-slate-600">
-                                    Tomorrow at 10:00 AM
+                                    Besok pukul 10:00
                                 </p>
                             </div>
                             <span class="text-xs text-slate-500 flex-shrink-0"
-                                >2 hours ago</span
+                                >2 jam yang lalu</span
                             >
                         </div>
                         <div
@@ -415,14 +415,14 @@ import { Head, Link } from "@inertiajs/vue3";
                                 <p
                                     class="font-medium text-slate-800 text-sm sm:text-base"
                                 >
-                                    Health Package purchased
+                                    Paket Kesehatan dibeli
                                 </p>
                                 <p class="text-xs sm:text-sm text-slate-600">
-                                    Annual Checkup Package
+                                    Paket Pemeriksaan Tahunan
                                 </p>
                             </div>
                             <span class="text-xs text-slate-500 flex-shrink-0"
-                                >1 day ago</span
+                                >1 hari yang lalu</span
                             >
                         </div>
                     </div>

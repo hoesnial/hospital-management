@@ -123,8 +123,8 @@ async function fetchList() {
     } catch (e) {
         toast({
             type: "error",
-            title: "Load failed",
-            message: e?.response?.data?.message || "Could not load staff.",
+            title: "Gagal memuat",
+            message: e?.response?.data?.message || "Tidak dapat memuat data staf.",
         });
     } finally {
         loading.value = false;
@@ -133,15 +133,15 @@ async function fetchList() {
 
 function validate(payload, isEdit = false) {
     const errs = {};
-    if (!payload.name?.trim()) errs.name = ["Name is required."];
-    if (!payload.email?.trim()) errs.email = ["Email is required."];
+    if (!payload.name?.trim()) errs.name = ["Nama wajib diisi."];
+    if (!payload.email?.trim()) errs.email = ["Email wajib diisi."];
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email))
-        errs.email = ["Email is invalid."];
+        errs.email = ["Email tidak valid."];
     if (!isEdit) {
         if (!payload.password || payload.password.length < 8)
-            errs.password = ["Password must be at least 8 characters."];
+            errs.password = ["Kata sandi minimal 8 karakter."];
     } else if (payload.password && payload.password.length < 8) {
-        errs.password = ["Password must be at least 8 characters."];
+        errs.password = ["Kata sandi minimal 8 karakter."];
     }
     return errs;
 }
@@ -162,54 +162,54 @@ function resetForm() {
 
 async function submit() {
     if (form.photo && !form.photo.type?.startsWith("image/")) {
-        errors.value = {
-            ...errors.value,
-            photo: ["Please upload a valid image file."],
-        };
-        return scrollToFirstError();
-    }
+            errors.value = {
+                ...errors.value,
+                photo: ["Harap unggah file gambar yang valid."],
+            };
+            return scrollToFirstError();
+        }
 
-    errors.value = validate(form);
-    if (Object.keys(errors.value).length) return scrollToFirstError();
-    submitting.value = true;
-    try {
-        const payload = {
-            name: form.name,
-            email: form.email,
-            password: form.password,
-            designation: form.designation,
-            department: form.department,
-            phone: form.phone,
-            about: form.about,
-            photo: form.photo || null,
-        };
+        errors.value = validate(form);
+        if (Object.keys(errors.value).length) return scrollToFirstError();
+        submitting.value = true;
+        try {
+            const payload = {
+                name: form.name,
+                email: form.email,
+                password: form.password,
+                designation: form.designation,
+                department: form.department,
+                phone: form.phone,
+                about: form.about,
+                photo: form.photo || null,
+            };
 
-        const fd = toFormData(payload);
+            const fd = toFormData(payload);
 
-        const { data } = await api.post("/admin/staff", fd);
+            const { data } = await api.post("/admin/staff", fd);
 
-        items.value.unshift(data.staff ?? data);
-        resetForm();
-        showAdd.value = false;
-        toast({
-            type: "success",
-            title: "Staff created",
-            message: "Account created successfully.",
+            items.value.unshift(data.staff ?? data);
+            resetForm();
+            showAdd.value = false;
+            toast({
+                type: "success",
+                title: "Staf dibuat",
+                message: "Akun berhasil dibuat.",
         });
     } catch (e) {
         if (e?.response?.status === 422) {
             errors.value = e.response.data.errors || {};
             toast({
                 type: "error",
-                title: "Validation error",
+                title: "Kesalahan validasi",
                 message: flattenErrors(errors.value),
             });
         } else {
             toast({
                 type: "error",
-                title: "Create failed",
+                title: "Gagal membuat",
                 message:
-                    e?.response?.data?.message || "Could not create staff.",
+                    e?.response?.data?.message || "Tidak dapat membuat staf.",
             });
         }
     } finally {
@@ -243,13 +243,13 @@ async function saveEdit() {
 
     if (editForm.photo && !editForm.photo.type?.startsWith("image/")) {
         errors.value = {
-            ...errors.value,
-            photo: ["Please upload a valid image file."],
-        };
-        return scrollToFirstError();
-    }
+                ...errors.value,
+                photo: ["Harap unggah file gambar yang valid."],
+            };
+            return scrollToFirstError();
+        }
 
-    errors.value = validate(editForm, true);
+        errors.value = validate(editForm, true);
     if (Object.keys(errors.value).length) return scrollToFirstError();
 
     try {
@@ -274,7 +274,7 @@ async function saveEdit() {
         if (idx > -1) items.value[idx] = data.staff ?? data;
 
         showEdit.value = false;
-        toast({ type: "success", title: "Saved", message: "Staff updated." });
+        toast({ type: "success", title: "Tersimpan", message: "Staf diperbarui." });
     } catch (e) {
         const errs = e?.response?.data?.errors;
         if (errs) {
@@ -287,8 +287,8 @@ async function saveEdit() {
         } else {
             toast({
                 type: "error",
-                title: "Update failed",
-                message: e?.response?.data?.message || "Could not update.",
+                title: "Gagal memperbarui",
+                message: e?.response?.data?.message || "Tidak dapat memperbarui.",
             });
         }
     }
@@ -306,14 +306,14 @@ async function removeRow() {
         items.value = items.value.filter((x) => x.id !== toDelete.value.id);
         toast({
             type: "success",
-            title: "Deleted",
-            message: `${toDelete.value.name} removed.`,
+            title: "Dihapus",
+            message: `${toDelete.value.name} dihapus.`,
         });
     } catch (e) {
         toast({
             type: "error",
-            title: "Delete failed",
-            message: e?.response?.data?.message || "Could not delete.",
+            title: "Gagal menghapus",
+            message: e?.response?.data?.message || "Tidak dapat menghapus.",
         });
     } finally {
         showDelete.value = false;
@@ -348,7 +348,7 @@ onMounted(fetchList);
 </script>
 
 <template>
-    <AuthenticatedLayout title="Admin · Staff">
+    <AuthenticatedLayout title="Admin · Staf">
         <div class="p-4 sm:p-6 max-w-7xl mx-auto">
             <!-- Header -->
             <header
@@ -358,10 +358,10 @@ onMounted(fetchList);
                     <h1
                         class="text-2xl font-semibold tracking-tight text-gray-900"
                     >
-                        Staff
+                        Staf
                     </h1>
                     <p class="text-gray-600 mt-1">
-                        Only existing staff are listed below.
+                        Hanya staf yang terdaftar yang ditampilkan di bawah.
                     </p>
                 </div>
                 <div class="flex flex-col gap-2 sm:flex-row">
@@ -381,7 +381,7 @@ onMounted(fetchList);
                                 clip-rule="evenodd"
                             />
                         </svg>
-                        Add Staff
+                        Tambah Staf
                     </button>
                     <button
                         class="inline-flex items-center gap-2 rounded-xl border border-gray-300 px-3 py-2 sm:px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -400,7 +400,7 @@ onMounted(fetchList);
                                 clip-rule="evenodd"
                             />
                         </svg>
-                        {{ loading ? "Refreshing…" : "Refresh" }}
+                        {{ loading ? "Memuat ulang…" : "Muat Ulang" }}
                     </button>
                 </div>
             </header>
@@ -413,7 +413,7 @@ onMounted(fetchList);
                         key="flash-success"
                         class="rounded-xl border border-green-200 bg-green-50 text-green-800 px-4 py-3 text-sm"
                     >
-                        <strong class="font-medium">Success:</strong>
+                        <strong class="font-medium">Berhasil:</strong>
                         {{ flash.success }}
                     </div>
                     <div
@@ -421,7 +421,7 @@ onMounted(fetchList);
                         key="flash-error"
                         class="rounded-xl border border-red-200 bg-red-50 text-red-800 px-4 py-3 text-sm"
                     >
-                        <strong class="font-medium">Error:</strong>
+                        <strong class="font-medium">Gagal:</strong>
                         {{ flash.error }}
                     </div>
                 </TransitionGroup>
@@ -435,7 +435,7 @@ onMounted(fetchList);
                     <input
                         v-model="query"
                         type="search"
-                        placeholder="Search name, email, department…"
+                        placeholder="Cari nama, email, departemen…"
                         class="w-full rounded-xl border border-gray-300 bg-white px-3 py-2 pl-9 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                     <svg
@@ -454,23 +454,23 @@ onMounted(fetchList);
                     </svg>
                 </div>
                 <div class="flex flex-wrap items-center gap-2">
-                    <label class="sr-only" for="sortBy">Sort by</label>
+                    <label class="sr-only" for="sortBy">Urutkan berdasarkan</label>
                     <select
                         id="sortBy"
                         v-model="sortBy"
                         class="rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm"
                     >
-                        <option value="name">Name</option>
+                        <option value="name">Nama</option>
                         <option value="email">Email</option>
-                        <option value="department">Department</option>
+                        <option value="department">Departemen</option>
                     </select>
                     <button
                         @click="sortDir = sortDir === 'asc' ? 'desc' : 'asc'"
                         class="rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm"
-                        :title="`Sort ${
-                            sortDir === 'asc' ? 'descending' : 'ascending'
+                        :title="`Urutkan ${
+                            sortDir === 'asc' ? 'menurun' : 'menaik'
                         }`"
-                        aria-label="Toggle sort direction"
+                        aria-label="Ubah arah urutan"
                     >
                         <span v-if="sortDir === 'asc'">⬆️</span>
                         <span v-else>⬇️</span>
@@ -494,7 +494,7 @@ onMounted(fetchList);
                     <thead class="bg-gray-50 text-gray-600">
                         <tr>
                             <th class="px-2 py-3 text-left font-medium sm:px-4">
-                                Name
+                                Nama
                             </th>
                             <th
                                 class="px-2 py-3 text-left font-medium sm:px-4 hidden sm:table-cell"
@@ -504,22 +504,22 @@ onMounted(fetchList);
                             <th
                                 class="px-2 py-3 text-left font-medium sm:px-4 hidden md:table-cell"
                             >
-                                Department
+                                Departemen
                             </th>
                             <th
                                 class="px-2 py-3 text-left font-medium sm:px-4 hidden md:table-cell"
                             >
-                                Designation
+                                Jabatan
                             </th>
                             <th
                                 class="px-2 py-3 text-left font-medium sm:px-4 hidden lg:table-cell"
                             >
-                                Phone
+                                Telepon
                             </th>
                             <th
                                 class="px-2 py-3 text-right font-medium sm:px-4"
                             >
-                                Actions
+                                Tindakan
                             </th>
                         </tr>
                     </thead>
@@ -549,7 +549,7 @@ onMounted(fetchList);
                                     <img
                                         v-if="item.photo"
                                         :src="item.photo"
-                                        alt="Staff photo"
+                                        alt="Foto staf"
                                         class="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover"
                                     />
                                     <div>
@@ -581,7 +581,7 @@ onMounted(fetchList);
                                 <span
                                     v-else
                                     class="text-gray-400 italic text-xs"
-                                    >Not specified</span
+                                    >Tidak ditentukan</span
                                 >
                             </td>
                             <td class="px-2 py-3 sm:px-4 hidden md:table-cell">
@@ -593,7 +593,7 @@ onMounted(fetchList);
                                 <span
                                     v-else
                                     class="text-gray-400 italic text-xs"
-                                    >Not provided</span
+                                    >Tidak disediakan</span
                                 >
                             </td>
                             <td class="px-2 py-3 sm:px-4 hidden lg:table-cell">
@@ -605,7 +605,7 @@ onMounted(fetchList);
                                 <span
                                     v-else
                                     class="text-gray-400 italic text-xs"
-                                    >Not provided</span
+                                    >Tidak disediakan</span
                                 >
                             </td>
                             <td class="px-2 py-3 sm:px-4">
@@ -616,13 +616,13 @@ onMounted(fetchList);
                                         class="inline-flex items-center gap-1 rounded-lg border border-gray-300 px-2 py-1 sm:px-3 sm:py-1.5 hover:bg-gray-50 text-sm"
                                         @click="openEdit(item)"
                                     >
-                                        ✏️ <span class="sr-only">Edit</span>
+                                        ✏️                                 <span class="sr-only">Ubah</span>
                                     </button>
                                     <button
                                         class="inline-flex items-center gap-1 rounded-lg border border-red-300 text-red-700 px-2 py-1 sm:px-3 sm:py-1.5 hover:bg-red-50 text-sm"
                                         @click="confirmDelete(item)"
                                     >
-                                        🗑️ <span class="sr-only">Delete</span>
+                                        🗑️ <span class="sr-only">Hapus</span>
                                     </button>
                                 </div>
                             </td>
@@ -638,11 +638,10 @@ onMounted(fetchList);
                                 <div
                                     class="mt-2 font-medium text-sm sm:text-base"
                                 >
-                                    No staff found
+                                    Tidak ada staf ditemukan
                                 </div>
                                 <p class="text-xs sm:text-sm">
-                                    Use the Add Staff button to create a new
-                                    profile.
+                                    Gunakan tombol Tambah Staf untuk membuat profil baru.
                                 </p>
                             </td>
                         </tr>
@@ -656,7 +655,7 @@ onMounted(fetchList);
                 class="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between text-sm"
             >
                 <div class="text-gray-600 text-xs sm:text-sm">
-                    Showing
+                    Menampilkan
                     <span class="font-medium">{{
                         (pageIndex - 1) * pageSize + 1
                     }}</span>
@@ -664,7 +663,7 @@ onMounted(fetchList);
                     <span class="font-medium">{{
                         Math.min(pageIndex * pageSize, filtered.length)
                     }}</span>
-                    of <span class="font-medium">{{ filtered.length }}</span>
+                    dari <span class="font-medium">{{ filtered.length }}</span>
                 </div>
                 <div
                     class="inline-flex rounded-lg border border-gray-300 overflow-hidden self-center sm:self-auto"
@@ -674,14 +673,14 @@ onMounted(fetchList);
                         :disabled="pageIndex === 1"
                         @click="pageIndex--"
                     >
-                        Prev
+                        Sebelumnya
                     </button>
                     <button
                         class="px-3 py-1.5 disabled:opacity-50 border-l border-gray-300 text-xs sm:text-sm"
                         :disabled="pageIndex * pageSize >= filtered.length"
                         @click="pageIndex++"
                     >
-                        Next
+                        Selanjutnya
                     </button>
                 </div>
             </div>
@@ -707,13 +706,13 @@ onMounted(fetchList);
                             <h2
                                 class="mb-4 text-xl font-semibold text-gray-900"
                             >
-                                Add Staff
+                        Tambah Staf
                             </h2>
                             <form @submit.prevent="submit" class="space-y-4">
                                 <div>
                                     <label
                                         class="block text-sm font-medium text-gray-700"
-                                        >Name</label
+                                        >Nama</label
                                     >
                                     <input
                                         v-model="form.name"
@@ -753,7 +752,7 @@ onMounted(fetchList);
                                 <div>
                                     <label
                                         class="block text-sm font-medium text-gray-700"
-                                        >Password</label
+                                        >Kata Sandi</label
                                     >
                                     <div class="relative">
                                         <input
@@ -822,7 +821,7 @@ onMounted(fetchList);
                                 <div>
                                     <label
                                         class="block text-sm font-medium text-gray-700"
-                                        >Designation</label
+                                        >Jabatan</label
                                     >
                                     <input
                                         v-model="form.designation"
@@ -833,7 +832,7 @@ onMounted(fetchList);
                                 <div>
                                     <label
                                         class="block text-sm font-medium text-gray-700"
-                                        >Department</label
+                                        >Departemen</label
                                     >
                                     <input
                                         v-model="form.department"
@@ -844,7 +843,7 @@ onMounted(fetchList);
                                 <div>
                                     <label
                                         class="block text-sm font-medium text-gray-700"
-                                        >Phone</label
+                                        >Telepon</label
                                     >
                                     <input
                                         v-model="form.phone"
@@ -855,7 +854,7 @@ onMounted(fetchList);
                                 <div>
                                     <label
                                         class="block text-sm font-medium text-gray-700"
-                                        >About</label
+                                        >Tentang</label
                                     >
                                     <textarea
                                         v-model="form.about"
@@ -866,7 +865,7 @@ onMounted(fetchList);
                                 <div>
                                     <label
                                         class="block text-sm font-medium text-gray-700"
-                                        >Photo</label
+                                        >Foto</label
                                     >
                                     <input
                                         @change="
@@ -889,7 +888,7 @@ onMounted(fetchList);
                                         @click="showAdd = false"
                                         class="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
                                     >
-                                        Cancel
+                                        Batal
                                     </button>
                                     <button
                                         type="submit"
@@ -898,8 +897,8 @@ onMounted(fetchList);
                                     >
                                         {{
                                             submitting
-                                                ? "Creating..."
-                                                : "Create Staff"
+                                                ? "Membuat..."
+                                                : "Buat Staf"
                                         }}
                                     </button>
                                 </div>
@@ -927,16 +926,16 @@ onMounted(fetchList);
                         <div
                             class="w-full max-w-lg rounded-lg bg-white p-6 shadow-xl"
                         >
-                            <h2
+                                <h2
                                 class="mb-4 text-xl font-semibold text-gray-900"
                             >
-                                Edit Staff
+                                Ubah Staf
                             </h2>
                             <form @submit.prevent="saveEdit" class="space-y-4">
                                 <div>
                                     <label
                                         class="block text-sm font-medium text-gray-700"
-                                        >Name</label
+                                        >Nama</label
                                     >
                                     <input
                                         v-model="editForm.name"
@@ -976,8 +975,8 @@ onMounted(fetchList);
                                 <div>
                                     <label
                                         class="block text-sm font-medium text-gray-700"
-                                        >Password (leave blank to keep
-                                        current)</label
+                                        >Kata Sandi (biarkan kosong untuk tetap
+                                        sama)</label
                                     >
                                     <div class="relative">
                                         <input
@@ -1047,7 +1046,7 @@ onMounted(fetchList);
                                 <div>
                                     <label
                                         class="block text-sm font-medium text-gray-700"
-                                        >Designation</label
+                                        >Jabatan</label
                                     >
                                     <input
                                         v-model="editForm.designation"
@@ -1058,7 +1057,7 @@ onMounted(fetchList);
                                 <div>
                                     <label
                                         class="block text-sm font-medium text-gray-700"
-                                        >Department</label
+                                        >Departemen</label
                                     >
                                     <input
                                         v-model="editForm.department"
@@ -1069,7 +1068,7 @@ onMounted(fetchList);
                                 <div>
                                     <label
                                         class="block text-sm font-medium text-gray-700"
-                                        >Phone</label
+                                        >Telepon</label
                                     >
                                     <input
                                         v-model="editForm.phone"
@@ -1080,7 +1079,7 @@ onMounted(fetchList);
                                 <div>
                                     <label
                                         class="block text-sm font-medium text-gray-700"
-                                        >About</label
+                                        >Tentang</label
                                     >
                                     <textarea
                                         v-model="editForm.about"
@@ -1091,8 +1090,8 @@ onMounted(fetchList);
                                 <div>
                                     <label
                                         class="block text-sm font-medium text-gray-700"
-                                        >Photo (leave blank to keep
-                                        current)</label
+                                        >Foto (biarkan kosong untuk tetap
+                                        sama)</label
                                     >
                                     <input
                                         @change="
@@ -1116,13 +1115,13 @@ onMounted(fetchList);
                                         @click="showEdit = false"
                                         class="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
                                     >
-                                        Cancel
+                                        Batal
                                     </button>
                                     <button
                                         type="submit"
                                         class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
                                     >
-                                        Save Changes
+                                        Simpan Perubahan
                                     </button>
                                 </div>
                             </form>
@@ -1152,25 +1151,25 @@ onMounted(fetchList);
                             <h2
                                 class="mb-4 text-xl font-semibold text-gray-900"
                             >
-                                Delete Staff
+                                Hapus Staf
                             </h2>
                             <p class="text-gray-600">
-                                Are you sure you want to delete
+                                Apakah Anda yakin ingin menghapus
                                 <strong>{{ toDelete?.name }}</strong
-                                >? This action cannot be undone.
+                                >? Tindakan ini tidak dapat dibatalkan.
                             </p>
                             <div class="flex justify-end gap-3 pt-4">
                                 <button
                                     @click="showDelete = false"
                                     class="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
                                 >
-                                    Cancel
+                                    Batal
                                 </button>
                                 <button
                                     @click="removeRow"
                                     class="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
                                 >
-                                    Delete
+                                    Hapus
                                 </button>
                             </div>
                         </div>

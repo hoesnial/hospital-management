@@ -255,9 +255,9 @@ onMounted(() => {
 </script>
 
 <template>
-    <AppLayout title="News">
+    <AppLayout title="Berita">
         <div class="flex px-4 py-4 items-center justify-between">
-            <h2 class="font-semibold text-xl text-gray-800">News Management</h2>
+            <h2 class="font-semibold text-xl text-gray-800">Kelola Berita</h2>
             <div class="flex items-center gap-2">
                 <button
                     @click="openCreate"
@@ -273,7 +273,7 @@ onMounted(() => {
                             d="M12 5c.552 0 1 .448 1 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H6a1 1 0 110-2h5V6c0-.552.448-1 1-1z"
                         />
                     </svg>
-                    Add News
+                    Tambah Berita
                 </button>
             </div>
         </div>
@@ -290,25 +290,25 @@ onMounted(() => {
                         <div class="lg:col-span-2">
                             <label
                                 class="mb-1 block text-sm font-medium text-gray-700"
-                                >Search</label
+                                >Cari</label
                             >
                             <input
                                 v-model="query"
                                 type="search"
-                                placeholder="Search title, excerpt, category"
+                                placeholder="Cari judul, cuplikan, kategori"
                                 class="w-full rounded-xl border-gray-300 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500"
                             />
                         </div>
                         <div>
                             <label
                                 class="mb-1 block text-sm font-medium text-gray-700"
-                                >Category</label
+                                >Kategori</label
                             >
                             <select
                                 v-model="categoryFilter"
                                 class="w-full rounded-xl border-gray-300 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500"
                             >
-                                <option value="">All</option>
+                                <option value="">Semua</option>
                                 <option
                                     v-for="c in categories"
                                     :key="c"
@@ -321,7 +321,7 @@ onMounted(() => {
                         <div>
                             <label
                                 class="mb-1 block text-sm font-medium text-gray-700"
-                                >From</label
+                                >Dari</label
                             >
                             <input
                                 v-model="dateFrom"
@@ -332,7 +332,7 @@ onMounted(() => {
                         <div>
                             <label
                                 class="mb-1 block text-sm font-medium text-gray-700"
-                                >To</label
+                                >Hingga</label
                             >
                             <input
                                 v-model="dateTo"
@@ -344,15 +344,15 @@ onMounted(() => {
                             <div class="flex-1">
                                 <label
                                     class="mb-1 block text-sm font-medium text-gray-700"
-                                    >Sort</label
+                                    >Urutkan</label
                                 >
                                 <select
                                     v-model="sortKey"
                                     class="w-full rounded-xl border-gray-300 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500"
                                 >
-                                    <option value="date">Date</option>
-                                    <option value="title">Title</option>
-                                    <option value="category">Category</option>
+                                    <option value="date">Tanggal</option>
+                                    <option value="title">Judul</option>
+                                    <option value="category">Kategori</option>
                                 </select>
                             </div>
                             <div class="pt-6">
@@ -363,8 +363,8 @@ onMounted(() => {
                                     "
                                     class="inline-flex h-[38px] items-center justify-center rounded-xl border border-gray-300 px-3 text-sm shadow-sm hover:bg-gray-50"
                                 >
-                                    <span v-if="sortDir === 'asc'">Asc</span>
-                                    <span v-else>Desc</span>
+                                    <span v-if="sortDir === 'asc'">Menaik</span>
+                                    <span v-else>Menurun</span>
                                 </button>
                             </div>
                         </div>
@@ -382,27 +382,27 @@ onMounted(() => {
                                     <th
                                         class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600"
                                     >
-                                        Image
+                                        Gambar
                                     </th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600"
                                     >
-                                        Title
+                                        Judul
                                     </th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600"
                                     >
-                                        Category
+                                        Kategori
                                     </th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600"
                                     >
-                                        Date
+                                        Tanggal
                                     </th>
                                     <th
                                         class="px-6 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-600"
                                     >
-                                        Actions
+                                        Tindakan
                                     </th>
                                 </tr>
                             </thead>
@@ -427,7 +427,7 @@ onMounted(() => {
                                             v-else
                                             class="flex h-12 w-16 items-center justify-center rounded-lg bg-gray-100 text-[10px] uppercase tracking-wider text-gray-400 ring-1 ring-gray-200"
                                         >
-                                            No image
+                                            Tidak ada gambar
                                         </div>
                                     </td>
                                     <td class="px-6 py-3">
@@ -454,13 +454,13 @@ onMounted(() => {
                                                 @click="openEdit(item)"
                                                 class="rounded-xl border border-gray-300 px-3 py-1.5 text-sm text-gray-700 shadow-sm hover:bg-gray-50"
                                             >
-                                                Edit
+                                                Ubah
                                             </button>
                                             <button
                                                 @click="askDelete(item.id)"
                                                 class="rounded-xl bg-red-50 px-3 py-1.5 text-sm text-red-700 ring-1 ring-inset ring-red-200 hover:bg-red-100"
                                             >
-                                                Delete
+                                                Hapus
                                             </button>
                                         </div>
                                     </td>
@@ -470,8 +470,8 @@ onMounted(() => {
                                         colspan="5"
                                         class="px-6 py-12 text-center text-sm text-gray-500"
                                     >
-                                        No news found. Try adjusting your
-                                        filters.
+                                        Tidak ada berita ditemukan. Coba sesuaikan
+                                        filter Anda.
                                     </td>
                                 </tr>
                             </tbody>
@@ -483,7 +483,7 @@ onMounted(() => {
                         class="flex items-center justify-between gap-4 border-t border-gray-100 p-4"
                     >
                         <div class="text-sm text-gray-600">
-                            Page {{ page }} of {{ totalPages }}
+                            Halaman {{ page }} dari {{ totalPages }}
                         </div>
                         <div class="flex items-center gap-2">
                             <select
@@ -501,7 +501,7 @@ onMounted(() => {
                                     @click="page = Math.max(1, page - 1)"
                                     class="rounded-lg border border-gray-300 px-3 py-1.5 text-sm shadow-sm enabled:hover:bg-gray-50 disabled:opacity-50"
                                 >
-                                    Prev
+                                    Sebelumnya
                                 </button>
                                 <button
                                     :disabled="page === totalPages"
@@ -510,7 +510,7 @@ onMounted(() => {
                                     "
                                     class="rounded-lg border border-gray-300 px-3 py-1.5 text-sm shadow-sm enabled:hover:bg-gray-50 disabled:opacity-50"
                                 >
-                                    Next
+                                    Selanjutnya
                                 </button>
                             </div>
                         </div>
@@ -532,22 +532,22 @@ onMounted(() => {
                 <div
                     class="relative z-10 w-full max-w-md rounded-2xl bg-white p-6 shadow-xl"
                 >
-                    <h3 class="text-lg font-semibold">Delete this news?</h3>
+                    <h3 class="text-lg font-semibold">Hapus berita ini?</h3>
                     <p class="mt-1 text-sm text-gray-600">
-                        This action cannot be undone.
+                        Tindakan ini tidak dapat dibatalkan.
                     </p>
                     <div class="mt-6 flex justify-end gap-2">
                         <button
                             @click="showDelete = false"
                             class="rounded-xl border border-gray-300 px-4 py-2 text-sm shadow-sm hover:bg-gray-50"
                         >
-                            Cancel
+                            Batal
                         </button>
                         <button
                             @click="confirmDelete"
                             class="rounded-2xl bg-red-600 px-4 py-2 text-white shadow hover:bg-red-700"
                         >
-                            Delete
+                            Hapus
                         </button>
                     </div>
                 </div>
@@ -620,7 +620,7 @@ onMounted(() => {
                             stroke-linecap="round"
                         />
                     </svg>
-                    <span class="text-sm">Working…</span>
+                    <span class="text-sm">Memproses…</span>
                 </div>
             </div>
         </transition>

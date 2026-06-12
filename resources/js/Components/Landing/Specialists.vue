@@ -24,25 +24,23 @@ onMounted(() => {
         <div class="mx-auto overflow-hidden">
             <div class="text-card text-right ml-auto">
                 <h2 class="text-2xl md:text-3xl font-semibold text-gray-900">
-                    Our
+
                     <span
                         class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500"
                     >
-                        Specialists
+                        Spesialis
                     </span>
                 </h2>
                 <p class="mt-2 text-gray-600">
-                    Highly Experienced, Internationally Trained Specialists from
-                    reputed medical colleges
+                    Spesialis Berpengalaman Tinggi, Berlatih Internasional dari perguruan tinggi kedokteran ternama
                 </p>
                 <p class="text-gray-600">
-                    are the top choice of Bangladeshi patients for their
-                    healthcare needs.
+                    merupakan pilihan utama pasien Bangladesh untuk kebutuhan kesehatan mereka.
                 </p>
             </div>
 
             <div v-if="doctors.length === 0" class="text-center">
-                <p class="text-gray-500">Loading specialists...</p>
+                <p class="text-gray-500">Memuat spesialis...</p>
             </div>
 
             <div v-else class="marquee-container space-y-6">

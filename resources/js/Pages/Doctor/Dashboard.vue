@@ -6,7 +6,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Doctor Dashboard
+                Dasbor Dokter
             </h2>
         </template>
 
@@ -15,29 +15,29 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
                         <h3 class="text-lg font-medium mb-4">
-                            Welcome, Doctor!
+                            Selamat Datang, Dokter!
                         </h3>
                         <p class="mb-4">
-                            Manage your schedules, view appointments, and handle
-                            patient interactions.
+                            Kelola jadwal Anda, lihat janji temu, dan tangani
+                            interaksi pasien.
                         </p>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="bg-blue-50 p-4 rounded-lg">
-                                <h4 class="font-semibold">My Schedule</h4>
-                                <p>View and manage your availability.</p>
+                                <h4 class="font-semibold">Jadwal Saya</h4>
+                                <p>Lihat dan kelola ketersediaan Anda.</p>
                                 <a
                                     href="/doctor/schedules"
                                     class="text-blue-600 hover:underline"
-                                    >Manage Schedule</a
+                                    >Kelola Jadwal</a
                                 >
                             </div>
                             <div class="bg-green-50 p-4 rounded-lg">
-                                <h4 class="font-semibold">Appointments</h4>
-                                <p>See upcoming patient appointments.</p>
+                                <h4 class="font-semibold">Janji Temu</h4>
+                                <p>Lihat janji temu pasien mendatang.</p>
                                 <a
                                     href="/doctor/appointments"
                                     class="text-green-600 hover:underline"
-                                    >View Appointments</a
+                                    >Lihat Janji Temu</a
                                 >
                             </div>
                         </div>

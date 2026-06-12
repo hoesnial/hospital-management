@@ -279,38 +279,38 @@ const closeModal = () => {
 const benefits = ref([
     {
         icon: "🧪",
-        title: "Accurate Testing",
+        title: "Pengujian Akurat",
         description:
-            "State-of-the-art diagnostic equipment for precise results",
+            "Peralatan diagnostik mutakhir untuk hasil yang tepat",
     },
     {
         icon: "⏰",
-        title: "Quick Results",
-        description: "Fast turnaround time for test reports",
+        title: "Hasil Cepat",
+        description: "Waktu penyelesaian yang cepat untuk laporan tes",
     },
     {
         icon: "🏠",
-        title: "Home Collection",
-        description: "Convenient sample collection at your doorstep",
+        title: "Koleksi Rumah",
+        description: "Pengambilan sampel yang nyaman di depan pintu rumah Anda",
     },
     {
         icon: "👨‍⚕️",
-        title: "Expert Analysis",
-        description: "Results analyzed by certified medical professionals",
+        title: "Analisis Ahli",
+        description: "Hasil dianalisis oleh profesional medis bersertifikat",
     },
 ]);
 
 // Hospital stats
 const hospitalStats = ref([
-    { number: "50,000+", label: "Tests Conducted" },
-    { number: "98%", label: "Accuracy Rate" },
-    { number: "24/7", label: "Lab Services" },
-    { number: "15min", label: "Avg. Wait Time" },
+    { number: "50,000+", label: "Tes Dilakukan" },
+    { number: "98%", label: "Tingkat Akurasi" },
+    { number: "24/7", label: "Layanan Lab" },
+    { number: "15mnt", label: "Rata-rata Waktu Tunggu" },
 ]);
 </script>
 
 <template>
-    <Head title="Book Diagnostic Test - Xet Specialized Hospital" />
+    <Head title="Pesan Tes Diagnostik - Xet Specialized Hospital" />
 
     <!-- Header -->
     <Header :canLogin="canLogin" :canRegister="canRegister" />
@@ -328,23 +328,23 @@ const hospitalStats = ref([
                     <div
                         class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"
                     ></div>
-                    Book Diagnostic Test
+                    Pesan Tes Diagnostik
                 </div>
                 <h1
                     class="text-3xl md:text-4xl font-black text-gray-900 mb-4 leading-tight"
                 >
-                    Schedule Your
+                    Jadwalkan
                     <span
                         class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500"
                     >
-                        Diagnostic Test
+                        Tes Diagnostik
                     </span>
                 </h1>
                 <p
                     class="text-sm md:text-base text-gray-700 leading-relaxed max-w-3xl mx-auto"
                 >
-                    Book your {{ service?.name }} diagnostic test with our
-                    expert medical team and get accurate results quickly.
+                    Pesan tes diagnostik {{ service?.name }} dengan tim medis
+                    ahli kami dan dapatkan hasil yang akurat dengan cepat.
                 </p>
             </div>
 
@@ -357,7 +357,7 @@ const hospitalStats = ref([
                         class="bg-white rounded-3xl shadow-xl border border-gray-100 p-8"
                     >
                         <h3 class="text-2xl font-black text-gray-900 mb-6">
-                            Test Details
+                            Detail Tes
                         </h3>
                         <div class="space-y-4">
                             <div class="flex items-center gap-4">
@@ -378,7 +378,7 @@ const hospitalStats = ref([
                                 </div>
                                 <div>
                                     <h4 class="font-semibold text-gray-900">
-                                        Price
+                                        Harga
                                     </h4>
                                     <p class="text-sm text-gray-600">
                                         ৳{{ service?.price }}
@@ -393,13 +393,13 @@ const hospitalStats = ref([
                                 </div>
                                 <div>
                                     <h4 class="font-semibold text-gray-900">
-                                        Duration
+                                        Durasi
                                     </h4>
                                     <p class="text-sm text-gray-600">
                                         {{
                                             service?.duration
-                                                ? `${service.duration} min`
-                                                : "N/A"
+                                                ? `${service.duration} mnt`
+                                                : "T/A"
                                         }}
                                     </p>
                                 </div>
@@ -412,7 +412,7 @@ const hospitalStats = ref([
                         class="bg-white rounded-3xl shadow-xl border border-gray-100 p-8"
                     >
                         <h3 class="text-2xl font-black text-gray-900 mb-6">
-                            Why Choose Us?
+                            Mengapa Memilih Kami?
                         </h3>
                         <div class="space-y-6">
                             <div
@@ -441,7 +441,7 @@ const hospitalStats = ref([
                     <div
                         class="bg-gradient-to-br from-blue-600 to-cyan-500 rounded-3xl p-8 text-white"
                     >
-                        <h3 class="text-2xl font-black mb-6">Our Excellence</h3>
+                        <h3 class="text-2xl font-black mb-6">Keunggulan Kami</h3>
                         <div class="grid grid-cols-2 gap-4">
                             <div
                                 v-for="stat in hospitalStats"
@@ -467,11 +467,11 @@ const hospitalStats = ref([
                         <!-- Form Header -->
                         <div class="text-center mb-8">
                             <h2 class="text-3xl font-black text-gray-900 mb-1">
-                                Book Your Test
+                                Pesan Tes Anda
                             </h2>
                             <p class="text-gray-600">
-                                Fill in your details and we'll schedule your
-                                diagnostic test
+                                Isi detail Anda dan kami akan menjadwalkan
+                                tes diagnostik Anda
                             </p>
                         </div>
 
@@ -486,14 +486,14 @@ const hospitalStats = ref([
                                     >
                                         🧪
                                     </div>
-                                    Test Information
+                                    Informasi Tes
                                 </h3>
 
                                 <div class="grid md:grid-cols-2 gap-6 mt-5">
                                     <div>
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
-                                            >Test Name</label
+                                            >Nama Tes</label
                                         >
                                         <input
                                             type="text"
@@ -505,7 +505,7 @@ const hospitalStats = ref([
                                     <div>
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
-                                            >Appointment Booking ID
+                                            >ID Pemesanan Janji Temu
                                         </label>
                                         <input
                                             v-model="appointmentBookingId"
@@ -513,15 +513,15 @@ const hospitalStats = ref([
                                             :disabled="submitting"
                                             maxlength="12"
                                             class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 placeholder-gray-400 disabled:bg-gray-100 disabled:cursor-not-allowed"
-                                            placeholder="Enter appointment booking ID (e.g., APT-ABC12345)"
+                                            placeholder="Masukkan ID pemesanan janji temu (mis., APT-ABC12345)"
                                             @input="fetchAppointmentDetails"
                                             @focus="onFocusAppointmentId"
                                             @blur="onBlurAppointmentId"
                                         />
                                         <p class="text-sm text-gray-500 mt-1">
-                                            Enter your appointment booking ID to
-                                            automatically select the associated
-                                            doctor
+                                            Masukkan ID pemesanan janji temu Anda
+                                            untuk memilih dokter terkait
+                                            secara otomatis
                                         </p>
                                         <div
                                             v-if="selectedDoctor"
@@ -539,7 +539,7 @@ const hospitalStats = ref([
                                                     <p
                                                         class="text-sm font-semibold text-gray-900"
                                                     >
-                                                        Selected Doctor:
+                                                        Dokter Dipilih:
                                                         {{
                                                             selectedDoctor.user
                                                                 .name
@@ -561,7 +561,7 @@ const hospitalStats = ref([
                                     <div>
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
-                                            >Preferred Date
+                                            >Tanggal yang Diinginkan
                                             <span class="text-red-500"
                                                 ><span class="text-red-500"
                                                     >*</span
@@ -575,7 +575,7 @@ const hospitalStats = ref([
                                             class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 appearance-none bg-white disabled:bg-gray-100 disabled:cursor-not-allowed"
                                         >
                                             <option value="">
-                                                Select Preferred Date
+                                                Pilih Tanggal yang Diinginkan
                                             </option>
                                             <option
                                                 v-for="date in availableDates"
@@ -589,7 +589,7 @@ const hospitalStats = ref([
                                     <div>
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
-                                            >Preferred Time
+                                            >Waktu yang Diinginkan
                                             <span class="text-red-500"
                                                 >*</span
                                             ></label
@@ -601,7 +601,7 @@ const hospitalStats = ref([
                                             class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 appearance-none bg-white disabled:bg-gray-100 disabled:cursor-not-allowed"
                                         >
                                             <option value="">
-                                                Select Time Slot
+                                                Pilih Slot Waktu
                                             </option>
                                             <option
                                                 v-for="time in timeSlots"
@@ -625,13 +625,13 @@ const hospitalStats = ref([
                                     >
                                         👤
                                     </div>
-                                    Personal Information
+                                    Informasi Pribadi
                                 </h3>
                                 <div class="grid md:grid-cols-2 gap-6">
                                     <div>
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
-                                            >First Name
+                                            >Nama Depan
                                             <span class="text-red-500"
                                                 >*</span
                                             ></label
@@ -642,13 +642,13 @@ const hospitalStats = ref([
                                             required
                                             :disabled="submitting"
                                             class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 placeholder-gray-400 disabled:bg-gray-100 disabled:cursor-not-allowed"
-                                            placeholder="Enter your first name"
+                                            placeholder="Masukkan nama depan Anda"
                                         />
                                     </div>
                                     <div>
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
-                                            >Last Name
+                                            >Nama Belakang
                                             <span class="text-red-500"
                                                 >*</span
                                             ></label
@@ -659,7 +659,7 @@ const hospitalStats = ref([
                                             required
                                             :disabled="submitting"
                                             class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 placeholder-gray-400 disabled:bg-gray-100 disabled:cursor-not-allowed"
-                                            placeholder="Enter your last name"
+                                            placeholder="Masukkan nama belakang Anda"
                                         />
                                     </div>
                                 </div>
@@ -667,7 +667,7 @@ const hospitalStats = ref([
                                     <div>
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
-                                            >Email Address
+                                            >Alamat Surel
                                             <span class="text-red-500"
                                                 >*</span
                                             ></label
@@ -678,13 +678,13 @@ const hospitalStats = ref([
                                             required
                                             :disabled="submitting"
                                             class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 placeholder-gray-400 disabled:bg-gray-100 disabled:cursor-not-allowed"
-                                            placeholder="your@email.com"
+                                            placeholder="email@anda.com"
                                         />
                                     </div>
                                     <div>
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
-                                            >Phone Number
+                                            >Nomor Telepon
                                             <span class="text-red-500"
                                                 >*</span
                                             ></label
@@ -703,7 +703,7 @@ const hospitalStats = ref([
                                     <div>
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
-                                            >Gender
+                                            >Jenis Kelamin
                                             <span class="text-red-500"
                                                 >*</span
                                             ></label
@@ -715,19 +715,19 @@ const hospitalStats = ref([
                                             class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 appearance-none bg-white disabled:bg-gray-100 disabled:cursor-not-allowed"
                                         >
                                             <option value="">
-                                                Select Gender
+                                                Pilih Jenis Kelamin
                                             </option>
-                                            <option value="male">Male</option>
+                                            <option value="male">Laki-laki</option>
                                             <option value="female">
-                                                Female
+                                                Perempuan
                                             </option>
-                                            <option value="other">Other</option>
+                                            <option value="other">Lainnya</option>
                                         </select>
                                     </div>
                                     <div>
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
-                                            >Age
+                                            >Usia
                                             <span class="text-red-500"
                                                 >*</span
                                             ></label
@@ -740,14 +740,14 @@ const hospitalStats = ref([
                                             max="99"
                                             :disabled="submitting"
                                             class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 placeholder-gray-400 disabled:bg-gray-100 disabled:cursor-not-allowed"
-                                            placeholder="Enter your age"
+                                            placeholder="Masukkan usia Anda"
                                         />
                                     </div>
                                 </div>
                                 <div class="mt-6">
                                     <label
                                         class="block text-sm font-semibold text-gray-700 mb-1"
-                                        >Address
+                                        >Alamat
                                         <span class="text-red-500"
                                             >*</span
                                         ></label
@@ -757,7 +757,7 @@ const hospitalStats = ref([
                                         required
                                         :disabled="submitting"
                                         rows="3"
-                                        placeholder="Enter your complete address for sample collection..."
+                                        placeholder="Masukkan alamat lengkap Anda untuk pengambilan sampel..."
                                         class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 placeholder-gray-400 resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
                                     ></textarea>
                                 </div>
@@ -765,18 +765,18 @@ const hospitalStats = ref([
                                 <div class="mt-6">
                                     <label
                                         class="block text-sm font-semibold text-gray-700 mb-1"
-                                        >Additional Notes</label
+                                        >Catatan Tambahan</label
                                     >
                                     <textarea
                                         v-model="form.additionalNotes"
                                         :disabled="submitting"
                                         rows="4"
-                                        placeholder="Any special instructions, medical history, or additional information..."
+                                        placeholder="Instruksi khusus, riwayat medis, atau informasi tambahan..."
                                         class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 placeholder-gray-400 resize-none"
                                     ></textarea>
                                     <p class="text-sm text-gray-500 mt-2">
-                                        Providing detailed information helps us
-                                        serve you better
+                                        Memberikan informasi detail membantu kami
+                                        melayani Anda lebih baik
                                     </p>
                                 </div>
                             </div>
@@ -790,24 +790,24 @@ const hospitalStats = ref([
                                 >
                                     {{
                                         submitting
-                                            ? "📋 Booking..."
-                                            : "📋 Book Diagnostic Test Now"
+                                            ? "📋 Memesan..."
+                                            : "📋 Pesan Tes Diagnostik Sekarang"
                                     }}
                                 </button>
                                 <p
                                     class="text-center text-sm text-gray-600 mt-4"
                                 >
-                                    By booking a test, you agree to our
+                                    Dengan memesan tes, Anda menyetujui
                                     <a
                                         href="#"
                                         class="text-blue-600 hover:underline"
-                                        >terms and conditions</a
+                                        >syarat dan ketentuan</a
                                     >
-                                    and
+                                    dan
                                     <a
                                         href="#"
                                         class="text-blue-600 hover:underline"
-                                        >privacy policy</a
+                                        >kebijakan privasi</a
                                     >.
                                 </p>
                             </div>
@@ -837,10 +837,10 @@ const hospitalStats = ref([
                                 </svg>
                             </div>
                             <h4 class="font-semibold text-gray-900">
-                                Secure & Confidential
+                                Aman & Rahasia
                             </h4>
                             <p class="text-gray-600 text-sm mt-2">
-                                Your information is protected
+                                Informasi Anda dilindungi
                             </p>
                         </div>
                         <div
@@ -864,10 +864,10 @@ const hospitalStats = ref([
                                 </svg>
                             </div>
                             <h4 class="font-semibold text-gray-900">
-                                Quick Results
+                                Hasil Cepat
                             </h4>
                             <p class="text-gray-600 text-sm mt-2">
-                                Fast turnaround time
+                                Waktu penyelesaian cepat
                             </p>
                         </div>
                         <div
@@ -891,10 +891,10 @@ const hospitalStats = ref([
                                 </svg>
                             </div>
                             <h4 class="font-semibold text-gray-900">
-                                Expert Staff
+                                Staf Ahli
                             </h4>
                             <p class="text-gray-600 text-sm mt-2">
-                                Certified professionals
+                                Profesional bersertifikat
                             </p>
                         </div>
                     </div>
@@ -955,13 +955,13 @@ const hospitalStats = ref([
 
             <!-- Title -->
             <h2 class="text-2xl font-black text-gray-900 mb-4">
-                Payment Method
+                Metode Pembayaran
             </h2>
 
             <!-- Message -->
             <p class="text-gray-600 mb-6 leading-relaxed">
-                Please select your preferred payment method to complete the
-                booking.
+                Silakan pilih metode pembayaran yang Anda inginkan untuk
+                menyelesaikan pemesanan.
             </p>
 
             <!-- Payment Options -->
@@ -982,9 +982,9 @@ const hospitalStats = ref([
                             💵
                         </div>
                         <div class="text-left">
-                            <div class="font-semibold text-gray-900">Cash</div>
+                            <div class="font-semibold text-gray-900">Tunai</div>
                             <div class="text-sm text-gray-600">
-                                Pay at the lab
+                                Bayar di lab
                             </div>
                         </div>
                     </div>
@@ -1006,9 +1006,9 @@ const hospitalStats = ref([
                             💳
                         </div>
                         <div class="text-left">
-                            <div class="font-semibold text-gray-900">Card</div>
+                            <div class="font-semibold text-gray-900">Kartu</div>
                             <div class="text-sm text-gray-600">
-                                Credit/Debit card
+                                Kartu Kredit/Debit
                             </div>
                         </div>
                     </div>
@@ -1034,7 +1034,7 @@ const hospitalStats = ref([
                                 Online
                             </div>
                             <div class="text-sm text-gray-600">
-                                Digital payment
+                                Pembayaran digital
                             </div>
                         </div>
                     </div>
@@ -1047,7 +1047,7 @@ const hospitalStats = ref([
                 :disabled="submitting"
                 class="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-3 rounded-lg font-bold hover:shadow-lg transition-all duration-300 mb-4"
             >
-                {{ submitting ? "💳 Processing..." : "💳 Pay Now" }}
+                {{ submitting ? "💳 Memproses..." : "💳 Bayar Sekarang" }}
             </button>
 
             <!-- Cancel Button -->
@@ -1055,7 +1055,7 @@ const hospitalStats = ref([
                 @click="closeModal"
                 class="w-full bg-gray-100 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-all duration-300"
             >
-                Cancel
+                Batal
             </button>
         </div>
     </div>
@@ -1111,13 +1111,13 @@ const hospitalStats = ref([
 
             <!-- Title -->
             <h2 class="text-2xl font-black text-gray-900 mb-4">
-                Test Booked Successfully!
+                Tes Berhasil Dipesan!
             </h2>
 
             <!-- Message -->
             <p class="text-gray-600 mb-6 leading-relaxed">
-                Your diagnostic test booking has been confirmed. You will
-                receive a confirmation email and SMS with all the details.
+                Pemesanan tes diagnostik Anda telah dikonfirmasi. Anda akan
+                menerima email konfirmasi dan SMS dengan semua detailnya.
             </p>
 
             <!-- Booking Details -->
@@ -1127,19 +1127,19 @@ const hospitalStats = ref([
             >
                 <div class="space-y-2 text-sm">
                     <div class="flex justify-between">
-                        <span class="text-gray-600">Booking ID:</span>
+                        <span class="text-gray-600">ID Pemesanan:</span>
                         <span class="font-semibold text-gray-900">{{
                             successBooking.id
                         }}</span>
                     </div>
                     <div class="flex justify-between">
-                        <span class="text-gray-600">Test:</span>
+                        <span class="text-gray-600">Tes:</span>
                         <span class="font-semibold text-gray-900">{{
                             service?.name
                         }}</span>
                     </div>
                     <div class="flex justify-between">
-                        <span class="text-gray-600">Date:</span>
+                        <span class="text-gray-600">Tanggal:</span>
                         <span class="font-semibold text-gray-900">{{
                             new Date(
                                 successBooking.booking_date
@@ -1147,7 +1147,7 @@ const hospitalStats = ref([
                         }}</span>
                     </div>
                     <div class="flex justify-between">
-                        <span class="text-gray-600">Time:</span>
+                        <span class="text-gray-600">Waktu:</span>
                         <span class="font-semibold text-gray-900">{{
                             successBooking.booking_time
                         }}</span>
@@ -1166,7 +1166,7 @@ const hospitalStats = ref([
                 @click="downloadBookingDetails(successBooking.id)"
                 class="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-3 rounded-lg font-bold hover:shadow-lg transition-all duration-300 mb-4"
             >
-                📄 Download Booking Details
+                📄 Unduh Detail Pemesanan
             </button>
 
             <!-- Close Button -->
@@ -1174,7 +1174,7 @@ const hospitalStats = ref([
                 @click="closeModal"
                 class="w-full bg-gray-100 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-all duration-300"
             >
-                Close
+                Tutup
             </button>
         </div>
     </div>

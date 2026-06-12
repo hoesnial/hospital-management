@@ -140,7 +140,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <Head title="Diagnostic Services - Xet Specialized Hospital" />
+    <Head title="Layanan Diagnostik - Xet Specialized Hospital" />
     <Header :canLogin="canLogin" :canRegister="canRegister" />
 
     <div class="min-h-screen bg-gradient-to-br from-gray-50 pb-8 to-blue-50">
@@ -153,11 +153,11 @@ onMounted(() => {
                 class="flex justify-between max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4"
             >
                 <h1 class="text-2xl md:text-3xl font-bold text-gray-900">
-                    Diagnostic
+                    Layanan
                     <span
                         class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500"
                     >
-                        Services
+                        Diagnostik
                     </span>
                 </h1>
                 <!-- Service Search -->
@@ -168,7 +168,7 @@ onMounted(() => {
                     <input
                         v-model="serviceSearch"
                         type="text"
-                        placeholder="Search services..."
+                        placeholder="Cari layanan..."
                         class="w-full pl-10 pr-3 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                 </div>
@@ -186,7 +186,7 @@ onMounted(() => {
                         <div class="p-2 border-b border-gray-100">
                             <div class="flex items-center justify-between mb-4">
                                 <h2 class="text-xl font-bold text-gray-900">
-                                    Categories
+                                    Kategori
                                 </h2>
                                 <FunnelIcon class="h-5 w-5 text-gray-500" />
                             </div>
@@ -199,7 +199,7 @@ onMounted(() => {
                                 <input
                                     v-model="categorySearch"
                                     type="text"
-                                    placeholder="Search categories..."
+                                    placeholder="Cari kategori..."
                                     class="w-full pl-10 pr-3 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                 />
                             </div>
@@ -250,7 +250,7 @@ onMounted(() => {
                                     @click="loadMoreCategories"
                                     class="text-sm text-blue-600 font-medium hover:text-blue-800 transition-colors"
                                 >
-                                    Load more categories
+                                    Muat lebih banyak kategori
                                 </button>
                             </div>
                         </div>
@@ -268,13 +268,13 @@ onMounted(() => {
                             >
                                 <div>
                                     <p class="text-gray-600 mt-1">
-                                        {{ displayedServices.length }} services
-                                        show
+                                        {{ displayedServices.length }} layanan
+                                        ditampilkan
                                         <span
                                             v-if="selectedCategory"
                                             class="text-blue-600 font-medium"
                                         >
-                                            in {{ selectedCategory }}
+                                            dalam {{ selectedCategory }}
                                         </span>
                                     </p>
                                 </div>
@@ -282,7 +282,7 @@ onMounted(() => {
                                     @click="clearFilters"
                                     class="text-sm text-blue-600 font-medium hover:text-blue-800 transition-colors"
                                 >
-                                    Clear all filters
+                                    Hapus semua filter
                                 </button>
                             </div>
                         </div>
@@ -297,22 +297,22 @@ onMounted(() => {
                                         <th
                                             class="px-6 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider"
                                         >
-                                            Service
+                                            Layanan
                                         </th>
                                         <th
                                             class="px-6 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider"
                                         >
-                                            Category
+                                            Kategori
                                         </th>
                                         <th
                                             class="px-6 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider"
                                         >
-                                            Price
+                                            Harga
                                         </th>
                                         <th
                                             class="px-6 py-4 text-center text-sm font-semibold text-gray-700 uppercase tracking-wider"
                                         >
-                                            Actions
+                                            Aksi
                                         </th>
                                     </tr>
                                 </thead>
@@ -337,8 +337,8 @@ onMounted(() => {
                                                     <span
                                                         class="inline-flex items-center p-[2px] rounded-full text-xs font-medium bg-green-200"
                                                     >
-                                                        🏠 Home Collection
-                                                        Available
+                                                         🏠 Koleksi Rumah
+                                                        Tersedia
                                                     </span>
                                                 </div>
                                             </div>
@@ -355,7 +355,7 @@ onMounted(() => {
                                             >
                                                 {{
                                                     service.category ||
-                                                    "General"
+                                                    "Umum"
                                                 }}
                                             </span>
                                         </td>
@@ -377,13 +377,13 @@ onMounted(() => {
                                                     @click="openModal(service)"
                                                     class="inline-flex items-center px-3 py-1.5 text-sm font-medium text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
                                                 >
-                                                    Details
+                                                    Detail
                                                 </button>
                                                 <Link
                                                     :href="`/diagnostic/schedule/${service.id}`"
                                                     class="inline-flex items-center px-3 py-1.5 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 transition-colors"
                                                 >
-                                                    Schedule
+                                                    Jadwal
                                                 </Link>
                                             </div>
                                         </td>
@@ -408,17 +408,17 @@ onMounted(() => {
                                 <h3
                                     class="text-lg font-medium text-gray-900 mb-2"
                                 >
-                                    No services found
+                                    Tidak ada layanan ditemukan
                                 </h3>
                                 <p class="text-gray-500 max-w-md mx-auto">
-                                    Try adjusting your search or filter criteria
-                                    to find what you're looking for.
+                                    Coba sesuaikan kriteria pencarian atau filter
+                                    Anda untuk menemukan yang Anda cari.
                                 </p>
                                 <button
                                     @click="clearFilters"
                                     class="mt-4 text-blue-600 font-medium hover:text-blue-800 transition-colors"
                                 >
-                                    Clear all filters
+                                    Hapus semua filter
                                 </button>
                             </div>
                         </div>
@@ -441,8 +441,8 @@ onMounted(() => {
                                 ></span>
                                 {{
                                     isLoading
-                                        ? "Loading..."
-                                        : "Load More Services"
+                                        ? "Memuat..."
+                                        : "Muat Lebih Banyak Layanan"
                                 }}
                             </button>
                         </div>
@@ -472,11 +472,11 @@ onMounted(() => {
                                 </svg>
                             </div>
                             <h3 class="font-bold text-gray-900 mb-2">
-                                Accurate Results
+                                Hasil Akurat
                             </h3>
                             <p class="text-gray-600 text-sm">
-                                State-of-the-art equipment ensures precise
-                                diagnostic outcomes.
+                                Peralatan mutakhir memastikan hasil diagnostik
+                                yang tepat.
                             </p>
                         </div>
 
@@ -502,11 +502,11 @@ onMounted(() => {
                                 </svg>
                             </div>
                             <h3 class="font-bold text-gray-900 mb-2">
-                                Quick Turnaround
+                                Cepat Selesai
                             </h3>
                             <p class="text-gray-600 text-sm">
-                                Get your test results promptly with our
-                                efficient processing.
+                                Dapatkan hasil tes Anda dengan cepat melalui
+                                pemrosesan yang efisien.
                             </p>
                         </div>
 
@@ -532,11 +532,11 @@ onMounted(() => {
                                 </svg>
                             </div>
                             <h3 class="font-bold text-gray-900 mb-2">
-                                Expert Staff
+                                Staf Ahli
                             </h3>
                             <p class="text-gray-600 text-sm">
-                                Our certified professionals provide
-                                compassionate care and guidance.
+                                Profesional bersertifikat kami memberikan
+                                perawatan dan bimbingan yang penuh perhatian.
                             </p>
                         </div>
                     </div>
@@ -568,7 +568,7 @@ onMounted(() => {
                         </h2>
                         <div class="flex items-center gap-2 mt-1">
                             <span class="text-s font-medium text-blue-800">
-                                {{ selectedService?.category || "General" }}
+                                {{ selectedService?.category || "Umum" }}
                             </span>
                             <span
                                 v-if="
@@ -576,7 +576,7 @@ onMounted(() => {
                                 "
                                 class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800"
                             >
-                                🏠 Home Collection Available
+                                🏠 Koleksi Rumah Tersedia
                             </span>
                         </div>
                     </div>
@@ -633,7 +633,7 @@ onMounted(() => {
                     <div class="flex-1 min-w-0">
                         <div class="flex items-baseline gap-2 mb-2">
                             <div class="flex text-2xl font-bold text-gray-900">
-                                <p>Price :</p>
+                                <p>Harga :</p>
                                 <span>৳&nbsp;{{ selectedService?.price }}</span>
                             </div>
                         </div>
@@ -654,13 +654,13 @@ onMounted(() => {
                                             d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                                         />
                                     </svg>
-                                    <p>Duration:</p>
+                                    <p>Durasi:</p>
                                     &nbsp;
 
                                     <span>{{
                                         selectedService?.duration
-                                            ? `${selectedService.duration} min`
-                                            : "N/A"
+                                            ? `${selectedService.duration} mnt`
+                                            : "T/A"
                                     }}</span>
                                 </div>
                             </div>
@@ -679,12 +679,12 @@ onMounted(() => {
                                             d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                                         />
                                     </svg>
-                                    <p>Report Time:</p>
+                                    <p>Waktu Laporan:</p>
                                     &nbsp;
                                     <span>{{
                                         selectedService?.report_time
-                                            ? `${selectedService.report_time}h`
-                                            : "N/A"
+                                            ? `${selectedService.report_time}j`
+                                            : "T/A"
                                     }}</span>
                                 </div>
                             </div>
@@ -712,7 +712,7 @@ onMounted(() => {
                             />
                         </svg>
                         <span class="font-medium text-blue-900"
-                            >Sample Required:</span
+                            >Sampel Diperlukan:</span
                         >
                         <span class="text-blue-800">{{
                             selectedService.sample_type
@@ -738,7 +738,7 @@ onMounted(() => {
                                 d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                             />
                         </svg>
-                        Description
+                        Deskripsi
                     </h3>
                     <p
                         class="text-gray-700 leading-relaxed text-sm bg-gray-50 rounded-lg p-3 border border-gray-200"
@@ -753,13 +753,13 @@ onMounted(() => {
                         @click="closeModal"
                         class="flex-1 px-4 py-3 text-sm font-semibold text-gray-700 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 transition-all duration-200 hover:border-gray-400 active:scale-95"
                     >
-                        Close
+                        Tutup
                     </button>
                     <Link
                         :href="`/diagnostic/schedule/${selectedService?.id}`"
                         class="flex-1 px-4 py-3 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl active:scale-95 text-center"
                     >
-                        Schedule Test
+                        Jadwalkan Tes
                     </Link>
                 </div>
             </div>

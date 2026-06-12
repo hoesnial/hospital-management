@@ -117,15 +117,15 @@ onMounted(() => {
 </script>
 
 <template>
-    <AppLayout title="Create News">
+    <AppLayout title="Buat Berita">
         <div class="flex px-4 py-4 items-center justify-between">
-            <h2 class="font-semibold text-xl text-gray-800">Create News</h2>
+            <h2 class="font-semibold text-xl text-gray-800">Buat Berita</h2>
             <div class="flex items-center gap-2">
                 <Link
                     :href="route('admin.news.index')"
                     class="inline-flex items-center gap-2 rounded-2xl bg-gray-600 px-4 py-2 text-white shadow hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300"
                 >
-                    Back to News
+                    Kembali ke Berita
                 </Link>
             </div>
         </div>
@@ -140,7 +140,7 @@ onMounted(() => {
                             <label
                                 for="create-title"
                                 class="mb-1 block text-sm font-medium text-gray-700"
-                                >Title</label
+                                >Judul</label
                             >
                             <input
                                 id="create-title"
@@ -159,7 +159,7 @@ onMounted(() => {
                         <div>
                             <label
                                 class="mb-1 block text-sm font-medium text-gray-700"
-                                >Excerpt</label
+                                >Cuplikan</label
                             >
                             <textarea
                                 v-model="createForm.excerpt"
@@ -177,7 +177,7 @@ onMounted(() => {
                         <div>
                             <label
                                 class="mb-1 block text-sm font-medium text-gray-700"
-                                >Content</label
+                                >Konten</label
                             >
                             <QuillEditor
                                 ref="editorRef"
@@ -198,7 +198,7 @@ onMounted(() => {
                             <div>
                                 <label
                                     class="mb-1 block text-sm font-medium text-gray-700"
-                                    >Category</label
+                                    >Kategori</label
                                 >
                                 <input
                                     v-model="createForm.category"
@@ -216,7 +216,7 @@ onMounted(() => {
                             <div>
                                 <label
                                     class="mb-1 block text-sm font-medium text-gray-700"
-                                    >Date</label
+                                    >Tanggal</label
                                 >
                                 <input
                                     v-model="createForm.date"
@@ -236,7 +236,7 @@ onMounted(() => {
                         <div>
                             <label
                                 class="mb-1 block text-sm font-medium text-gray-700"
-                                >Image (optional)</label
+                                >Gambar (opsional)</label
                             >
                             <div class="flex items-center gap-4">
                                 <label
@@ -248,7 +248,7 @@ onMounted(() => {
                                         class="hidden"
                                         @change="onPickCreate"
                                     />
-                                    Choose file
+                                    Pilih file
                                 </label>
                                 <img
                                     v-if="imagePreviewCreate"
@@ -269,7 +269,7 @@ onMounted(() => {
                                 :href="route('admin.news.index')"
                                 class="rounded-xl border border-gray-300 px-4 py-2 text-sm shadow-sm hover:bg-gray-50"
                             >
-                                Cancel
+                                Batal
                             </Link>
                             <button
                                 type="submit"
@@ -298,7 +298,7 @@ onMounted(() => {
                                         stroke-linecap="round"
                                     />
                                 </svg>
-                                Create
+                                Buat
                             </button>
                         </div>
                     </form>

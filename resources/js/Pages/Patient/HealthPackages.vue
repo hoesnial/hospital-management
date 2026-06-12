@@ -48,7 +48,7 @@ const fetchBookedPackages = async () => {
     } catch (err) {
         console.error("Error fetching booked packages:", err);
         errorMsg.value =
-            "Unable to load your bookings right now. Please try again.";
+            "Tidak dapat memuat pemesanan Anda saat ini. Silakan coba lagi.";
     } finally {
         loading.value = false;
     }
@@ -58,7 +58,7 @@ onMounted(fetchBookedPackages);
 </script>
 
 <template>
-    <Head title="Health Packages" />
+    <Head title="Paket Kesehatan" />
 
     <AuthenticatedLayout>
         <!-- Content -->
@@ -77,7 +77,7 @@ onMounted(fetchBookedPackages);
                                 <li
                                     class="inline-flex items-center gap-2 rounded-xl bg-red-300 text-black px-3 py-1 sm:px-4 text-sm font-medium shadow-sm hover:bg-blue-800 hover:text-white transition-colors"
                                 >
-                                    <Link href="/dashboard">Back</Link>
+                                    <Link href="/dashboard">Kembali</Link>
                                 </li>
                                 <li
                                     aria-hidden="true"
@@ -86,18 +86,18 @@ onMounted(fetchBookedPackages);
                                     /
                                 </li>
                                 <li class="text-slate-700 font-medium">
-                                    Dashboard
+                                    Dasbor
                                 </li>
                             </ol>
                         </nav>
                         <h2
                             class="font-bold text-xl sm:text-2xl text-slate-800 leading-tight"
                         >
-                            Health Packages
+                            Paket Kesehatan
                         </h2>
                         <p class="text-slate-600 mt-1 text-sm sm:text-base">
-                            Explore preventive care and manage your booked
-                            packages.
+                            Jelajahi perawatan pencegahan dan kelola paket
+                            Anda.
                         </p>
                     </div>
                     <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
@@ -118,7 +118,7 @@ onMounted(fetchBookedPackages);
                                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                                 />
                             </svg>
-                            Book Package
+                            Pesan Paket
                         </Link>
                     </div>
                 </div>
@@ -196,7 +196,7 @@ onMounted(fetchBookedPackages);
                             class="grid grid-cols-2 gap-x-4 gap-y-2 text-sm text-slate-700"
                         >
                             <div class="space-y-0.5">
-                                <dt class="text-slate-500">Price</dt>
+                                <dt class="text-slate-500">Harga</dt>
                                 <dd class="font-medium">
                                     {{
                                         booking.health_check?.price
@@ -210,13 +210,13 @@ onMounted(fetchBookedPackages);
                                 </dd>
                             </div>
                             <div class="space-y-0.5">
-                                <dt class="text-slate-500">Payment</dt>
+                                <dt class="text-slate-500">Pembayaran</dt>
                                 <dd class="font-medium">
                                     {{ booking.payment_type }}
                                 </dd>
                             </div>
                             <div class="space-y-0.5">
-                                <dt class="text-slate-500">Paid</dt>
+                                <dt class="text-slate-500">Dibayar</dt>
                                 <dd class="font-medium">
                                     {{ formatCurrency(booking.amount_paid) }}
                                 </dd>
@@ -234,7 +234,7 @@ onMounted(fetchBookedPackages);
                             class="mt-3 rounded-lg border border-red-200 bg-red-50 p-3"
                         >
                             <p class="text-xs font-medium text-red-800">
-                                Notice
+                                Pemberitahuan
                             </p>
                             <p class="text-xs text-red-700 mt-1">
                                 {{ booking.cancellation_reason }}
@@ -245,7 +245,7 @@ onMounted(fetchBookedPackages);
                             class="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-slate-500"
                         >
                             <span
-                                >Booked on
+                                >Dipesan pada
                                 {{ formatDate(booking.created_at) }}</span
                             >
 
@@ -255,7 +255,7 @@ onMounted(fetchBookedPackages);
                                     :href="`/patient/appointments`"
                                     class="inline-flex items-center gap-1 rounded-lg border border-slate-200 px-2 py-1.5 sm:px-2.5 text-xs sm:text-sm font-medium text-slate-700 hover:bg-slate-50"
                                 >
-                                    View Details
+                                    Lihat Detail
                                 </Link>
                                 <a
                                     :href="
@@ -265,7 +265,7 @@ onMounted(fetchBookedPackages);
                                         )
                                     "
                                     class="inline-flex items-center gap-1 rounded-lg bg-slate-800 text-white px-2 py-1.5 sm:px-2.5 text-xs sm:text-sm font-medium hover:bg-slate-900"
-                                    >Receipt
+                                    >Struk
                                 </a>
                             </div>
                         </div>
@@ -295,17 +295,17 @@ onMounted(fetchBookedPackages);
                         </svg>
                     </div>
                     <h3 class="text-slate-800 font-semibold text-lg sm:text-xl">
-                        No packages booked yet
+                        Belum ada paket yang dipesan
                     </h3>
                     <p class="text-slate-600 text-sm mt-1">
-                        Browse our health packages and book your first checkup.
+                        Jelajahi paket kesehatan kami dan pesan pemeriksaan pertama Anda.
                     </p>
                     <div class="mt-4">
                         <Link
                             href="/book-appointment"
                             class="inline-flex items-center gap-2 rounded-xl bg-green-600 text-white px-3 py-2 sm:px-4 sm:py-2.5 text-sm font-medium shadow-sm hover:bg-green-700 transition-colors"
                         >
-                            Explore Packages
+                            Jelajahi Paket
                         </Link>
                     </div>
                 </div>

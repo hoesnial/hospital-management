@@ -53,7 +53,7 @@ const bookPackage = async (paymentType) => {
         if (error.response?.status === 401) {
             router.visit("/login", { preserveState: true });
         } else {
-            alert("Failed to book package. Please try again.");
+            alert("Gagal memesan paket. Silakan coba lagi.");
         }
     } finally {
         bookingLoading.value = false;
@@ -88,7 +88,7 @@ onMounted(() => {
                 <h2
                     class="text-2xl md:text-4xl lg:text-5xl font-semibold text-black mb-2"
                 >
-                    Health Package
+                    Paket Kesehatan
                     <span class="text-gradient-to-br from-blue-600 to-cyan-500">
                         s
                     </span>
@@ -96,8 +96,7 @@ onMounted(() => {
                 <p
                     class="text-base md:text-lg text-gray-400 max-w-lg md:max-w-3xl mx-auto leading-relaxed"
                 >
-                    Comprehensive health screening s designed for preventive
-                    care and early detection.
+                    Pemeriksaan kesehatan komprehensif yang dirancang untuk perawatan pencegahan dan deteksi dini.
                 </p>
             </div>
 
@@ -119,7 +118,7 @@ onMounted(() => {
                         v-if="health.popular"
                         class="absolute -top-3 md:-top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-4 md:px-6 py-1 md:py-2 rounded-full font-semibold text-xs md:text-sm"
                     >
-                        Most Popular
+                        Terpopuler
                     </div>
 
                     <div class="p-6 md:p-8">
@@ -166,7 +165,7 @@ onMounted(() => {
                                     : 'bg-blue-100 text-gray-700 hover:bg-blue-500 hover:text-white'
                             "
                         >
-                            Select
+                            Pilih
                         </button>
                     </div>
                 </div>
@@ -211,21 +210,21 @@ onMounted(() => {
                         @click="showModal = false"
                         class="px-4 md:px-6 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors text-sm md:text-base"
                     >
-                        Cancel
+                        Batal
                     </button>
                     <button
                         @click="bookPackage('50%')"
                         :disabled="bookingLoading"
                         class="px-4 md:px-6 py-2 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-lg hover:shadow-lg transition-all disabled:opacity-50 text-sm md:text-base"
                     >
-                        {{ bookingLoading ? "Booking..." : "Pay 50%" }}
+                        {{ bookingLoading ? "Memesan..." : "Bayar 50%" }}
                     </button>
                     <button
                         @click="bookPackage('100%')"
                         :disabled="bookingLoading"
                         class="px-4 md:px-6 py-2 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-lg hover:shadow-lg transition-all disabled:opacity-50 text-sm md:text-base"
                     >
-                        {{ bookingLoading ? "Booking..." : "Pay 100%" }}
+                        {{ bookingLoading ? "Memesan..." : "Bayar 100%" }}
                     </button>
                 </div>
             </div>
@@ -239,11 +238,10 @@ onMounted(() => {
         >
             <div class="p-4 md:p-6">
                 <h3 class="text-lg md:text-2xl font-bold text-gray-900 mb-4">
-                    Login Required
+                    Perlu Masuk
                 </h3>
                 <p class="text-gray-600 mb-4 md:mb-6 text-sm md:text-base">
-                    You need to be logged in to book a health check package.
-                    Please log in to continue.
+                    Anda harus masuk untuk memesan paket pemeriksaan kesehatan. Silakan masuk untuk melanjutkan.
                 </p>
                 <div
                     class="flex flex-col sm:flex-row justify-end gap-2 sm:gap-0"
@@ -252,13 +250,13 @@ onMounted(() => {
                         @click="showLoginPrompt = false"
                         class="px-4 md:px-6 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors text-sm md:text-base"
                     >
-                        Cancel
+                        Batal
                     </button>
                     <button
                         @click="goToLogin"
                         class="px-4 md:px-6 py-2 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-lg hover:shadow-lg transition-all text-sm md:text-base"
                     >
-                        Go to Login
+                        Ke Halaman Masuk
                     </button>
                 </div>
             </div>
@@ -272,7 +270,7 @@ onMounted(() => {
         >
             <div class="p-4 md:p-6">
                 <h3 class="text-lg md:text-2xl font-bold text-gray-900 mb-4">
-                    Booking Successful
+                    Pemesanan Berhasil
                 </h3>
                 <p class="text-gray-600 mb-4 md:mb-6 text-sm md:text-base">
                     {{ bookingMessage }}
@@ -290,7 +288,7 @@ onMounted(() => {
                         @click="goToDashboardPackages"
                         class="px-4 md:px-6 py-2 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-lg hover:shadow-lg transition-all text-sm md:text-base"
                     >
-                        Go to Book Package
+                        Ke Pemesanan Paket
                     </button>
                 </div>
             </div>

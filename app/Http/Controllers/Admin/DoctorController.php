@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\UpdateDoctorRequest;
 use App\Mail\DoctorWelcomeMail;
 use App\Models\Doctor;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;

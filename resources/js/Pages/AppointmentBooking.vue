@@ -132,7 +132,7 @@ const submitForm = async () => {
         }
     } catch (error) {
         console.error("Error:", error);
-        alert("An error occurred while booking the appointment.");
+        alert("Terjadi kesalahan saat memesan janji temu.");
     } finally {
         submitting.value = false;
     }
@@ -196,19 +196,18 @@ const availableDates = computed(() => {
         const date = new Date(today);
         date.setDate(today.getDate() + i);
         const dayName = date
-            .toLocaleDateString("en-US", { weekday: "long" })
+            .toLocaleDateString("id-ID", { weekday: "long" })
             .toLowerCase()
-            .slice(0, 3); // 'sat', 'sun', 'mon', etc.
+            .slice(0, 3);
         if (availableDays.has(dayName)) {
             const value = date.toISOString().split("T")[0];
-            const label = date.toLocaleDateString("en-US", {
+            const label = date.toLocaleDateString("id-ID", {
                 weekday: "long",
                 year: "numeric",
                 month: "short",
                 day: "numeric",
             });
 
-            // Check if the date is fully booked
             const appointmentKey = `${selectedDoctor.id}-${value}`;
             const appointmentCount = appointments[appointmentKey]?.count || 0;
             const maxPatients =
@@ -218,9 +217,9 @@ const availableDates = computed(() => {
 
             let status = "";
             if (appointmentCount >= maxPatients) {
-                status = "Fully Booked";
-            } else if (appointmentCount > 0) {
-                status = "Limited";
+                                status = "Penuh";
+                            } else if (appointmentCount > 0) {
+                                status = "Terbatas";
             }
 
             dates.push({ value, label, status });
@@ -251,9 +250,9 @@ const availableTimeSlots = computed(() => {
         // Get day of week for the selected date
         const selectedDate = new Date(form.value.preferredDate);
         const dayName = selectedDate
-            .toLocaleDateString("en-US", { weekday: "long" })
+            .toLocaleDateString("id-ID", { weekday: "long" })
             .toLowerCase()
-            .slice(0, 3); // 'sat', 'sun', etc.
+            .slice(0, 3);
 
         // Filter schedules for that day
         schedulesToUse = selectedDoctor.schedules.filter((schedule) =>
@@ -334,37 +333,37 @@ const closeModal = () => {
 const benefits = ref([
     {
         icon: "⏰",
-        title: "Quick Confirmation",
-        description: "Get appointment confirmation within 2 hours",
+        title: "Konfirmasi Cepat",
+        description: "Dapatkan konfirmasi janji dalam 2 jam",
     },
     {
         icon: "👨‍⚕️",
-        title: "Expert Doctors",
-        description: "Consult with specialized medical professionals",
+        title: "Dokter Ahli",
+        description: "Konsultasi dengan tenaga medis spesialis",
     },
     {
         icon: "💻",
-        title: "Online Consultation",
-        description: "Option for virtual appointments available",
+        title: "Konsultasi Online",
+        description: "Tersedia opsi janji virtual",
     },
     {
         icon: "📱",
-        title: "Reminder Alerts",
-        description: "Get SMS & email reminders before your appointment",
+        title: "Pengingat",
+        description: "Dapatkan pengingat SMS & email sebelum janji Anda",
     },
 ]);
 
 // Hospital stats
 const hospitalStats = ref([
-    { number: "50,000+", label: "Patients Treated" },
-    { number: "200+", label: "Expert Doctors" },
-    { number: "98%", label: "Success Rate" },
-    { number: "24/7", label: "Emergency Care" },
+    { number: "50,000+", label: "Pasien Ditangani" },
+    { number: "200+", label: "Dokter Ahli" },
+    { number: "98%", label: "Tingkat Keberhasilan" },
+    { number: "24/7", label: "Perawatan Darurat" },
 ]);
 </script>
 
 <template>
-    <Head title="Book Your Appointment - Xet Specialized Hospital" />
+    <Head title="Buat Janji - Xet Specialized Hospital" />
 
     <!-- Header -->
     <Header :canLogin="canLogin" :canRegister="canRegister" />
@@ -382,24 +381,23 @@ const hospitalStats = ref([
                     <div
                         class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"
                     ></div>
-                    Book Your Appointment
+                    Buat Janji Temu
                 </div>
                 <h1
                     class="text-3xl md:text-4xl font-black text-gray-900 mb-4 leading-tight"
                 >
-                    Schedule Your
+                    Jadwalkan
                     <span
                         class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500"
                     >
-                        Medical Visit
+                        Kunjungan Medis
                     </span>
                 </h1>
                 <p
                     class="text-sm md:text-base text-gray-700 leading-relaxed max-w-3xl mx-auto"
                 >
-                    Take the first step towards better health. Book your
-                    appointment with our expert medical team and experience
-                    world-class healthcare.
+                    Ambil langkah pertama menuju kesehatan yang lebih baik. Buat janji
+                    dengan tim medis ahli kami dan rasakan layanan kesehatan kelas dunia.
                 </p>
             </div>
 
@@ -412,7 +410,7 @@ const hospitalStats = ref([
                         class="bg-white rounded-3xl shadow-xl border border-gray-100 p-8"
                     >
                         <h3 class="text-2xl font-black text-gray-900 mb-6">
-                            Why Xet Hospital?
+                            Mengapa Xet Hospital?
                         </h3>
                         <div class="space-y-6">
                             <div
@@ -463,11 +461,11 @@ const hospitalStats = ref([
                         class="bg-white rounded-3xl shadow-xl border border-gray-100 p-8"
                     >
                         <h3 class="text-2xl font-black text-gray-900 mb-4">
-                            Emergency?
+                            Darurat?
                         </h3>
                         <p class="text-gray-600 mb-6">
-                            For urgent medical attention, contact our emergency
-                            services immediately.
+                            Untuk perhatian medis segera, hubungi layanan darurat
+                            kami sekarang juga.
                         </p>
                         <div class="space-y-4">
                             <div
@@ -492,7 +490,7 @@ const hospitalStats = ref([
                                 </div>
                                 <div>
                                     <h4 class="font-semibold text-gray-900">
-                                        Emergency Line
+                                        Saluran Darurat
                                     </h4>
                                     <p class="text-red-600 font-bold">999</p>
                                 </div>
@@ -519,10 +517,10 @@ const hospitalStats = ref([
                                 </div>
                                 <div>
                                     <h4 class="font-semibold text-gray-900">
-                                        24/7 Support
+                                        Dukungan 24/7
                                     </h4>
                                     <p class="text-blue-600">
-                                        Always available for emergencies
+                                        Selalu tersedia untuk keadaan darurat
                                     </p>
                                 </div>
                             </div>
@@ -533,7 +531,7 @@ const hospitalStats = ref([
                     <div
                         class="bg-gradient-to-br from-gray-900 to-blue-900 rounded-3xl p-8 text-white"
                     >
-                        <h3 class="text-2xl font-black mb-6">Contact Info</h3>
+                        <h3 class="text-2xl font-black mb-6">Info Kontak</h3>
                         <div class="space-y-4">
                             <div class="flex items-center gap-3">
                                 <div
@@ -561,7 +559,7 @@ const hospitalStats = ref([
                                 </div>
                                 <div>
                                     <p class="text-sm text-blue-200">
-                                        Location
+                                        Lokasi
                                     </p>
                                     <p class="font-semibold">
                                         123 Medical Avenue
@@ -587,7 +585,7 @@ const hospitalStats = ref([
                                     </svg>
                                 </div>
                                 <div>
-                                    <p class="text-sm text-blue-200">Phone</p>
+                                    <p class="text-sm text-blue-200">Telepon</p>
                                     <p class="font-semibold">999</p>
                                 </div>
                             </div>
@@ -628,11 +626,11 @@ const hospitalStats = ref([
                         <!-- Form Header -->
                         <div class="text-center mb-8">
                             <h2 class="text-3xl font-black text-gray-900 mb-1">
-                                Book Your Appointment
+                                Buat Janji Temu
                             </h2>
                             <p class="text-gray-600">
-                                Fill in your details and we'll get back to you
-                                within 2 hours
+                                Isi detail Anda dan kami akan menghubungi Anda
+                                dalam 2 jam
                             </p>
                         </div>
 
@@ -647,7 +645,7 @@ const hospitalStats = ref([
                                     >
                                         📅
                                     </div>
-                                    Appointment Details
+                                    Detail Janji Temu
                                 </h3>
 
                                 <div class="grid md:grid-cols-2 gap-6 mt-5">
@@ -655,7 +653,7 @@ const hospitalStats = ref([
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
                                         >
-                                            Medical Speciality *
+                                            Spesialisasi Medis *
                                         </label>
                                         <select
                                             v-model="form.speciality"
@@ -664,7 +662,7 @@ const hospitalStats = ref([
                                             class="w-full px-4 py-3 rounded-l border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 appearance-none bg-white disabled:bg-gray-100 disabled:cursor-not-allowed"
                                         >
                                             <option value="">
-                                                Select Speciality
+                                                Pilih Spesialisasi
                                             </option>
                                             <option
                                                 v-for="specialty in specialties"
@@ -680,7 +678,7 @@ const hospitalStats = ref([
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
                                         >
-                                            Preferred Doctor
+                                            Dokter Pilihan
                                         </label>
                                         <select
                                             v-model="form.doctorId"
@@ -688,7 +686,7 @@ const hospitalStats = ref([
                                             class="w-full px-4 py-3 rounded-l border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 appearance-none bg-white disabled:bg-gray-100 disabled:cursor-not-allowed"
                                         >
                                             <option value="">
-                                                Select Doctor (Optional)
+                                                Pilih Dokter (Opsional)
                                             </option>
                                             <option
                                                 v-for="doctor in filteredDoctors"
@@ -710,7 +708,7 @@ const hospitalStats = ref([
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
                                         >
-                                            Preferred Date *
+                                            Tanggal yang Diinginkan *
                                         </label>
                                         <select
                                             v-model="form.preferredDate"
@@ -719,7 +717,7 @@ const hospitalStats = ref([
                                             class="w-full px-4 py-3 rounded-l border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 appearance-none bg-white disabled:bg-gray-100 disabled:cursor-not-allowed"
                                         >
                                             <option value="">
-                                                Select Preferred Date
+                                                Pilih Tanggal
                                             </option>
                                             <option
                                                 v-for="date in availableDates"
@@ -727,14 +725,14 @@ const hospitalStats = ref([
                                                 :value="date.value"
                                                 :disabled="
                                                     date.status ===
-                                                    'Fully Booked'
+                                                    'Penuh'
                                                 "
                                                 :class="
                                                     date.status ===
-                                                    'Fully Booked'
+                                                    'Penuh'
                                                         ? 'text-red-500'
                                                         : date.status ===
-                                                          'Limited'
+                                                          'Terbatas'
                                                         ? 'text-yellow-600'
                                                         : ''
                                                 "
@@ -751,8 +749,8 @@ const hospitalStats = ref([
                                             v-if="!form.doctorId"
                                             class="text-sm text-gray-500 mt-1"
                                         >
-                                            Please select a doctor first to see
-                                            available dates
+                                             Silakan pilih dokter terlebih dahulu untuk melihat
+                                             tanggal yang tersedia
                                         </p>
                                         <p
                                             v-else-if="
@@ -760,14 +758,14 @@ const hospitalStats = ref([
                                             "
                                             class="text-sm text-red-500 mt-1"
                                         >
-                                            No available dates for this doctor
+                                             Tidak ada tanggal yang tersedia untuk dokter ini
                                         </p>
                                     </div>
                                     <div>
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
                                         >
-                                            Preferred Time *
+                                            Waktu yang Diinginkan *
                                         </label>
                                         <select
                                             v-model="form.preferredTime"
@@ -776,7 +774,7 @@ const hospitalStats = ref([
                                             class="w-full px-4 py-3 rounded-l border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 appearance-none bg-white disabled:bg-gray-100 disabled:cursor-not-allowed"
                                         >
                                             <option value="">
-                                                Select Time Slot
+                                                Pilih Slot Waktu
                                             </option>
                                             <option
                                                 v-for="time in availableTimeSlots"
@@ -800,14 +798,14 @@ const hospitalStats = ref([
                                     >
                                         👤
                                     </div>
-                                    Personal Information
+                                    Data Pribadi
                                 </h3>
                                 <div class="grid md:grid-cols-2 gap-6">
                                     <div>
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
                                         >
-                                            First Name *
+                                            Nama Depan *
                                         </label>
                                         <input
                                             v-model="form.firstName"
@@ -815,14 +813,14 @@ const hospitalStats = ref([
                                             required
                                             :disabled="submitting"
                                             class="w-full px-4 py-3 rounded-l border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 placeholder-gray-400 disabled:bg-gray-100 disabled:cursor-not-allowed"
-                                            placeholder="Enter your first name"
+                                            placeholder="Masukkan nama depan Anda"
                                         />
                                     </div>
                                     <div>
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
                                         >
-                                            Last Name *
+                                            Nama Belakang *
                                         </label>
                                         <input
                                             v-model="form.lastName"
@@ -830,7 +828,7 @@ const hospitalStats = ref([
                                             required
                                             :disabled="submitting"
                                             class="w-full px-4 py-3 rounded-l border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 placeholder-gray-400 disabled:bg-gray-100 disabled:cursor-not-allowed"
-                                            placeholder="Enter your last name"
+                                            placeholder="Masukkan nama belakang Anda"
                                         />
                                     </div>
                                 </div>
@@ -839,7 +837,7 @@ const hospitalStats = ref([
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
                                         >
-                                            Email Address *
+                                            Alamat Email *
                                         </label>
                                         <input
                                             v-model="form.email"
@@ -854,7 +852,7 @@ const hospitalStats = ref([
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
                                         >
-                                            Phone Number *
+                                            Nomor Telepon *
                                         </label>
                                         <input
                                             v-model="form.phone"
@@ -871,7 +869,7 @@ const hospitalStats = ref([
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
                                         >
-                                            Gender *
+                                            Jenis Kelamin *
                                         </label>
                                         <select
                                             v-model="form.gender"
@@ -880,20 +878,20 @@ const hospitalStats = ref([
                                             class="w-full px-4 py-3 rounded-l border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 appearance-none bg-white disabled:bg-gray-100 disabled:cursor-not-allowed"
                                         >
                                             <option value="">
-                                                Select Gender
+                                                Pilih Jenis Kelamin
                                             </option>
-                                            <option value="male">Male</option>
+                                            <option value="male">Laki-laki</option>
                                             <option value="female">
-                                                Female
+                                                Perempuan
                                             </option>
-                                            <option value="other">Other</option>
+                                            <option value="other">Lainnya</option>
                                         </select>
                                     </div>
                                     <div>
                                         <label
                                             class="block text-sm font-semibold text-gray-700 mb-1"
                                         >
-                                            Age *
+                                            Usia *
                                         </label>
                                         <input
                                             v-model="form.age"
@@ -903,7 +901,7 @@ const hospitalStats = ref([
                                             max="99"
                                             :disabled="submitting"
                                             class="w-full px-4 py-3 rounded-l border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 placeholder-gray-400 disabled:bg-gray-100 disabled:cursor-not-allowed"
-                                            placeholder="Enter your age"
+                                            placeholder="Masukkan usia Anda"
                                         />
                                     </div>
                                 </div>
@@ -911,18 +909,18 @@ const hospitalStats = ref([
                                     <label
                                         class="block text-sm font-semibold text-gray-700 mb-1"
                                     >
-                                        Additional Notes
+                                        Catatan Tambahan
                                     </label>
                                     <textarea
                                         v-model="form.additionalNotes"
                                         :disabled="submitting"
                                         rows="4"
-                                        placeholder="Please describe your symptoms, reason for visit, medical history, or any special requirements..."
+                                        placeholder="Silakan jelaskan gejala, alasan kunjungan, riwayat medis, atau kebutuhan khusus Anda..."
                                         class="w-full px-4 py-3 rounded-l border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 placeholder-gray-400 resize-none"
                                     ></textarea>
                                     <p class="text-sm text-gray-500 mt-2">
-                                        Providing detailed information helps us
-                                        serve you better
+                                        Memberikan informasi detail membantu kami
+                                        melayani Anda lebih baik
                                     </p>
                                 </div>
                             </div>
@@ -936,24 +934,24 @@ const hospitalStats = ref([
                                 >
                                     {{
                                         submitting
-                                            ? "📋 Booking..."
-                                            : "📋 Book Appointment Now"
+                                            ? "📋 Memesan..."
+                                            : "📋 Buat Janji Sekarang"
                                     }}
                                 </button>
                                 <p
                                     class="text-center text-sm text-gray-600 mt-4"
                                 >
-                                    By booking an appointment, you agree to our
+                                    Dengan membuat janji, Anda menyetujui
                                     <a
                                         href="#"
                                         class="text-blue-600 hover:underline"
-                                        >terms and conditions</a
+                                        >syarat dan ketentuan</a
                                     >
-                                    and
+                                    dan
                                     <a
                                         href="#"
                                         class="text-blue-600 hover:underline"
-                                        >privacy policy</a
+                                        >kebijakan privasi</a
                                     >.
                                 </p>
                             </div>
@@ -983,10 +981,10 @@ const hospitalStats = ref([
                                 </svg>
                             </div>
                             <h4 class="font-semibold text-gray-900">
-                                Secure & Confidential
+                                Aman & Rahasia
                             </h4>
                             <p class="text-gray-600 text-sm mt-2">
-                                Your information is protected
+                                Informasi Anda dilindungi
                             </p>
                         </div>
                         <div
@@ -1010,10 +1008,10 @@ const hospitalStats = ref([
                                 </svg>
                             </div>
                             <h4 class="font-semibold text-gray-900">
-                                Quick Response
+                                Respon Cepat
                             </h4>
                             <p class="text-gray-600 text-sm mt-2">
-                                Confirmation within 2 hours
+                                Konfirmasi dalam 2 jam
                             </p>
                         </div>
                         <div
@@ -1037,10 +1035,10 @@ const hospitalStats = ref([
                                 </svg>
                             </div>
                             <h4 class="font-semibold text-gray-900">
-                                Expert Doctors
+                                Dokter Ahli
                             </h4>
                             <p class="text-gray-600 text-sm mt-2">
-                                Specialized medical care
+                                Perawatan medis spesialis
                             </p>
                         </div>
                     </div>
@@ -1101,13 +1099,13 @@ const hospitalStats = ref([
 
             <!-- Title -->
             <h2 class="text-2xl font-black text-gray-900 mb-4">
-                Appointment Booked Successfully!
+                Janji Berhasil Dibuat!
             </h2>
 
             <!-- Message -->
             <p class="text-gray-600 mb-6 leading-relaxed">
-                Your appointment booking confirmation has been sent to your
-                email. You can also download your appointment details here.
+                Konfirmasi janji temu Anda telah dikirim ke email. Anda juga
+                dapat mengunduh detail janji temu Anda di sini.
             </p>
 
             <!-- Appointment Details -->
@@ -1117,27 +1115,27 @@ const hospitalStats = ref([
             >
                 <div class="space-y-2 text-sm">
                     <div class="flex justify-between">
-                        <span class="text-gray-600">Booking ID:</span>
+                        <span class="text-gray-600">ID Booking:</span>
                         <span class="font-semibold text-gray-900">{{
                             successAppointment.booking_id
                         }}</span>
                     </div>
                     <div class="flex justify-between">
-                        <span class="text-gray-600">Date:</span>
+                        <span class="text-gray-600">Tanggal:</span>
                         <span class="font-semibold text-gray-900">{{
                             new Date(
                                 successAppointment.preferred_date
-                            ).toLocaleDateString()
+                            ).toLocaleDateString("id-ID")
                         }}</span>
                     </div>
                     <div class="flex justify-between">
-                        <span class="text-gray-600">Time:</span>
+                        <span class="text-gray-600">Waktu:</span>
                         <span class="font-semibold text-gray-900">{{
                             successAppointment.preferred_time
                         }}</span>
                     </div>
                     <div class="flex justify-between">
-                        <span class="text-gray-600">Speciality:</span>
+                        <span class="text-gray-600">Spesialisasi:</span>
                         <span class="font-semibold text-gray-900">{{
                             successAppointment.speciality
                         }}</span>
@@ -1150,7 +1148,7 @@ const hospitalStats = ref([
                 @click="downloadAppointmentDetails(successAppointment.id)"
                 class="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-3 rounded-l font-bold hover:shadow-lg transition-all duration-300 mb-4"
             >
-                📄 Download Appointment
+                📄 Unduh Detail Janji
             </button>
 
             <!-- Close Button -->
@@ -1158,7 +1156,7 @@ const hospitalStats = ref([
                 @click="closeModal"
                 class="w-full bg-gray-100 text-gray-700 py-3 rounded-l font-semibold hover:bg-gray-200 transition-all duration-300"
             >
-                Close
+                Tutup
             </button>
         </div>
     </div>

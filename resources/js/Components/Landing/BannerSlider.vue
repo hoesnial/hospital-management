@@ -11,8 +11,8 @@ const slides = ref([
         id: 1,
         title: "Xet Specialized Hospital",
         subtitle:
-            "Xet Specialized Hospital was founded by a group of like-minded individuals and specialist doctors with a vision to create a “One Stop Standard Quality Health Service Centre”. We prioritize transparency and are deeply committed to our work with unwavering dedication.",
-        cta: "Connect with us on Messenger",
+            "Xet Specialized Hospital didirikan oleh sekelompok individu dan dokter spesialis yang memiliki visi untuk menciptakan \"Pusat Layanan Kesehatan Berkualitas Standar Satu Atap\". Kami mengutamakan transparansi dan berkomitmen penuh terhadap pekerjaan kami dengan dedikasi yang teguh.",
+        cta: "Hubungi kami via Messenger",
         link: "#messenger",
         image: Package,
         // চাইলে ডাক্তারদের cutout foreground হিসেবে দিন:
@@ -20,19 +20,19 @@ const slides = ref([
     },
     {
         id: 2,
-        title: "24/7 Emergency Services",
+        title: "Layanan Darurat 24/7",
         subtitle:
-            "Immediate medical attention when you need it most. Our emergency care is always ready.",
-        cta: "Emergency Contact",
+            "Perhatian medis segera saat Anda sangat membutuhkannya. Layanan darurat kami selalu siap.",
+        cta: "Kontak Darurat",
         link: "#emergency",
         image: Emergency,
     },
     {
         id: 3,
-        title: "Health Check Packages",
+        title: "Paket Cek Kesehatan",
         subtitle:
-            "Comprehensive health screenings for preventive care. Choose the package that suits you.",
-        cta: "View Packages",
+            "Pemeriksaan kesehatan komprehensif untuk perawatan pencegahan. Pilih paket yang sesuai dengan Anda.",
+        cta: "Lihat Paket",
         link: "#health-packages",
         image: Cardiac,
     },
@@ -114,7 +114,7 @@ const prev = () =>
                                     ? 'bg-sky-700 w-4 md:w-6'
                                     : 'bg-sky-300 hover:bg-sky-400'
                             "
-                            aria-label="Go to slide"
+                            aria-label="Ke slide"
                         />
                     </div>
                 </div>
@@ -155,7 +155,7 @@ const prev = () =>
                         <button
                             @click="prev"
                             class="absolute left-2 md:left-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/60 backdrop-blur flex items-center justify-center hover:bg-white/80 transition"
-                            aria-label="Previous slide"
+                            aria-label="Slide sebelumnya"
                         >
                             <svg
                                 class="w-4 h-4 md:w-5 md:h-5"
@@ -174,7 +174,7 @@ const prev = () =>
                         <button
                             @click="next"
                             class="absolute right-2 md:right-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/60 backdrop-blur flex items-center justify-center hover:bg-white/80 transition"
-                            aria-label="Next slide"
+                            aria-label="Slide berikutnya"
                         >
                             <svg
                                 class="w-4 h-4 md:w-5 md:h-5"

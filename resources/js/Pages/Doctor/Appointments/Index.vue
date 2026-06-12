@@ -17,10 +17,10 @@ const isLoading = ref(false);
 
 // Status options for filter
 const statusOptions = [
-    { value: "all", label: "All Status", color: "gray" },
-    { value: "pending", label: "Pending", color: "yellow" },
-    { value: "confirmed", label: "Confirmed", color: "green" },
-    { value: "cancelled", label: "Cancelled", color: "red" },
+    { value: "all", label: "Semua Status", color: "gray" },
+    { value: "pending", label: "Menunggu", color: "yellow" },
+    { value: "confirmed", label: "Dikonfirmasi", color: "green" },
+    { value: "cancelled", label: "Dibatalkan", color: "red" },
 ];
 
 const filteredAppointments = computed(() => {
@@ -114,7 +114,7 @@ const clearFilters = () => {
 </script>
 
 <template>
-    <Head title="My Appointments - Doctor Dashboard" />
+    <Head title="Janji Temu Saya - Dasbor Dokter" />
 
     <AuthenticatedLayout>
         <div class="min-h-screen bg-gray-50/30 py-8">
@@ -146,18 +146,18 @@ const clearFilters = () => {
                                 <h1
                                     class="text-2xl sm:text-3xl font-bold text-gray-900"
                                 >
-                                    Appointments
+                                    Janji Temu
                                 </h1>
                                 <p
                                     class="text-gray-600 mt-1 text-sm sm:text-base"
                                 >
-                                    Manage and track your patient appointments
+                                    Kelola dan lacak janji temu pasien Anda
                                 </p>
                             </div>
                         </div>
                         <div class="text-left sm:text-right">
                             <p class="text-sm text-gray-500">
-                                Total Appointments
+                                Total Janji Temu
                             </p>
                             <p
                                 class="text-xl sm:text-2xl font-semibold text-gray-900"
@@ -177,7 +177,7 @@ const clearFilters = () => {
                             <label
                                 class="block text-sm font-medium text-gray-700 mb-2"
                             >
-                                Search Appointments
+                                Cari Janji Temu
                             </label>
                             <div class="relative">
                                 <svg
@@ -196,7 +196,7 @@ const clearFilters = () => {
                                 <input
                                     v-model="searchQuery"
                                     type="text"
-                                    placeholder="Search by patient name, email, or date..."
+                                    placeholder="Cari berdasarkan nama pasien, email, atau tanggal..."
                                     class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors text-sm sm:text-base"
                                 />
                             </div>
@@ -206,7 +206,7 @@ const clearFilters = () => {
                             <label
                                 class="block text-sm font-medium text-gray-700 mb-2"
                             >
-                                Date
+                                Tanggal
                             </label>
                             <input
                                 v-model="selectedDate"
@@ -239,7 +239,7 @@ const clearFilters = () => {
                             @click="clearFilters"
                             class="px-4 sm:px-6 py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-colors font-medium text-sm sm:text-base"
                         >
-                            Clear
+                            Hapus
                         </button>
                     </div>
                 </div>
@@ -268,17 +268,17 @@ const clearFilters = () => {
                             </svg>
                         </div>
                         <h3 class="text-lg font-semibold text-gray-900 mb-2">
-                            No appointments found
+                            Tidak ada janji temu ditemukan
                         </h3>
                         <p class="text-gray-500 mb-6 text-sm sm:text-base">
-                            No appointments match your current filters. Try
-                            adjusting your search criteria.
+                            Tidak ada janji temu yang cocok dengan filter Anda. Coba
+                            sesuaikan kriteria pencarian Anda.
                         </p>
                         <button
                             @click="clearFilters"
                             class="px-4 sm:px-6 py-3 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-colors font-medium text-sm sm:text-base"
                         >
-                            Clear all filters
+                            Hapus semua filter
                         </button>
                     </div>
                 </div>
@@ -407,7 +407,7 @@ const clearFilters = () => {
                                     >
                                         <strong
                                             class="font-medium text-gray-900"
-                                            >Notes:</strong
+                                            >Catatan:</strong
                                         >
                                         {{ appointment.additional_notes }}
                                     </p>
@@ -438,7 +438,7 @@ const clearFilters = () => {
                                             />
                                         </svg>
                                         <span
-                                            >Details and Make Prescription
+                                            >Detail dan Buat Resep
                                         </span>
                                     </Link>
                                 </div>

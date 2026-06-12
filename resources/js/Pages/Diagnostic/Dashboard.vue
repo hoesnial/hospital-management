@@ -22,7 +22,7 @@ defineProps({
 </script>
 
 <template>
-    <Head title="Diagnostic Dashboard" />
+    <Head title="Dasbor Diagnostik" />
 
     <AuthenticatedLayout>
         <template #header>
@@ -33,10 +33,10 @@ defineProps({
                     <h2
                         class="font-semibold text-xl md:text-2xl text-gray-800 leading-tight"
                     >
-                        Diagnostic Dashboard
+                        Dasbor Diagnostik
                     </h2>
                     <p class="text-gray-600 mt-1">
-                        Manage diagnostic services and monitor bookings.
+                        Kelola layanan diagnostik dan pantau pemesanan.
                     </p>
                 </div>
                 <div class="flex items-center">
@@ -45,7 +45,7 @@ defineProps({
                     >
                         <i class="fas fa-calendar-day text-blue-500 mr-2"></i>
                         <span class="text-xs md:text-sm font-medium">{{
-                            new Date().toLocaleDateString("en-US", {
+                            new Date().toLocaleDateString("id-ID", {
                                 weekday: "long",
                                 year: "numeric",
                                 month: "long",
@@ -71,7 +71,7 @@ defineProps({
                                 <p
                                     class="text-sm font-medium text-gray-600 mb-1"
                                 >
-                                    Services
+                                    Layanan
                                 </p>
                                 <p class="text-3xl font-bold text-gray-800">
                                     {{ summaries.services }}
@@ -94,7 +94,7 @@ defineProps({
                                     ></i>
                                     {{
                                         Math.abs(summaries.services_percentage)
-                                    }}% from last month
+                                    }}% dari bulan lalu
                                 </p>
                             </div>
                         </div>
@@ -108,7 +108,7 @@ defineProps({
                                 <p
                                     class="text-sm font-medium text-gray-600 mb-1"
                                 >
-                                    Total Bookings
+                                    Total Pemesanan
                                 </p>
                                 <p class="text-3xl font-bold text-gray-800">
                                     {{ summaries.bookings }}
@@ -118,7 +118,7 @@ defineProps({
                                 >
                                     <i class="fas fa-circle mr-1"></i>
                                     {{ summaries.bookings_today }}
-                                    scheduled today
+                                    dijadwalkan hari ini
                                 </p>
                             </div>
                         </div>
@@ -132,7 +132,7 @@ defineProps({
                                 <p
                                     class="text-sm font-medium text-gray-600 mb-1"
                                 >
-                                    Pending Results
+                                    Hasil Tertunda
                                 </p>
                                 <p class="text-3xl font-bold text-gray-800">
                                     {{ summaries.pending_results }}
@@ -141,7 +141,7 @@ defineProps({
                                     class="text-xs text-orange-500 mt-1 flex items-center"
                                 >
                                     <i class="fas fa-clock mr-1"></i>
-                                    out of {{ summaries.total_results }} total
+                                    dari {{ summaries.total_results }} total
                                 </p>
                             </div>
                         </div>
@@ -155,7 +155,7 @@ defineProps({
                                 <p
                                     class="text-sm font-medium text-gray-600 mb-1"
                                 >
-                                    Completed Results
+                                    Hasil Selesai
                                 </p>
                                 <p class="text-3xl font-bold text-gray-800">
                                     {{
@@ -167,7 +167,7 @@ defineProps({
                                     class="text-xs text-green-500 mt-1 flex items-center"
                                 >
                                     <i class="fas fa-check-circle mr-1"></i>
-                                    delivered
+                                    terkirim
                                 </p>
                             </div>
                         </div>
@@ -189,29 +189,29 @@ defineProps({
                             </div>
                             <div>
                                 <h4 class="font-semibold text-gray-800 text-lg">
-                                    Diagnostic Services
+                                    Layanan Diagnostik
                                 </h4>
                                 <p class="text-sm text-gray-500">
-                                    Manage test services
+                                    Kelola layanan tes
                                 </p>
                             </div>
                         </div>
                         <p class="text-gray-600 mb-6">
-                            Add, edit, or remove diagnostic services and manage
-                            pricing and categories.
+                            Tambah, edit, atau hapus layanan diagnostik dan kelola
+                            harga serta kategori.
                         </p>
                         <div class="flex space-x-3">
                             <Link
                                 href="/diagnostic/services"
                                 class="bg-sky-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium flex items-center"
                             >
-                                <i class="fas fa-plus mr-2"></i> Add Service
+                                <i class="fas fa-plus mr-2"></i> Tambah Layanan
                             </Link>
                             <Link
                                 href="/diagnostic/services"
                                 class="bg-white text-blue-600 border border-blue-600 px-4 py-2 rounded-lg hover:bg-blue-50 transition-colors text-sm font-medium"
                             >
-                                All Services
+                                Semua Layanan
                             </Link>
                         </div>
                     </div>
@@ -227,29 +227,29 @@ defineProps({
                             </div>
                             <div>
                                 <h4 class="font-semibold text-gray-800 text-lg">
-                                    Bookings Management
+                                    Manajemen Pemesanan
                                 </h4>
                                 <p class="text-sm text-gray-500">
-                                    Handle test bookings
+                                    Kelola pemesanan tes
                                 </p>
                             </div>
                         </div>
                         <p class="text-gray-600 mb-6">
-                            View and manage diagnostic test bookings, update
-                            statuses and assign technicians.
+                            Lihat dan kelola pemesanan tes diagnostik, perbarui
+                            status, dan tetapkan teknisi.
                         </p>
                         <div class="flex space-x-3">
                             <Link
                                 href="/diagnostic/bookings"
                                 class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium flex items-center"
                             >
-                                <i class="fas fa-list mr-2"></i> View Bookings
+                                <i class="fas fa-list mr-2"></i> Lihat Pemesanan
                             </Link>
                             <Link
                                 href="/diagnostic/bookings/today"
                                 class="bg-white text-green-600 border border-green-600 px-4 py-2 rounded-lg hover:bg-green-50 transition-colors text-sm font-medium"
                             >
-                                Today's Bookings
+                                Pemesanan Hari Ini
                             </Link>
                         </div>
                     </div>
@@ -265,30 +265,30 @@ defineProps({
                             </div>
                             <div>
                                 <h4 class="font-semibold text-gray-800 text-lg">
-                                    Test Results
+                                    Hasil Tes
                                 </h4>
                                 <p class="text-sm text-gray-500">
-                                    Upload and deliver results
+                                    Unggah dan kirimkan hasil
                                 </p>
                             </div>
                         </div>
                         <p class="text-gray-600 mb-6">
-                            Upload test results, mark as delivered, and track
-                            completion status.
+                            Unggah hasil tes, tandai sebagai terkirim, dan
+                            lacak status penyelesaian.
                         </p>
                         <div class="flex space-x-3">
                             <Link
                                 href="/diagnostic/results/pending"
                                 class="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 transition-colors text-sm font-medium flex items-center"
                             >
-                                <i class="fas fa-upload mr-2"></i> Upload
-                                Results
+                                <i class="fas fa-upload mr-2"></i> Unggah
+                                Hasil
                             </Link>
                             <Link
                                 href="/diagnostic/results"
                                 class="bg-white text-yellow-600 border border-yellow-600 px-4 py-2 rounded-lg hover:bg-yellow-50 transition-colors text-sm font-medium"
                             >
-                                View Results
+                                Lihat Hasil
                             </Link>
                         </div>
                     </div>
@@ -303,13 +303,13 @@ defineProps({
                     >
                         <div class="flex justify-between items-center mb-6">
                             <h3 class="font-semibold text-gray-800 text-lg">
-                                Recent Bookings
+                                Pemesanan Terbaru
                             </h3>
                             <Link
                                 href="/diagnostic/bookings"
                                 class="text-blue-600 text-sm font-medium"
                             >
-                                View All
+                                Lihat Semua
                             </Link>
                         </div>
                         <div class="space-y-4">
@@ -354,10 +354,10 @@ defineProps({
                     >
                         <div class="flex justify-between items-center mb-6">
                             <h3 class="font-semibold text-gray-800 text-lg">
-                                Quick Actions
+                                Tindakan Cepat
                             </h3>
                             <button class="text-blue-600 text-sm font-medium">
-                                More Options
+                                Opsi Lainnya
                             </button>
                         </div>
                         <div class="grid grid-cols-2 gap-4">
@@ -368,7 +368,7 @@ defineProps({
                                     class="fas fa-plus-circle text-blue-500 text-xl mb-2"
                                 ></i>
                                 <p class="font-medium text-gray-800 text-sm">
-                                    New Service
+                                    Layanan Baru
                                 </p>
                             </button>
                             <button
@@ -378,7 +378,7 @@ defineProps({
                                     class="fas fa-calendar-plus text-green-500 text-xl mb-2"
                                 ></i>
                                 <p class="font-medium text-gray-800 text-sm">
-                                    Schedule Test
+                                    Jadwalkan Tes
                                 </p>
                             </button>
                             <button
@@ -388,7 +388,7 @@ defineProps({
                                     class="fas fa-file-upload text-yellow-500 text-xl mb-2"
                                 ></i>
                                 <p class="font-medium text-gray-800 text-sm">
-                                    Upload Result
+                                    Unggah Hasil
                                 </p>
                             </button>
                             <button
@@ -398,7 +398,7 @@ defineProps({
                                     class="fas fa-chart-line text-gray-500 text-xl mb-2"
                                 ></i>
                                 <p class="font-medium text-gray-800 text-sm">
-                                    Reports
+                                    Laporan
                                 </p>
                             </button>
                         </div>
