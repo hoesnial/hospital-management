@@ -1,0 +1,71 @@
+# Version control
+.git/
+.gitignore
+.gitattributes
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Node
+node_modules/
+npm-debug.log
+package-lock.json
+
+# Build artifacts
+public/build/
+public/hot
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose*.yml
+.dockerignore
+
+# Logs
+storage/logs/*
+!storage/logs/.gitkeep
+
+# Cache
+storage/framework/cache/data/*
+!storage/framework/cache/data/.gitkeep
+storage/framework/sessions/*
+!storage/framework/sessions/.gitkeep
+storage/framework/views/*
+!storage/framework/views/.gitkeep
+
+# Tests
+tests/
+phpunit.xml
+.phpunit.result.cache
+
+# Documentation
+*.md
+plan/
+screenshort/
+
+# Cache
+bootstrap/cache/*.php
+!bootstrap/cache/packages.php
+!bootstrap/cache/services.php
+
+# Composer
+vendor/
+composer.lock
+
+# Reports
+SECURITY_*.md
+ERROR_FIXES_REPORT.md
+CSRF_TOKEN_FIX.md
+TODO.md
+CONTRIBUTING.md

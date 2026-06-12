@@ -61,7 +61,7 @@ const submit = () => {
 </script>
 
 <template>
-    <Head title="Register - Xet Specialized Hospital" />
+    <Head title="Daftar - Xet Specialized Hospital" />
     <!-- Modern Header -->
     <Header :canLogin="canLogin" :canRegister="canRegister" />
 
@@ -94,17 +94,17 @@ const submit = () => {
                                     Xet Hospital
                                 </h2>
                                 <p class="text-xs md:text-sm text-black-500">
-                                    Join Our Team
+                                    Bergabung dengan Tim Kami
                                 </p>
                             </div>
                         </div>
                     </div>
 
                     <h1 class="text-2xl md:text-4xl font-bold mb-4">
-                        Join Xet Specialized Hospital
+                        Bergabung dengan Xet Specialized Hospital
                     </h1>
                     <p class="text-lg md:text-xl text-green-100 mb-6">
-                        Become Part of Our Medical Excellence
+                        Jadi Bagian dari Keunggulan Medis Kami
                     </p>
 
                     <div
@@ -125,8 +125,7 @@ const submit = () => {
                                 />
                             </svg>
                             <span
-                                >Secure access to patient management
-                                systems</span
+                                >Akses aman ke sistem manajemen pasien</span
                             >
                         </div>
                         <div class="flex items-center space-x-3">
@@ -143,7 +142,7 @@ const submit = () => {
                                     d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                                 />
                             </svg>
-                            <span>Collaborate with medical professionals</span>
+                            <span>Berkolaborasi dengan tenaga medis profesional</span>
                         </div>
                         <div class="flex items-center space-x-3">
                             <svg
@@ -159,7 +158,7 @@ const submit = () => {
                                     d="M13 10V3L4 14h7v7l9-11h-7z"
                                 />
                             </svg>
-                            <span>Real-time access to medical records</span>
+                            <span>Akses real-time ke rekam medis</span>
                         </div>
                         <div class="flex items-center space-x-3">
                             <svg
@@ -175,7 +174,7 @@ const submit = () => {
                                     d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
                                 />
                             </svg>
-                            <span>HIPAA compliant secure platform</span>
+                            <span>Platform aman sesuai HIPAA</span>
                         </div>
                     </div>
                 </div>
@@ -198,7 +197,7 @@ const submit = () => {
                                 d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
                             />
                         </svg>
-                        <span>Enterprise Security • HIPAA Compliant</span>
+                        <span>Keamanan Enterprise • Sesuai HIPAA</span>
                     </div>
                 </div>
             </div>
@@ -212,10 +211,10 @@ const submit = () => {
                 <!-- Header -->
                 <div class="text-center lg:text-left">
                     <h2 class="text-2xl md:text-3xl font-bold text-gray-900">
-                        Create Account
+                        Buat Akun
                     </h2>
                     <p class="mt-2 text-sm md:text-base text-gray-600">
-                        Register for the hospital management system
+                        Daftar untuk sistem manajemen rumah sakit
                     </p>
                 </div>
 
@@ -229,7 +228,7 @@ const submit = () => {
                         <div>
                             <InputLabel
                                 for="name"
-                                value="Full Name"
+                                value="Nama Lengkap"
                                 class="block text-sm font-medium text-gray-700 mb-2"
                             />
                             <div class="relative">
@@ -237,7 +236,7 @@ const submit = () => {
                                     id="name"
                                     type="text"
                                     class="block w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200 text-sm md:text-base"
-                                    placeholder="Enter your full name"
+                                    placeholder="Masukkan nama lengkap Anda"
                                     v-model="form.name"
                                     required
                                     autofocus
@@ -275,7 +274,7 @@ const submit = () => {
                         <div>
                             <InputLabel
                                 for="email"
-                                value="Work Email"
+                                value="Email Kerja"
                                 class="block text-sm font-medium text-gray-700 mb-2"
                             />
                             <div class="relative">
@@ -283,7 +282,7 @@ const submit = () => {
                                     id="email"
                                     type="email"
                                     class="block w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200 text-sm md:text-base"
-                                    placeholder="Enter your work email"
+                                    placeholder="Masukkan email kerja Anda"
                                     v-model="form.email"
                                     required
                                     autocomplete="email"
@@ -401,8 +400,8 @@ const submit = () => {
                             >
                                 {{
                                     emailAvailable
-                                        ? "Email is available"
-                                        : "Email is already in use"
+                                        ? "Email tersedia"
+                                        : "Email sudah digunakan"
                                 }}
                             </div>
                         </div>
@@ -411,7 +410,7 @@ const submit = () => {
                         <div>
                             <InputLabel
                                 for="password"
-                                value="Password"
+                                value="Kata Sandi"
                                 class="block text-sm font-medium text-gray-700 mb-2"
                             />
                             <div class="relative">
@@ -419,7 +418,7 @@ const submit = () => {
                                     id="password"
                                     :type="showPassword ? 'text' : 'password'"
                                     class="block w-full px-3 md:px-4 py-2 md:py-3 pr-10 md:pr-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200 text-sm md:text-base"
-                                    placeholder="Create a strong password"
+                                    placeholder="Buat kata sandi yang kuat"
                                     v-model="form.password"
                                     required
                                     autocomplete="new-password"
@@ -478,7 +477,7 @@ const submit = () => {
                         <div>
                             <InputLabel
                                 for="password_confirmation"
-                                value="Confirm Password"
+                                value="Konfirmasi Kata Sandi"
                                 class="block text-sm font-medium text-gray-700 mb-2"
                             />
                             <div class="relative">
@@ -490,7 +489,7 @@ const submit = () => {
                                             : 'password'
                                     "
                                     class="block w-full px-3 md:px-4 py-2 md:py-3 pr-10 md:pr-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200 text-sm md:text-base"
-                                    placeholder="Confirm your password"
+                                    placeholder="Konfirmasi kata sandi Anda"
                                     v-model="form.password_confirmation"
                                     required
                                     autocomplete="new-password"
@@ -560,24 +559,24 @@ const submit = () => {
                                     for="terms"
                                     class="font-medium text-gray-700"
                                 >
-                                    I agree to the
+                                    Saya setuju dengan
                                     <a
                                         href="#"
                                         class="text-green-600 hover:text-green-500 font-semibold"
-                                        >Terms of Service</a
+                                        >Syarat & Ketentuan</a
                                     >
-                                    and
+                                    dan
                                     <a
                                         href="#"
                                         class="text-green-600 hover:text-green-500 font-semibold"
-                                        >Privacy Policy</a
+                                        >Kebijakan Privasi</a
                                     >
                                 </label>
                                 <p
                                     class="text-gray-500 mt-1 text-xs md:text-sm"
                                 >
-                                    Including HIPAA compliance and data
-                                    protection guidelines
+                                    Termasuk kepatuhan HIPAA dan pedoman
+                                    perlindungan data
                                 </p>
                             </div>
                         </div>
@@ -614,8 +613,8 @@ const submit = () => {
                                 </svg>
                                 {{
                                     form.processing
-                                        ? "Creating Account..."
-                                        : "Create Account"
+                                        ? "Membuat Akun..."
+                                        : "Buat Akun"
                                 }}
                             </span>
                         </PrimaryButton>
@@ -626,12 +625,12 @@ const submit = () => {
                         class="text-center pt-3 md:pt-4 border-t border-gray-200"
                     >
                         <p class="text-sm md:text-base text-gray-600">
-                            Already have an account?
+                            Sudah punya akun?
                             <Link
                                 :href="route('login')"
                                 class="font-semibold text-green-600 hover:text-green-500 transition-colors duration-200 ml-1"
                             >
-                                Sign in here
+                                Masuk di sini
                             </Link>
                         </p>
                     </div>
@@ -639,12 +638,12 @@ const submit = () => {
                     <!-- Support Contact -->
                     <div class="text-center">
                         <p class="text-xs md:text-sm text-gray-500">
-                            Need help with registration?
+                            Butuh bantuan pendaftaran?
                             <a
                                 href="mailto:hr@xethospital.com"
                                 class="font-medium text-green-600 hover:text-green-500"
                             >
-                                Contact HR
+                                Hubungi HRD
                             </a>
                         </p>
                     </div>

@@ -23,7 +23,7 @@ defineProps({
 </script>
 
 <template>
-    <Head title="Welcome to Xet Specialized Hospital" />
+    <Head title="Selamat Datang di Xet Specialized Hospital" />
 
     <!-- Modern Header -->
     <Header :canLogin="canLogin" :canRegister="canRegister" />

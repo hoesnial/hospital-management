@@ -3,14 +3,14 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
 </script>
 <template>
-    <Head title="Medical Records" />
+    <Head title="Rekam Medis" />
 
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-bold text-2xl text-slate-800 leading-tight">
-                Medical Records
+                Rekam Medis
             </h2>
-            <p class="text-slate-600 mt-1">Access your health history</p>
+            <p class="text-slate-600 mt-1">Akses riwayat kesehatan Anda</p>
         </template>
 
         <div class="py-2">
@@ -18,7 +18,7 @@ import { Head } from "@inertiajs/vue3";
                 <div
                     class="bg-white rounded-2xl p-6 shadow-sm border border-white/20"
                 >
-                    <p>Medical records content will be here.</p>
+                    <p>Konten rekam medis akan ada di sini.</p>
                 </div>
             </div>
         </div>

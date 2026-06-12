@@ -2,23 +2,23 @@
 import Background from "@/assets/images/background/background1.png";
 const corporateServices = [
     {
-        title: "Corporate Health Checkups",
-        description: "Comprehensive health screening s for your employees",
+        title: "Pemeriksaan Kesehatan Korporasi",
+        description: "Pemeriksaan kesehatan komprehensif untuk karyawan Anda",
         icon: "🏢",
     },
     {
-        title: "On-site Medical Facilities",
-        description: "Set up medical facilities at your workplace",
+        title: "Fasilitas Medis di Tempat",
+        description: "Siapkan fasilitas medis di tempat kerja Anda",
         icon: "⚕️",
     },
     {
-        title: "Health Awareness Programs",
-        description: "Educational sessions on workplace health and safety",
+        title: "Program Kesadaran Kesehatan",
+        description: "Sesi edukasi tentang kesehatan dan keselamatan kerja",
         icon: "📚",
     },
     {
-        title: "Emergency Response Training",
-        description: "First aid and emergency response training for staff",
+        title: "Pelatihan Tanggap Darurat",
+        description: "Pelatihan pertolongan pertama dan tanggap darurat untuk staf",
         icon: "🆘",
     },
 ];
@@ -31,13 +31,12 @@ const corporateServices = [
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-card">
                 <h2 class="text-2xl md:text-4xl font-semibold text-gray-900">
-                    Corporate Services
+                    Layanan Korporasi
                 </h2>
                 <p
                     class="text-base md:text-lg text-white max-w-lg md:max-w-2xl mt-2"
                 >
-                    Comprehensive healthcare solutions for your organization and
-                    employees.
+                    Solusi layanan kesehatan komprehensif untuk organisasi dan karyawan Anda.
                 </p>
             </div>
 
@@ -70,7 +69,7 @@ const corporateServices = [
                     href="#contact"
                     class="inline-flex items-center px-6 md:px-8 py-3 md:py-4 bg-white text-blue-600 rounded-xl font-semibold text-base md:text-lg hover:shadow-2xl transition-all duration-300 hover:scale-105"
                 >
-                    Contact Corporate Desk
+                    Hubungi Meja Korporasi
                     <svg
                         class="w-4 h-4 md:w-5 md:h-5 ml-2"
                         fill="none"

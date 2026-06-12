@@ -14,16 +14,16 @@ const paymentTypeFilter = ref("all");
 
 // Status options for filtering
 const statusOptions = [
-    { value: "all", label: "All Status" },
-    { value: "pending", label: "Pending" },
-    { value: "confirmed", label: "Confirmed" },
-    { value: "cancelled", label: "Cancelled" },
+    { value: "all", label: "Semua Status" },
+    { value: "pending", label: "Tertunda" },
+    { value: "confirmed", label: "Dikonfirmasi" },
+    { value: "cancelled", label: "Dibatalkan" },
 ];
 
 const paymentTypeOptions = [
-    { value: "all", label: "All Payment Types" },
-    { value: "cash", label: "Cash" },
-    { value: "card", label: "Card" },
+    { value: "all", label: "Semua Jenis Pembayaran" },
+    { value: "cash", label: "Tunai" },
+    { value: "card", label: "Kartu" },
     { value: "online", label: "Online" },
 ];
 
@@ -107,7 +107,7 @@ const stats = computed(() => {
 const deletePackageBooking = async (id) => {
     if (
         confirm(
-            "Are you sure you want to delete this package booking? This action cannot be undone."
+            "Apakah Anda yakin ingin menghapus pemesanan paket ini? Tindakan ini tidak dapat dibatalkan."
         )
     ) {
         try {
@@ -126,7 +126,7 @@ const deletePackageBooking = async (id) => {
 };
 
 const confirmPackageBooking = async (id) => {
-    if (confirm("Are you sure you want to confirm this package booking?")) {
+    if (confirm("Apakah Anda yakin ingin mengkonfirmasi pemesanan paket ini?")) {
         try {
             await axios.put(route("admin.package-bookings.update", id), {
                 status: "confirmed",
@@ -145,7 +145,7 @@ const confirmPackageBooking = async (id) => {
 };
 
 const cancelPackageBooking = async (id) => {
-    const reason = prompt("Please enter the reason for cancellation:");
+    const reason = prompt("Silakan masukkan alasan pembatalan:");
     if (reason !== null && reason.trim() !== "") {
         try {
             await axios.put(route("admin.package-bookings.update", id), {
@@ -166,7 +166,7 @@ const cancelPackageBooking = async (id) => {
     } else if (reason === null) {
         // User cancelled the prompt
     } else {
-        alert("Cancellation reason is required.");
+        alert("Alasan pembatalan diperlukan.");
     }
 };
 
@@ -186,22 +186,22 @@ const formatCurrency = (amount) => {
 </script>
 
 <template>
-    <AppLayout title="Package Bookings Management">
+    <AppLayout title="Pemesanan Paket">
         <div class="flex p-4 items-center justify-between">
             <div>
                 <h2 class="font-semibold text-2xl text-gray-900 leading-tight">
-                    Package Bookings Management
+                    Pemesanan Paket
                 </h2>
                 <p class="text-gray-600 mt-1 text-sm">
-                    Manage and monitor all health package bookings across the
-                    system
+                    Kelola dan pantau semua pemesanan paket kesehatan di seluruh
+                    sistem
                 </p>
             </div>
             <div class="flex items-center space-x-3">
                 <span
                     class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full"
                 >
-                    {{ stats.total }} bookings
+                    {{ stats.total }} pemesanan
                 </span>
             </div>
         </div>
@@ -231,7 +231,7 @@ const formatCurrency = (amount) => {
                             </div>
                             <div>
                                 <p class="text-sm font-medium text-gray-600">
-                                    Total Bookings
+                                    Total Pemesanan
                                 </p>
                                 <p class="text-2xl font-bold text-gray-900">
                                     {{ stats.total }}
@@ -261,7 +261,7 @@ const formatCurrency = (amount) => {
                             </div>
                             <div>
                                 <p class="text-sm font-medium text-gray-600">
-                                    Total Revenue
+                                    Total Pendapatan
                                 </p>
                                 <p class="text-2xl font-bold text-gray-900">
                                     {{ formatCurrency(stats.totalRevenue) }}
@@ -291,7 +291,7 @@ const formatCurrency = (amount) => {
                             </div>
                             <div>
                                 <p class="text-sm font-medium text-gray-600">
-                                    Pending
+                                    Tertunda
                                 </p>
                                 <p class="text-2xl font-bold text-gray-900">
                                     {{ stats.pending }}
@@ -321,7 +321,7 @@ const formatCurrency = (amount) => {
                             </div>
                             <div>
                                 <p class="text-sm font-medium text-gray-600">
-                                    Cancelled
+                                    Dibatalkan
                                 </p>
                                 <p class="text-2xl font-bold text-gray-900">
                                     {{ stats.cancelled }}
@@ -340,7 +340,7 @@ const formatCurrency = (amount) => {
                             <label
                                 class="block text-sm font-medium text-gray-700 mb-2"
                             >
-                                Search Bookings
+                                Cari Pemesanan
                             </label>
                             <div class="relative">
                                 <svg
@@ -359,7 +359,7 @@ const formatCurrency = (amount) => {
                                 <input
                                     v-model="searchQuery"
                                     type="text"
-                                    placeholder="Search by user name, package name, or payment type..."
+                                    placeholder="Cari berdasarkan nama pengguna, nama paket, atau jenis pembayaran..."
                                     class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
                                 />
                             </div>
@@ -389,7 +389,7 @@ const formatCurrency = (amount) => {
                             <label
                                 class="block text-sm font-medium text-gray-700 mb-2"
                             >
-                                Payment Type
+                                Jenis Pembayaran
                             </label>
                             <select
                                 v-model="paymentTypeFilter"
@@ -409,7 +409,7 @@ const formatCurrency = (amount) => {
                             @click="clearFilters"
                             class="px-6 py-2 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-colors font-medium whitespace-nowrap"
                         >
-                            Clear Filters
+                            Hapus Filter
                         </button>
                     </div>
                 </div>
@@ -425,12 +425,12 @@ const formatCurrency = (amount) => {
                                     <th
                                         class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
                                     >
-                                        Booking Information
+                                        Informasi Pemesanan
                                     </th>
                                     <th
                                         class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
                                     >
-                                        Payment Details
+                                        Detail Pembayaran
                                     </th>
                                     <th
                                         class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
@@ -440,12 +440,12 @@ const formatCurrency = (amount) => {
                                     <th
                                         class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
                                     >
-                                        Document
+                                        Dokumen
                                     </th>
                                     <th
                                         class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
                                     >
-                                        Actions
+                                        Tindakan
                                     </th>
                                 </tr>
                             </thead>
@@ -497,7 +497,7 @@ const formatCurrency = (amount) => {
                                             >
                                                 <span
                                                     class="text-sm text-gray-600"
-                                                    >Amount Paid:</span
+                                                    >Jumlah Dibayar:</span
                                                 >
                                                 <span
                                                     class="text-sm font-semibold text-gray-900"
@@ -514,7 +514,7 @@ const formatCurrency = (amount) => {
                                             >
                                                 <span
                                                     class="text-sm text-gray-600"
-                                                    >Total Amount:</span
+                                                    >Total Jumlah:</span
                                                 >
                                                 <span
                                                     class="text-sm font-medium text-gray-700"
@@ -536,8 +536,8 @@ const formatCurrency = (amount) => {
                                                     class="text-xs text-gray-500"
                                                 >
                                                     <strong
-                                                        >Cancellation
-                                                        Reason:</strong
+                                                        >Alasan
+                                                        Pembatalan:</strong
                                                     >
                                                     {{
                                                         booking.cancellation_reason
@@ -586,7 +586,7 @@ const formatCurrency = (amount) => {
                                             "
                                             target="_blank"
                                             class="inline-flex items-center bg-gray-50 text-gray-600 rounded-lg hover:bg-gray-100 transition-colors"
-                                            title="Download Receipt"
+                                            title="Unduh Tanda Terima"
                                         >
                                             <svg
                                                 class="w-4 h-4"
@@ -601,7 +601,7 @@ const formatCurrency = (amount) => {
                                                     d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                                                 />
                                             </svg>
-                                            Download
+                                            Unduh
                                         </a>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
@@ -638,7 +638,7 @@ const formatCurrency = (amount) => {
                                                             d="M5 13l4 4L19 7"
                                                         />
                                                     </svg>
-                                                    Confirm
+                                                    Konfirmasi
                                                 </button>
                                                 <button
                                                     v-if="
@@ -651,7 +651,7 @@ const formatCurrency = (amount) => {
                                                         )
                                                     "
                                                     class="inline-flex items-center px-3 py-1.5 bg-amber-50 text-amber-700 text-sm font-medium rounded-lg hover:bg-amber-100 transition-colors"
-                                                    title="Cancel Booking"
+                                                    title="Batalkan Pemesanan"
                                                 >
                                                     <svg
                                                         class="w-4 h-4 mr-1"
@@ -666,7 +666,7 @@ const formatCurrency = (amount) => {
                                                             d="M6 18L18 6M6 6l12 12"
                                                         />
                                                     </svg>
-                                                    Cancel
+                                                    Batal
                                                 </button>
                                                 <button
                                                     @click="
@@ -675,7 +675,7 @@ const formatCurrency = (amount) => {
                                                         )
                                                     "
                                                     class="inline-flex items-center p-2 bg-rose-50 text-rose-600 rounded-lg hover:bg-rose-100 transition-colors"
-                                                    title="Delete Booking"
+                                                    title="Hapus Pemesanan"
                                                 >
                                                     <svg
                                                         class="w-4 h-4"
@@ -719,7 +719,7 @@ const formatCurrency = (amount) => {
                                 />
                             </svg>
                             <h3 class="mt-4 text-lg font-medium text-gray-900">
-                                No package bookings found
+                                Tidak ada pemesanan paket ditemukan
                             </h3>
                             <p
                                 class="mt-2 text-sm text-gray-500 max-w-md mx-auto"
@@ -728,8 +728,8 @@ const formatCurrency = (amount) => {
                                     searchQuery ||
                                     statusFilter !== "all" ||
                                     paymentTypeFilter !== "all"
-                                        ? "No bookings match your current filters. Try adjusting your search criteria."
-                                        : "No package bookings have been made yet."
+                                        ? "Tidak ada pemesanan yang sesuai dengan filter Anda. Coba sesuaikan kriteria pencarian Anda."
+                                        : "Belum ada pemesanan paket yang dilakukan."
                                 }}
                             </p>
                             <button
@@ -741,7 +741,7 @@ const formatCurrency = (amount) => {
                                 @click="clearFilters"
                                 class="mt-4 inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-xl hover:bg-indigo-700 transition-colors"
                             >
-                                Clear all filters
+                                Hapus semua filter
                             </button>
                         </div>
                     </div>
@@ -749,8 +749,8 @@ const formatCurrency = (amount) => {
                 <span
                     class="text-right mt-4 inline-block text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full"
                 >
-                    Showing {{ filteredBookings.length }} of
-                    {{ packageBookings.length }} bookings
+                    Menampilkan {{ filteredBookings.length }} dari
+                    {{ packageBookings.length }} pemesanan
                 </span>
             </div>
         </div>

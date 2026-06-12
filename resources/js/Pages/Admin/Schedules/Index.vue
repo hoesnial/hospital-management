@@ -154,7 +154,7 @@ onMounted(loadList);
 </script>
 
 <template>
-    <AuthenticatedLayout title="Doctors Schedules">
+    <AuthenticatedLayout title="Jadwal Dokter">
         <div class="space-y-5 px-4 py-3">
             <!-- Toolbar -->
             <div
@@ -165,9 +165,9 @@ onMounted(loadList);
                         <input
                             v-model.trim="search"
                             @keyup.enter="loadList"
-                            placeholder="Search by doctor or email"
+                            placeholder="Cari berdasarkan dokter atau email"
                             class="w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
-                            aria-label="Search schedules"
+                            aria-label="Cari jadwal"
                         />
                         <span
                             class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"
@@ -180,7 +180,7 @@ onMounted(loadList);
                             @click="loadList"
                             :disabled="loading"
                         >
-                            Search
+                            Cari
                         </button>
                         <button
                             class="rounded-xl border px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-50"
@@ -195,7 +195,7 @@ onMounted(loadList);
                 <div class="flex flex-col gap-2 sm:flex-row">
                     <div class="flex items-center gap-3">
                         <label class="text-sm text-gray-500 sm:hidden"
-                            >Rows per page</label
+                            >Baris per halaman</label
                         >
                         <select
                             v-model.number="pageSize"
@@ -211,7 +211,7 @@ onMounted(loadList);
                         @click="loadList"
                         :disabled="loading"
                     >
-                        Refresh
+                        Muat Ulang
                     </button>
                 </div>
             </div>
@@ -229,7 +229,7 @@ onMounted(loadList);
                                         class="flex items-center gap-1 hover:underline"
                                         @click="toggleSort('doctor')"
                                     >
-                                        Doctor
+                                        Dokter
                                         <SortIcon
                                             :active="sortBy === 'doctor'"
                                             :dir="sortDir"
@@ -255,7 +255,7 @@ onMounted(loadList);
                                         class="flex items-center gap-1 hover:underline"
                                         @click="toggleSort('day')"
                                     >
-                                        Day
+                                        Hari
                                         <SortIcon
                                             :active="sortBy === 'day'"
                                             :dir="sortDir"
@@ -267,7 +267,7 @@ onMounted(loadList);
                                         class="flex items-center gap-1 hover:underline"
                                         @click="toggleSort('time')"
                                     >
-                                        Time
+                                        Waktu
                                         <SortIcon
                                             :active="sortBy === 'time'"
                                             :dir="sortDir"
@@ -295,7 +295,7 @@ onMounted(loadList);
                                         class="flex items-center gap-1 hover:underline"
                                         @click="toggleSort('max')"
                                     >
-                                        Max/day
+                                        Maks/hari
                                         <SortIcon
                                             :active="sortBy === 'max'"
                                             :dir="sortDir"
@@ -309,7 +309,7 @@ onMounted(loadList);
                                         class="flex items-center gap-1 hover:underline"
                                         @click="toggleSort('fee')"
                                     >
-                                        Fees
+                                        Biaya
                                         <SortIcon
                                             :active="sortBy === 'fee'"
                                             :dir="sortDir"
@@ -379,7 +379,7 @@ onMounted(loadList);
                                         class="rounded-lg border px-3 py-1.5 text-sm font-medium transition hover:bg-gray-100"
                                         @click="openMention(r)"
                                     >
-                                        Mention
+                                        Sebut
                                     </button>
                                 </td>
                             </tr>
@@ -394,11 +394,11 @@ onMounted(loadList);
                                         <h3
                                             class="text-base font-semibold text-gray-900"
                                         >
-                                            No schedules found
+                                            Tidak ada jadwal ditemukan
                                         </h3>
                                         <p class="mt-1 text-sm text-gray-500">
-                                            Try adjusting your search or refresh
-                                            the list.
+                                            Coba sesuaikan pencarian atau muat ulang
+                                            daftar.
                                         </p>
                                         <div
                                             class="mt-4 flex items-center justify-center gap-2"
@@ -407,13 +407,13 @@ onMounted(loadList);
                                                 class="rounded-xl border px-4 py-2 text-sm font-medium transition hover:bg-gray-50"
                                                 @click="resetSearch"
                                             >
-                                                Clear filters
+                                                Hapus filter
                                             </button>
                                             <button
                                                 class="rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700"
                                                 @click="loadList"
                                             >
-                                                Refresh
+                                                Muat Ulang
                                             </button>
                                         </div>
                                     </div>
@@ -428,7 +428,7 @@ onMounted(loadList);
                     class="flex flex-col items-center justify-between gap-3 border-t bg-gray-50 px-2 py-3 text-sm sm:flex-row sm:px-4"
                 >
                     <div class="text-gray-600">
-                        Page <span class="font-semibold">{{ page }}</span> of
+                        Halaman <span class="font-semibold">{{ page }}</span> dari
                         <span class="font-semibold">{{ totalPages }}</span>
                     </div>
                     <div class="flex items-center gap-2">
@@ -437,14 +437,14 @@ onMounted(loadList);
                             :disabled="page === 1"
                             @click="page = Math.max(1, page - 1)"
                         >
-                            Prev
+                            Sebelumnya
                         </button>
                         <button
                             class="rounded-lg border px-3 py-1.5 disabled:cursor-not-allowed disabled:opacity-40"
                             :disabled="page === totalPages"
                             @click="page = Math.min(totalPages, page + 1)"
                         >
-                            Next
+                            Selanjutnya
                         </button>
                     </div>
                 </div>
@@ -463,7 +463,7 @@ onMounted(loadList);
                     >
                         <div class="flex items-start justify-between">
                             <h3 class="text-lg font-semibold">
-                                Private message to doctor
+                                Pesan pribadi ke dokter
                             </h3>
                             <button
                                 class="rounded-lg p-1 hover:bg-gray-100"
@@ -478,7 +478,7 @@ onMounted(loadList);
                                 v-model="mentionForm.text"
                                 rows="5"
                                 class="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
-                                placeholder="Write a private message…"
+                                placeholder="Tulis pesan pribadi…"
                             />
                             <div
                                 class="mt-2 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between text-xs text-gray-500"
@@ -487,7 +487,7 @@ onMounted(loadList);
                                     >{{
                                         mentionForm.text.length
                                     }}
-                                    characters</span
+                                    karakter</span
                                 >
                                 <span
                                     >Schedule #{{
@@ -503,14 +503,14 @@ onMounted(loadList);
                                 class="rounded-xl border px-4 py-2 text-sm hover:bg-gray-50 w-full sm:w-auto"
                                 @click="closeMention"
                             >
-                                Cancel
+                                Batal
                             </button>
                             <button
                                 class="rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 disabled:opacity-50 w-full sm:w-auto"
                                 :disabled="sending || !mentionForm.text.trim()"
                                 @click="sendMention"
                             >
-                                {{ sending ? "Sending…" : "Send" }}
+                                {{ sending ? "Mengirim…" : "Kirim" }}
                             </button>
                         </div>
                     </div>

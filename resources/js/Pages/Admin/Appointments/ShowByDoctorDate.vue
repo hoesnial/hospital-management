@@ -31,9 +31,9 @@ const statusColors = {
 };
 
 const statusLabels = {
-    pending: "Pending",
-    confirmed: "Confirmed",
-    cancelled: "Cancelled",
+    pending: "Tertunda",
+    confirmed: "Dikonfirmasi",
+    cancelled: "Dibatalkan",
 };
 
 // Filter appointments
@@ -102,7 +102,7 @@ const updateStatus = async (appointmentId, newStatus) => {
             }
         },
         onError: () => {
-            showToast("Failed to update appointment status.", "error");
+            showToast("Gagal memperbarui status janji temu.", "error");
         },
     });
 };
@@ -116,7 +116,7 @@ const clearFilters = () => {
 
 // Format date for display
 const formattedDate = computed(() => {
-    return new Date(props.date).toLocaleDateString("en-US", {
+    return new Date(props.date).toLocaleDateString("id-ID", {
         weekday: "long",
         year: "numeric",
         month: "long",
@@ -126,7 +126,7 @@ const formattedDate = computed(() => {
 </script>
 
 <template>
-    <Head :title="`Appointments - ${doctor?.user?.name} - ${date}`" />
+    <Head :title="`Janji Temu - ${doctor?.user?.name} - ${date}`" />
 
     <AuthenticatedLayout>
         <div class="py-4">
@@ -172,10 +172,10 @@ const formattedDate = computed(() => {
                                         d="M10 19l-7-7m0 0l7-7m-7 7h18"
                                     />
                                 </svg>
-                                Back
+                                Kembali
                             </Link>
                             <p class="text-sm text-gray-500">
-                                Appointment Date
+                                Tanggal Janji Temu
                             </p>
                             <p
                                 class="text-base sm:text-lg font-semibold text-gray-900"
@@ -209,7 +209,7 @@ const formattedDate = computed(() => {
                             </div>
                             <div>
                                 <p class="text-sm font-medium text-gray-600">
-                                    Total Appointments
+                                    Total Janji Temu
                                 </p>
                                 <p class="text-2xl font-bold text-gray-900">
                                     {{ appointmentStats.total }}
@@ -239,7 +239,7 @@ const formattedDate = computed(() => {
                             </div>
                             <div>
                                 <p class="text-sm font-medium text-gray-600">
-                                    Pending
+                                    Tertunda
                                 </p>
                                 <p class="text-2xl font-bold text-gray-900">
                                     {{ appointmentStats.pending }}
@@ -269,7 +269,7 @@ const formattedDate = computed(() => {
                             </div>
                             <div>
                                 <p class="text-sm font-medium text-gray-600">
-                                    Confirmed
+                                    Dikonfirmasi
                                 </p>
                                 <p class="text-2xl font-bold text-gray-900">
                                     {{ appointmentStats.confirmed }}
@@ -299,7 +299,7 @@ const formattedDate = computed(() => {
                             </div>
                             <div>
                                 <p class="text-sm font-medium text-gray-600">
-                                    Cancelled
+                                    Dibatalkan
                                 </p>
                                 <p class="text-2xl font-bold text-gray-900">
                                     {{ appointmentStats.cancelled }}
@@ -318,7 +318,7 @@ const formattedDate = computed(() => {
                             <label
                                 class="block text-sm font-medium text-gray-700 mb-2"
                             >
-                                Search Patients
+                                Cari Pasien
                             </label>
                             <div class="relative">
                                 <svg
@@ -337,7 +337,7 @@ const formattedDate = computed(() => {
                                 <input
                                     v-model="searchQuery"
                                     type="text"
-                                    placeholder="Search by patient name, email, or phone..."
+                                    placeholder="Cari berdasarkan nama pasien, email, atau telepon..."
                                     class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
                                 />
                             </div>
@@ -353,10 +353,10 @@ const formattedDate = computed(() => {
                                 v-model="statusFilter"
                                 class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
                             >
-                                <option value="all">All Status</option>
-                                <option value="pending">Pending</option>
-                                <option value="confirmed">Confirmed</option>
-                                <option value="cancelled">Cancelled</option>
+                                <option value="all">Semua Status</option>
+                                <option value="pending">Tertunda</option>
+                                <option value="confirmed">Dikonfirmasi</option>
+                                <option value="cancelled">Dibatalkan</option>
                             </select>
                         </div>
 
@@ -364,13 +364,13 @@ const formattedDate = computed(() => {
                             <label
                                 class="block text-sm font-medium text-gray-700 mb-2"
                             >
-                                Time Slot
+                                Slot Waktu
                             </label>
                             <select
                                 v-model="timeFilter"
                                 class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
                             >
-                                <option value="">All Times</option>
+                                <option value="">Semua Waktu</option>
                                 <option
                                     v-for="time in [
                                         ...new Set(
@@ -391,7 +391,7 @@ const formattedDate = computed(() => {
                             @click="clearFilters"
                             class="px-6 py-2 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-colors font-medium whitespace-nowrap"
                         >
-                            Clear Filters
+                            Hapus Filter
                         </button>
                     </div>
                 </div>
@@ -403,13 +403,13 @@ const formattedDate = computed(() => {
                     <div class="px-6 py-4 border-b border-gray-200">
                         <div class="flex items-center justify-between">
                             <h3 class="text-lg font-semibold text-gray-900">
-                                Patient Appointments
+                                Janji Temu Pasien
                             </h3>
                             <span
                                 class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full"
                             >
-                                Showing {{ filteredAppointments.length }} of
-                                {{ appointments.length }} appointments
+                                Menampilkan {{ filteredAppointments.length }} dari
+                                {{ appointments.length }} janji temu
                             </span>
                         </div>
                     </div>
@@ -421,17 +421,17 @@ const formattedDate = computed(() => {
                                     <th
                                         class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
                                     >
-                                        Patient Information
+                                        Informasi Pasien
                                     </th>
                                     <th
                                         class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
                                     >
-                                        Contact Details
+                                        Detail Kontak
                                     </th>
                                     <th
                                         class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
                                     >
-                                        Appointment Time
+                                        Waktu Janji Temu
                                     </th>
                                     <th
                                         class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
@@ -441,7 +441,7 @@ const formattedDate = computed(() => {
                                     <th
                                         class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
                                     >
-                                        Actions
+                                        Tindakan
                                     </th>
                                 </tr>
                             </thead>
@@ -543,7 +543,7 @@ const formattedDate = computed(() => {
                                                     d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                                                 />
                                             </svg>
-                                            View Details
+                                            Lihat Detail
                                         </Link>
                                     </td>
                                 </tr>
@@ -556,13 +556,13 @@ const formattedDate = computed(() => {
                 <div class="md:hidden space-y-4">
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="text-lg font-semibold text-gray-900">
-                            Patient Appointments
+                            Janji Temu Pasien
                         </h3>
                         <span
                             class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full"
                         >
-                            Showing {{ filteredAppointments.length }} of
-                            {{ appointments.length }} appointments
+                            Menampilkan {{ filteredAppointments.length }} dari
+                            {{ appointments.length }} janji temu
                         </span>
                     </div>
 
@@ -586,14 +586,14 @@ const formattedDate = computed(() => {
                             </div>
 
                             <div>
-                                <p class="text-sm text-gray-900">
-                                    <strong>Email:</strong>
-                                    {{ appointment.email }}
-                                </p>
-                                <p class="text-sm text-gray-500">
-                                    <strong>Phone:</strong>
-                                    {{ appointment.phone }}
-                                </p>
+                                        <p class="text-sm text-gray-900">
+                                            <strong>Surel:</strong>
+                                            {{ appointment.email }}
+                                        </p>
+                                        <p class="text-sm text-gray-500">
+                                            <strong>Telepon:</strong>
+                                            {{ appointment.phone }}
+                                        </p>
                             </div>
 
                             <div>
@@ -653,7 +653,7 @@ const formattedDate = computed(() => {
                                             d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                                         />
                                     </svg>
-                                    View Details
+                                    Lihat Detail
                                 </Link>
                             </div>
                         </div>
@@ -679,7 +679,7 @@ const formattedDate = computed(() => {
                                 />
                             </svg>
                             <h3 class="mt-4 text-lg font-medium text-gray-900">
-                                No appointments found
+                                Tidak ada janji temu ditemukan
                             </h3>
                             <p
                                 class="mt-2 text-sm text-gray-500 max-w-md mx-auto"
@@ -688,8 +688,8 @@ const formattedDate = computed(() => {
                                     searchQuery ||
                                     statusFilter !== "all" ||
                                     timeFilter
-                                        ? "No appointments match your current filters. Try adjusting your search criteria."
-                                        : "No appointments scheduled for this doctor on the selected date."
+                                        ? "Tidak ada janji temu yang sesuai dengan filter Anda. Coba sesuaikan kriteria pencarian Anda."
+                                        : "Tidak ada janji temu yang dijadwalkan untuk dokter ini pada tanggal yang dipilih."
                                 }}
                             </p>
                             <button
@@ -701,7 +701,7 @@ const formattedDate = computed(() => {
                                 @click="clearFilters"
                                 class="mt-4 inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-xl hover:bg-indigo-700 transition-colors"
                             >
-                                Clear all filters
+                                Hapus semua filter
                             </button>
                         </div>
                     </div>
@@ -729,7 +729,7 @@ const formattedDate = computed(() => {
                     class="ml-auto rounded-full p-1 hover:bg-gray-100"
                     @click="toasts = toasts.filter((x) => x.id !== t.id)"
                 >
-                    <span class="sr-only">Dismiss</span>
+                    <span class="sr-only">Tutup</span>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"

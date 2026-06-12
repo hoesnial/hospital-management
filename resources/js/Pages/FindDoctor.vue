@@ -48,7 +48,7 @@ const specialties = computed(() => {
 </script>
 
 <template>
-    <Head title="Find Doctor - Xet Specialized Hospital" />
+    <Head title="Cari Dokter - Xet Specialized Hospital" />
 
     <!-- Header -->
     <Header :canLogin="canLogin" :canRegister="canRegister" />
@@ -67,25 +67,25 @@ const specialties = computed(() => {
                         <div
                             class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"
                         ></div>
-                        Find Your Doctor
+                        Cari Dokter Anda
                     </div>
 
                     <h1
                         class="text-3xl md:text-4xl lg:text-4xl font-black text-gray-900 mb-4 leading-tight"
                     >
-                        Discover Our
+                        Temukan
                         <span
                             class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500"
                         >
-                            Expert Doctors
+                            Dokter Ahli
                         </span>
                     </h1>
                     <p
                         class="text-base text-gray-700 leading-relaxed max-w-3xl mx-auto"
                     >
-                        Find the right specialist for your healthcare needs.
-                        Search by name or specialty to connect with our
-                        experienced medical professionals.
+                        Temukan spesialis yang tepat untuk kebutuhan kesehatan Anda.
+                        Cari berdasarkan nama atau spesialisasi untuk terhubung dengan
+                        tenaga medis profesional kami yang berpengalaman.
                     </p>
                 </div>
                 <!-- Search and Filter Section -->
@@ -98,12 +98,12 @@ const specialties = computed(() => {
                             <label
                                 class="block text-sm font-semibold text-gray-700 mb-3"
                             >
-                                Search by Doctor Name
+                                Cari berdasarkan Nama Dokter
                             </label>
                             <input
                                 v-model="searchQuery"
                                 type="text"
-                                placeholder="Enter doctor's name..."
+                                placeholder="Masukkan nama dokter..."
                                 class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 placeholder-gray-400"
                             />
                         </div>
@@ -113,13 +113,13 @@ const specialties = computed(() => {
                             <label
                                 class="block text-sm font-semibold text-gray-700 mb-3"
                             >
-                                Filter by Specialty
+                                Filter berdasarkan Spesialisasi
                             </label>
                             <select
                                 v-model="selectedSpecialty"
                                 class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 appearance-none bg-white"
                             >
-                                <option value="">All Specialties</option>
+                                <option value="">Semua Spesialisasi</option>
                                 <option
                                     v-for="specialty in specialties"
                                     :key="specialty"
@@ -209,7 +209,7 @@ const specialties = computed(() => {
                             :href="`tel: ${phoneNumber}`"
                             class="mb-3 bg-white text-blue-600 px-5 py-2 rounded-full font-semibold shadow hover:bg-blue-600 hover:text-white transition-all duration-300"
                         >
-                            📞 Call Now
+                            📞 Hubungi Sekarang
                         </a>
 
                         <!-- Book Appointment Button -->
@@ -217,7 +217,7 @@ const specialties = computed(() => {
                             :href="`/appointment-booking?doctor=${doctor.id}`"
                             class="mb-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-6 py-3 rounded-full font-semibold shadow hover:scale-105 transition-all duration-300"
                         >
-                            Book Appointment
+                            Buat Janji
                         </Link>
 
                         <!-- Doctors Details -->
@@ -225,7 +225,7 @@ const specialties = computed(() => {
                             :href="`/doctor/${doctor.id}`"
                             class="bg-white text-blue-600 px-5 py-2 rounded-full font-semibold shadow hover:bg-blue-600 hover:text-white transition-all duration-300"
                         >
-                            Details
+                            Detail
                         </Link>
                     </div>
                 </div>
@@ -251,10 +251,10 @@ const specialties = computed(() => {
                     </svg>
                 </div>
                 <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                    No doctors found
+                    Tidak ada dokter ditemukan
                 </h3>
                 <p class="text-gray-600">
-                    Try adjusting your search criteria or browse all doctors.
+                    Coba sesuaikan kriteria pencarian Anda atau lihat semua dokter.
                 </p>
             </div>
         </div>

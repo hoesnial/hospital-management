@@ -3,21 +3,21 @@ const patientStories = [
     {
         name: "Rahman Ahmed",
         condition: "Cardiac Surgery",
-        story: "The care I received at Xet Hospital was exceptional. The cardiac team saved my life with their expertise and compassion.",
+        story: "Perawatan yang saya terima di Xet Hospital sangat luar biasa. Tim jantung menyelamatkan hidup saya dengan keahlian dan kasih sayang mereka.",
         image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
         rating: 5,
     },
     {
         name: "Fatima Begum",
         condition: "Orthopedic Treatment",
-        story: "After my knee replacement surgery, I can walk without pain for the first time in years. Thank you Xet Hospital!",
+        story: "Setelah operasi penggantian lutut, saya bisa berjalan tanpa rasa sakit untuk pertama kalinya dalam bertahun-tahun. Terima kasih Xet Hospital!",
         image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
         rating: 5,
     },
     {
         name: "Jamal Uddin",
         condition: "Neurology",
-        story: "The neurology department provided excellent care for my condition. The doctors were knowledgeable and caring.",
+        story: "Departemen neurologi memberikan perawatan yang sangat baik untuk kondisi saya. Para dokter berpengetahuan luas dan penuh perhatian.",
         image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
         rating: 4,
     },
@@ -29,18 +29,17 @@ const patientStories = [
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-card">
                 <h2 class="text-2xl md:text-4xl font-semibold text-gray-900">
-                    Our Patients
+                    Pasien Kami
                     <span
                         class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500"
                     >
-                        Share Their Stories
+                        Bagikan Cerita Mereka
                     </span>
                 </h2>
                 <p
                     class="text-base md:text-lg text-gray-600 max-w-lg md:max-w-2xl mt-2"
                 >
-                    Real stories from patients who have experienced exceptional
-                    care at Xet Hospital.
+                    Cerita nyata dari pasien yang telah merasakan perawatan luar biasa di Xet Hospital.
                 </p>
             </div>
 

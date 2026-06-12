@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Encryptable;
 use Illuminate\Database\Eloquent\Model;
 
 class BookingDiagnostic extends Model
 {
+    use Encryptable;
+
     protected $table = 'booking_diagnostic';
 
     protected $fillable = [
@@ -25,6 +28,11 @@ class BookingDiagnostic extends Model
         'phone',
         'gender',
         'age',
+        'additional_notes',
+    ];
+
+    protected array $encryptable = [
+        'address',
         'additional_notes',
     ];
 

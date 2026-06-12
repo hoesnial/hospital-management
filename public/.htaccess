@@ -5,6 +5,19 @@
 
     RewriteEngine On
 
+    # Redirect HTTP to HTTPS (uncomment for production)
+    # RewriteCond %{HTTPS} off
+    # RewriteCond %{REQUEST_URI} !^/\.well-known/
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+    # Block access to sensitive files
+    RewriteRule ^\.env - [F,L]
+    RewriteRule ^composer\.(json|lock) - [F,L]
+    RewriteRule ^artisan - [F,L]
+    RewriteRule ^\.git - [F,L]
+    RewriteRule ^storage/logs/ - [F,L]
+    RewriteRule ^vendor/ - [F,L]
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
@@ -18,8 +31,44 @@
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
 
+    # Block suspicious query strings
+    RewriteCond %{QUERY_STRING} (proc/self/environ|mosconfig|base64_encode|base64_decode|globals|_REQUEST|_COOKIE|_SESSION) [NC,OR]
+    RewriteCond %{QUERY_STRING} (cmd|exec|system|passthru|shell_exec|popen|eval)\s*\( [NC]
+    RewriteCond %{QUERY_STRING} (gopher|doc|php|glob):// [NC,OR]
+    RewriteCond %{QUERY_STRING} (\.\.\/|\.\.\\) [NC,OR]
+    RewriteCond %{QUERY_STRING} (union.*select|select.*from) [NC]
+    RewriteRule ^ - [F,L]
+
+    # Block bad User-Agents (scanners, bots)
+    RewriteCond %{HTTP_USER_AGENT} (sqlmap|nikto|acunetix|nmap|burpsuite|nessus|openvas|dirbuster|gobuster) [NC]
+    RewriteRule ^ - [F,L]
+
     # Send Requests To Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+# Security Headers (Apache)
+<IfModule mod_headers.c>
+    Header set X-Frame-Options "SAMEORIGIN" always
+    Header set X-Content-Type-Options "nosniff" always
+    Header set X-XSS-Protection "1; mode=block" always
+    Header set Referrer-Policy "strict-origin-when-cross-origin" always
+    Header set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), fullscreen=(self)" always
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+</IfModule>
+
+# Disable directory listing
+Options -Indexes
+
+# Protect files
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "(artisan|\.env|composer\.json|composer\.lock)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>

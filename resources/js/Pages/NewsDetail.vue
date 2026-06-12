@@ -29,7 +29,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <Head :title="news ? news.title : 'News Detail'" />
+    <Head :title="news ? news.title : 'Detail Berita'" />
 
     <div class="min-h-screen bg-gray-50">
         <div
@@ -40,7 +40,7 @@ onMounted(() => {
                     href="/news-all"
                     class="inline-flex items-center gap-2 rounded-2xl bg-gray-600 px-4 py-2 text-white shadow hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300"
                 >
-                    Back to All News
+                    Kembali ke Semua Berita
                 </Link>
             </div>
             <div class="flex items-center gap-2">
@@ -48,7 +48,7 @@ onMounted(() => {
                     href="/"
                     class="inline-flex items-center gap-2 rounded-2xl bg-gray-600 px-4 py-2 text-white shadow hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300"
                 >
-                    Back to Home
+                    Kembali ke Beranda
                 </Link>
             </div>
         </div>
@@ -57,7 +57,7 @@ onMounted(() => {
                 <div
                     class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"
                 ></div>
-                <p class="mt-4 text-gray-600">Loading news...</p>
+                <p class="mt-4 text-gray-600">Memuat berita...</p>
             </div>
 
             <div
@@ -80,7 +80,7 @@ onMounted(() => {
                             {{ news.category }}
                         </span>
                         <span class="text-gray-500 text-sm">{{
-                            new Date(news.date).toLocaleDateString("en-US", {
+                            new Date(news.date).toLocaleDateString("id-ID", {
                                 month: "short",
                                 day: "numeric",
                                 year: "numeric",
@@ -109,10 +109,10 @@ onMounted(() => {
 
             <div v-else class="text-center">
                 <h2 class="text-2xl font-bold text-gray-900 mb-4">
-                    News Not Found
+                    Berita Tidak Ditemukan
                 </h2>
                 <p class="text-gray-600">
-                    The news article you're looking for doesn't exist.
+                    Artikel berita yang Anda cari tidak ditemukan.
                 </p>
             </div>
         </div>

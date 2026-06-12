@@ -41,7 +41,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <Head title="All News & Media" />
+    <Head title="Semua Berita & Media" />
     <Header :canLogin="canLogin" :canRegister="canRegister" />
 
     <div class="min-h-screen bg-gray-50">
@@ -50,13 +50,13 @@ onMounted(() => {
                 <h1
                     class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-4"
                 >
-                    All News & Media
+                    Semua Berita & Media
                 </h1>
                 <p
                     class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
                 >
-                    Stay updated with the latest news, innovations, and
-                    community initiatives from Xet Hospital.
+                    Tetap terupdate dengan berita terbaru, inovasi, dan
+                    inisiatif komunitas dari Xet Hospital.
                 </p>
             </div>
 
@@ -64,7 +64,7 @@ onMounted(() => {
                 <div
                     class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"
                 ></div>
-                <p class="mt-4 text-gray-600">Loading news...</p>
+                <p class="mt-4 text-gray-600">Memuat berita...</p>
             </div>
 
             <div
@@ -94,7 +94,7 @@ onMounted(() => {
                             </span>
                             <span class="text-gray-500 text-sm">{{
                                 new Date(news.date).toLocaleDateString(
-                                    "en-US",
+                                    "id-ID",
                                     {
                                         month: "short",
                                         day: "numeric",
@@ -116,11 +116,11 @@ onMounted(() => {
                             {{ news.excerpt }}
                         </p>
 
-                        <div
-                            class="text-blue-600 font-semibold text-sm sm:text-base"
-                        >
-                            Read More →
-                        </div>
+                            <div
+                                class="text-blue-600 font-semibold text-sm sm:text-base"
+                            >
+                                Baca Selengkapnya →
+                            </div>
                     </div>
                 </div>
             </div>

@@ -21,20 +21,21 @@ const verificationLinkSent = computed(
 
 <template>
     <GuestLayout>
-        <Head title="Email Verification" />
+        <Head title="Verifikasi Surel" />
 
         <div class="mb-4 text-sm text-gray-600">
-            Thanks for signing up! Before getting started, could you verify your
-            email address by clicking on the link we just emailed to you? If you
-            didn't receive the email, we will gladly send you another.
+            Terima kasih telah mendaftar! Sebelum memulai, bisakah Anda
+            memverifikasi alamat email Anda dengan mengklik tautan yang baru
+            saja kami kirimkan ke email Anda? Jika Anda tidak menerima email
+            tersebut, kami dengan senang hati akan mengirimkannya lagi.
         </div>
 
         <div
             class="mb-4 font-medium text-sm text-green-600"
             v-if="verificationLinkSent"
         >
-            A new verification link has been sent to the email address you
-            provided during registration.
+            Tautan verifikasi baru telah dikirim ke alamat email yang Anda
+            berikan saat pendaftaran.
         </div>
 
         <form @submit.prevent="submit">
@@ -48,7 +49,7 @@ const verificationLinkSent = computed(
                     }"
                     :disabled="form.processing"
                 >
-                    Resend Verification Email
+                    Kirim Ulang Email Verifikasi
                 </PrimaryButton>
 
                 <Link
@@ -56,7 +57,7 @@ const verificationLinkSent = computed(
                     method="post"
                     as="button"
                     class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-center sm:text-left"
-                    >Log Out</Link
+                    >Keluar</Link
                 >
             </div>
         </form>

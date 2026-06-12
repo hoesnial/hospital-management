@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Log;
  */
 class TelegramAlertService
 {
-    protected string $botToken;
-    protected string $chatId;
+    protected ?string $botToken = null;
+    protected ?string $chatId = null;
     protected string $apiUrl = 'https://api.telegram.org/bot';
 
     public function __construct()

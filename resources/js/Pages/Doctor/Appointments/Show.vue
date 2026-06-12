@@ -48,7 +48,7 @@ ${medicines.value
     )
     .join("\n")}
 
-Advice: ${advice.value}
+Saran: ${advice.value}
 `.trim();
 
         const response = await fetch(
@@ -68,7 +68,7 @@ Advice: ${advice.value}
         );
 
         if (response.ok) {
-            showNotification("Prescription added successfully!", "success");
+            showNotification("Resep berhasil ditambahkan!", "success");
             // Reset form
             diagnosis.value = "";
             advice.value = "";
@@ -76,11 +76,11 @@ Advice: ${advice.value}
             // Reload to show new prescription
             setTimeout(() => window.location.reload(), 1500);
         } else {
-            throw new Error("Failed to add prescription");
+            throw new Error("Gagal menambahkan resep");
         }
     } catch (error) {
         console.error("Error:", error);
-        showNotification("Failed to add prescription", "error");
+        showNotification("Gagal menambahkan resep", "error");
     } finally {
         isSubmitting.value = false;
     }
@@ -107,7 +107,7 @@ const latestPrescription = computed(() => {
 </script>
 
 <template>
-    <Head title="Appointment Details - Doctor Dashboard" />
+    <Head title="Detail Janji Temu - Dasbor Dokter" />
 
     <AuthenticatedLayout>
         <div class="min-h-screen bg-gray-50/30 py-6 sm:py-8">
@@ -137,13 +137,12 @@ const latestPrescription = computed(() => {
                                 <h1
                                     class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900"
                                 >
-                                    Appointment Details
+                                    Detail Janji Temu
                                 </h1>
                                 <p
                                     class="text-xs sm:text-sm md:text-base text-gray-600 mt-1"
                                 >
-                                    Patient consultation and prescription
-                                    management
+                                    Konsultasi pasien dan manajemen resep
                                 </p>
                             </div>
                         </div>
@@ -165,9 +164,9 @@ const latestPrescription = computed(() => {
                                 />
                             </svg>
                             <span class="hidden sm:inline"
-                                >Back to Appointments</span
+                                >Kembali ke Janji Temu</span
                             >
-                            <span class="sm:hidden">Back</span>
+                            <span class="sm:hidden">Kembali</span>
                         </Link>
                     </div>
                 </div>
@@ -223,17 +222,17 @@ const latestPrescription = computed(() => {
                                 <div class="flex items-center justify-between">
                                     <span
                                         class="text-xs sm:text-sm font-medium text-gray-500"
-                                        >Age</span
+                                        >Usia</span
                                     >
                                     <span
                                         class="text-xs sm:text-sm text-gray-900"
-                                        >{{ appointment.age }} years</span
+                                        >{{ appointment.age }} tahun</span
                                     >
                                 </div>
                                 <div class="flex items-center justify-between">
                                     <span
                                         class="text-xs sm:text-sm font-medium text-gray-500"
-                                        >Phone</span
+                                        >Telepon</span
                                     >
                                     <span
                                         class="text-xs sm:text-sm text-gray-900"
@@ -243,7 +242,7 @@ const latestPrescription = computed(() => {
                                 <div class="flex items-center justify-between">
                                     <span
                                         class="text-xs sm:text-sm font-medium text-gray-500"
-                                        >Booking ID</span
+                                        >ID Pemesanan</span
                                     >
                                     <span
                                         class="text-xs sm:text-sm font-mono text-gray-900"
@@ -260,7 +259,7 @@ const latestPrescription = computed(() => {
                             <h3
                                 class="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4"
                             >
-                                Appointment Details
+                                Detail Janji Temu
                             </h3>
                             <div class="space-y-3 sm:space-y-4">
                                 <div class="flex items-center space-x-3">
@@ -283,7 +282,7 @@ const latestPrescription = computed(() => {
                                         <p
                                             class="text-xs sm:text-sm font-medium text-gray-500"
                                         >
-                                            Date
+                                            Tanggal
                                         </p>
                                         <p
                                             class="text-xs sm:text-sm text-gray-900"
@@ -312,7 +311,7 @@ const latestPrescription = computed(() => {
                                         <p
                                             class="text-xs sm:text-sm font-medium text-gray-500"
                                         >
-                                            Time
+                                            Waktu
                                         </p>
                                         <p
                                             class="text-xs sm:text-sm text-gray-900"
@@ -331,7 +330,7 @@ const latestPrescription = computed(() => {
                             <h3
                                 class="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4"
                             >
-                                Quick Actions
+                                Tindakan Cepat
                             </h3>
                             <div class="space-y-2 sm:space-y-3">
                                 <a
@@ -358,7 +357,7 @@ const latestPrescription = computed(() => {
                                         </div>
                                         <span
                                             class="text-xs sm:text-sm font-medium text-gray-700"
-                                            >Download Latest Prescription</span
+                                            >Unduh Resep Terbaru</span
                                         >
                                     </div>
                                     <svg
@@ -398,7 +397,7 @@ const latestPrescription = computed(() => {
                                         </div>
                                         <span
                                             class="text-xs sm:text-sm font-medium text-gray-700"
-                                            >Add Hospital Notes</span
+                                            >Tambah Catatan Rumah Sakit</span
                                         >
                                     </div>
                                     <svg
@@ -431,12 +430,12 @@ const latestPrescription = computed(() => {
                                 <h3
                                     class="text-base sm:text-lg font-semibold text-gray-900"
                                 >
-                                    New Prescription
+                                    Resep Baru
                                 </h3>
                                 <p
                                     class="text-xs sm:text-sm text-gray-600 mt-1"
                                 >
-                                    Fill out the prescription details below
+                                    Isi detail resep di bawah ini
                                 </p>
                             </div>
 
@@ -449,14 +448,14 @@ const latestPrescription = computed(() => {
                                     <label
                                         class="block text-sm font-medium text-gray-700 mb-2"
                                     >
-                                        Diagnosis
+                                        Diagnosa
                                         <span class="text-red-500">*</span>
                                     </label>
                                     <input
                                         v-model="diagnosis"
                                         type="text"
                                         class="w-full px-4 py-3 border border-black-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
-                                        placeholder="Enter diagnosis (e.g., Upper respiratory infection, Hypertension)"
+                                        placeholder="Masukkan diagnosis (misalnya, Infeksi saluran pernapasan, Hipertensi)"
                                         required
                                     />
                                 </div>
@@ -464,7 +463,7 @@ const latestPrescription = computed(() => {
                                 <!-- Medicines -->
                                 <div>
                                     <label class="block font-semibold mb-2"
-                                        >Medicines:</label
+                                        >Obat-obatan:</label
                                     >
 
                                     <div class="overflow-x-auto">
@@ -476,17 +475,17 @@ const latestPrescription = computed(() => {
                                                     <th
                                                         class="min-w-[150px] text-left"
                                                     >
-                                                        Medicine Name
+                                                        Nama Obat
                                                     </th>
                                                     <th
                                                         class="min-w-[150px] text-left"
                                                     >
-                                                        Dosage
+                                                        Dosis
                                                     </th>
                                                     <th
                                                         class="min-w-[100px] text-left"
                                                     >
-                                                        Duration
+                                                        Durasi
                                                     </th>
                                                     <th
                                                         class="min-w-[50px]"
@@ -508,7 +507,7 @@ const latestPrescription = computed(() => {
                                                             "
                                                             type="text"
                                                             class="w-full px-2 py-1 border rounded focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
-                                                            placeholder="Medicine name"
+                                                            placeholder="Nama obat"
                                                             required
                                                         />
                                                     </td>
@@ -519,7 +518,7 @@ const latestPrescription = computed(() => {
                                                             "
                                                             type="text"
                                                             class="w-full px-2 py-1 border rounded focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
-                                                            placeholder="e.g. 1 tab thrice daily"
+                                                            placeholder="mis. 1 tablet 3 kali sehari"
                                                             required
                                                         />
                                                     </td>
@@ -530,7 +529,7 @@ const latestPrescription = computed(() => {
                                                             "
                                                             type="text"
                                                             class="w-full px-2 py-1 border rounded focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
-                                                            placeholder="e.g. 5 days"
+                                                            placeholder="mis. 5 hari"
                                                             required
                                                         />
                                                     </td>
@@ -561,7 +560,7 @@ const latestPrescription = computed(() => {
                                         @click="addMedicineRow"
                                         class="mt-2 text-indigo-600 hover:underline font-medium"
                                     >
-                                        + Add Medicine
+                                        + Tambah Obat
                                     </button>
                                 </div>
 
@@ -570,14 +569,14 @@ const latestPrescription = computed(() => {
                                     <label
                                         class="block text-sm font-medium text-gray-700 mb-2"
                                     >
-                                        Advice
+                                        Saran
                                         <span class="text-red-500">*</span>
                                     </label>
                                     <textarea
                                         v-model="advice"
                                         rows="4"
                                         class="w-full px-4 py-3 border border-black-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
-                                        placeholder="Provide medical advice and instructions (e.g., Rest, Hydration, Follow-up in 3 days)"
+                                        placeholder="Berikan saran dan instruksi medis (misalnya, Istirahat, Hidrasi, Kontrol dalam 3 hari)"
                                         required
                                     ></textarea>
                                 </div>
@@ -628,8 +627,8 @@ const latestPrescription = computed(() => {
                                         </svg>
                                         {{
                                             isSubmitting
-                                                ? "Creating Prescription..."
-                                                : "Create Prescription"
+                                                ? "Membuat Resep..."
+                                                : "Buat Resep"
                                         }}
                                     </button>
                                 </div>
@@ -644,7 +643,7 @@ const latestPrescription = computed(() => {
                                     <h3
                                         class="text-lg font-semibold text-gray-900"
                                     >
-                                        Prescription History
+                                        Riwayat Resep
                                     </h3>
                                     <span
                                         v-if="
@@ -654,12 +653,7 @@ const latestPrescription = computed(() => {
                                         class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium"
                                     >
                                         {{ appointment.prescriptions.length }}
-                                        prescription{{
-                                            appointment.prescriptions.length !==
-                                            1
-                                                ? "s"
-                                                : ""
-                                        }}
+                                        resep
                                     </span>
                                 </div>
                             </div>
@@ -707,7 +701,7 @@ const latestPrescription = computed(() => {
                                                         d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                                                     />
                                                 </svg>
-                                                Download PDF
+                                                Unduh PDF
                                             </a>
                                         </div>
                                     </div>
@@ -744,11 +738,11 @@ const latestPrescription = computed(() => {
                                 <h3
                                     class="text-lg font-semibold text-gray-900 mb-2"
                                 >
-                                    No prescriptions yet
+                                    Belum ada resep
                                 </h3>
                                 <p class="text-gray-500 max-w-md mx-auto">
-                                    Create your first prescription for this
-                                    patient using the form below.
+                                    Buat resep pertama untuk pasien ini
+                                    menggunakan formulir di bawah.
                                 </p>
                             </div>
                         </div>

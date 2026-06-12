@@ -63,7 +63,7 @@ const closeAll = () => {
                                 : 'text-gray-600 hover:text-blue-600',
                         ]"
                     >
-                        <span class="relative z-10">Home</span>
+                        <span class="relative z-10">Beranda</span>
                         <span
                             :class="[
                                 'absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-600 to-cyan-500 transition-all duration-300 rounded-full',
@@ -92,7 +92,7 @@ const closeAll = () => {
                             aria-haspopup="menu"
                             :aria-expanded="isServicesDropdownOpen"
                         >
-                            <span class="relative z-10">News And Media</span>
+                            <span class="relative z-10">Berita & Media</span>
                             <svg
                                 class="w-3 h-3 md:w-4 md:h-4 transition-transform duration-200"
                                 :class="{
@@ -128,21 +128,21 @@ const closeAll = () => {
                                 class="block px-4 py-2 text-gray-700 hover:bg-blue-50 font-semibold hover:text-blue-600 transition-colors duration-200"
                                 @click="isServicesDropdownOpen = false"
                             >
-                                Patient Stories
+                                Cerita Pasien
                             </Link>
                             <Link
                                 href="#health-s"
                                 class="block px-4 py-2 text-gray-700 hover:bg-blue-50 font-semibold hover:text-blue-600 transition-colors duration-200"
                                 @click="isServicesDropdownOpen = false"
                             >
-                                Health Packages
+                                Paket Kesehatan
                             </Link>
                             <Link
                                 :href="route('news.all')"
                                 class="block px-4 py-2 text-gray-700 hover:bg-blue-50 font-semibold hover:text-blue-600 transition-colors duration-200"
                                 @click="isServicesDropdownOpen = false"
                             >
-                                News
+                                Berita
                             </Link>
                         </div>
                     </div>
@@ -156,7 +156,7 @@ const closeAll = () => {
                                 : 'text-gray-600 hover:text-blue-600',
                         ]"
                     >
-                        <span class="relative z-10">Find Doctor</span>
+                        <span class="relative z-10">Cari Dokter</span>
                         <span
                             :class="[
                                 'absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-600 to-cyan-500 transition-all duration-300 rounded-full',
@@ -176,7 +176,7 @@ const closeAll = () => {
                                 : 'text-gray-600 hover:text-blue-600',
                         ]"
                     >
-                        <span class="relative z-10">Appointment</span>
+                        <span class="relative z-10">Janji Temu</span>
                         <span
                             :class="[
                                 'absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-600 to-cyan-500 transition-all duration-300 rounded-full',
@@ -228,7 +228,7 @@ const closeAll = () => {
                             :href="route('dashboard')"
                             class="bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 shadow-md text-sm md:text-base"
                         >
-                            Dashboard
+                            Dasbor
                         </Link>
 
                         <template v-else>
@@ -236,7 +236,7 @@ const closeAll = () => {
                                 :href="route('login')"
                                 class="text-gray-600 hover:text-blue-600 font-semibold transition-all duration-300 hover:scale-105 px-3 md:px-4 py-2 rounded-lg hover:bg-blue-50 text-sm md:text-base"
                             >
-                                Sign In
+                                Masuk
                             </Link>
 
                             <Link
@@ -244,7 +244,7 @@ const closeAll = () => {
                                 :href="route('register')"
                                 class="bg-gradient-to-r from-green-600 to-emerald-500 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 shadow-md text-sm md:text-base"
                             >
-                                Get Started
+                                Mulai
                             </Link>
                         </template>
                     </div>
@@ -268,7 +268,7 @@ const closeAll = () => {
                         ]"
                         @click="closeAll"
                     >
-                        Home
+                        Beranda
                     </Link>
 
                     <!-- Services (mobile: click to toggle) -->
@@ -287,7 +287,7 @@ const closeAll = () => {
                             :aria-expanded="isServicesDropdownOpen"
                             aria-haspopup="menu"
                         >
-                            <span>Services</span>
+                            <span>Layanan</span>
                             <svg
                                 class="w-3 h-3 md:w-4 md:h-4 transition-transform duration-200"
                                 :class="{
@@ -315,21 +315,21 @@ const closeAll = () => {
                                 class="block px-3 md:px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200 text-sm md:text-base"
                                 @click="closeAll"
                             >
-                                Book Appointment
+                                Buat Janji
                             </Link>
                             <Link
                                 href="#health-s"
                                 class="block px-3 md:px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200 text-sm md:text-base"
                                 @click="closeAll"
                             >
-                                Health Packages
+                                Paket Kesehatan
                             </Link>
                             <Link
                                 :href="route('find.doctor')"
                                 class="block px-3 md:px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200 text-sm md:text-base"
                                 @click="closeAll"
                             >
-                                Find Doctor
+                                Cari Dokter
                             </Link>
                         </div>
                     </div>
@@ -339,7 +339,7 @@ const closeAll = () => {
                         class="text-gray-600 hover:text-blue-600 font-semibold transition-colors duration-200 py-2 px-3 md:px-4 rounded-lg hover:bg-blue-50 text-sm md:text-base"
                         @click="closeAll"
                     >
-                        Patient Stories
+                        Cerita Pasien
                     </a>
                     <a
                         href="#blog"
@@ -361,7 +361,7 @@ const closeAll = () => {
                             class="block w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white text-center py-2 md:py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 text-sm md:text-base"
                             @click="closeAll"
                         >
-                            Dashboard
+                            Dasbor
                         </Link>
 
                         <template v-else>
@@ -370,7 +370,7 @@ const closeAll = () => {
                                 class="block w-full text-gray-600 hover:text-blue-600 font-semibold text-center py-2 md:py-3 rounded-xl border border-gray-200 hover:border-blue-200 transition-all duration-300 text-sm md:text-base"
                                 @click="closeAll"
                             >
-                                Sign In
+                                Masuk
                             </Link>
 
                             <Link
@@ -379,7 +379,7 @@ const closeAll = () => {
                                 class="block w-full bg-gradient-to-r from-green-600 to-emerald-500 text-white text-center py-2 md:py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 text-sm md:text-base"
                                 @click="closeAll"
                             >
-                                Get Started
+                                Mulai
                             </Link>
                         </template>
                     </div>

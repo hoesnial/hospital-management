@@ -3,14 +3,14 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
 </script>
 <template>
-    <Head title="Profile" />
+    <Head title="Profil" />
 
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-bold text-2xl text-slate-800 leading-tight">
-                Profile
+                Profil
             </h2>
-            <p class="text-slate-600 mt-1">Manage your account</p>
+            <p class="text-slate-600 mt-1">Kelola akun Anda</p>
         </template>
 
         <div class="py-2">
@@ -18,7 +18,7 @@ import { Head } from "@inertiajs/vue3";
                 <div
                     class="bg-white rounded-2xl p-6 shadow-sm border border-white/20"
                 >
-                    <p>Profile settings will be here.</p>
+                    <p>Pengaturan profil akan ada di sini.</p>
                 </div>
             </div>
         </div>

@@ -35,9 +35,7 @@ import MasterCardLogo from "@/assets/images/payment/mastercard.png";
                     <p
                         class="text-gray-400 leading-relaxed max-w-md text-sm sm:text-base"
                     >
-                        Delivering world-class specialized healthcare with
-                        compassion, innovation, and unwavering commitment to
-                        patient well-being.
+                        Memberikan layanan kesehatan spesialis kelas dunia dengan penuh kasih, inovasi, dan komitmen yang teguh terhadap kesejahteraan pasien.
                     </p>
                     <div class="flex space-x-4 mt-6">
                         <!-- Social Links -->
@@ -107,34 +105,34 @@ import MasterCardLogo from "@/assets/images/payment/mastercard.png";
 
                 <!-- Quick Links -->
                 <div>
-                    <h5 class="text-lg font-bold mb-4 sm:mb-6">Quick Links</h5>
+                    <h5 class="text-lg font-bold mb-4 sm:mb-6">Tautan Cepat</h5>
                     <ul class="space-y-2 sm:space-y-3">
                         <li>
                             <a
                                 href="#home"
                                 class="text-gray-400 hover:text-white text-sm sm:text-base"
-                                >Home</a
+                                >Beranda</a
                             >
                         </li>
                         <li>
                             <a
                                 href="#services"
                                 class="text-gray-400 hover:text-white text-sm sm:text-base"
-                                >Services</a
+                                >Layanan</a
                             >
                         </li>
                         <li>
                             <a
                                 href="#health-s"
                                 class="text-gray-400 hover:text-white text-sm sm:text-base"
-                                >Health s</a
+                                >Kesehatan</a
                             >
                         </li>
                         <li>
                             <a
                                 href="#patient-stories"
                                 class="text-gray-400 hover:text-white text-sm sm:text-base"
-                                >Patient Stories</a
+                                >Cerita Pasien</a
                             >
                         </li>
                         <li>
@@ -149,41 +147,41 @@ import MasterCardLogo from "@/assets/images/payment/mastercard.png";
 
                 <!-- Services -->
                 <div>
-                    <h5 class="text-lg font-bold mb-4 sm:mb-6">Our Services</h5>
+                    <h5 class="text-lg font-bold mb-4 sm:mb-6">Layanan Kami</h5>
                     <ul class="space-y-2 sm:space-y-3">
                         <li>
                             <a
                                 href="#"
                                 class="text-gray-400 hover:text-white text-sm sm:text-base"
-                                >Emergency Care</a
+                                >Layanan Darurat</a
                             >
                         </li>
                         <li>
                             <a
                                 href="#"
                                 class="text-gray-400 hover:text-white text-sm sm:text-base"
-                                >Cardiology</a
+                                >Kardiologi</a
                             >
                         </li>
                         <li>
                             <a
                                 href="#"
                                 class="text-gray-400 hover:text-white text-sm sm:text-base"
-                                >Neurology</a
+                                >Neurologi</a
                             >
                         </li>
                         <li>
                             <a
                                 href="#"
                                 class="text-gray-400 hover:text-white text-sm sm:text-base"
-                                >Surgery</a
+                                >Bedah</a
                             >
                         </li>
                         <li>
                             <a
                                 href="#"
                                 class="text-gray-400 hover:text-white text-sm sm:text-base"
-                                >Diagnostics</a
+                                >Diagnostik</a
                             >
                         </li>
                     </ul>
@@ -191,21 +189,20 @@ import MasterCardLogo from "@/assets/images/payment/mastercard.png";
 
                 <!-- Newsletter -->
                 <div>
-                    <h5 class="text-lg font-bold mb-4 sm:mb-6">Stay Updated</h5>
+                    <h5 class="text-lg font-bold mb-4 sm:mb-6">Ikuti Update</h5>
                     <p class="text-gray-400 mb-4 text-sm sm:text-base">
-                        Subscribe to our newsletter for the latest health tips,
-                        news, and updates.
+                        Berlangganan newsletter kami untuk tips kesehatan, berita, dan update terbaru.
                     </p>
                     <div class="flex flex-col sm:flex-row">
                         <input
                             type="email"
-                            placeholder="Enter your email"
+                            placeholder="Masukkan email Anda"
                             class="flex-1 px-4 py-3 bg-gray-800 text-white rounded-t-lg sm:rounded-l-lg sm:rounded-t-none focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                         <button
                             class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-b-lg sm:rounded-r-lg sm:rounded-b-none transition-all duration-200 hover:scale-105"
                         >
-                            Subscribe
+                            Berlangganan
                         </button>
                     </div>
                 </div>
@@ -213,7 +210,7 @@ import MasterCardLogo from "@/assets/images/payment/mastercard.png";
 
             <!-- Payment Methods -->
             <div class="mt-12 sm:mt-16">
-                <h5 class="text-lg sm:text-xl font-bold mb-4">We Accept</h5>
+                <h5 class="text-lg sm:text-xl font-bold mb-4">Kami Menerima</h5>
                 <div
                     class="flex flex-wrap gap-4 sm:gap-6 items-center justify-center sm:justify-start"
                 >
@@ -256,13 +253,13 @@ import MasterCardLogo from "@/assets/images/payment/mastercard.png";
             >
                 <p class="text-gray-400 text-xs sm:text-sm">
                     &copy; {{ new Date().getFullYear() }} Xet Specialized
-                    Hospital. All rights reserved. |
+                    Hospital. Hak cipta dilindungi. |
                     <a href="#" class="hover:text-white text-xs sm:text-sm"
-                        >Privacy Policy</a
+                        >Kebijakan Privasi</a
                     >
                     •
                     <a href="#" class="hover:text-white text-xs sm:text-sm"
-                        >Terms of Service</a
+                        >Syarat & Ketentuan</a
                     >
                 </p>
             </div>

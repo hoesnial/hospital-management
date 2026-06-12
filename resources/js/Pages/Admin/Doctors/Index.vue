@@ -351,7 +351,7 @@ onMounted(fetchList);
 </script>
 
 <template>
-    <AuthenticatedLayout title="Admin · Doctors">
+    <AuthenticatedLayout title="Admin · Dokter">
         <div class="p-4 sm:p-6 max-w-7xl mx-auto">
             <!-- Header -->
             <header
@@ -361,10 +361,10 @@ onMounted(fetchList);
                     <h1
                         class="text-2xl font-semibold tracking-tight text-gray-900"
                     >
-                        Doctors
+                        Dokter
                     </h1>
                     <p class="text-gray-600 mt-1">
-                        Only existing doctors are listed below.
+                        Hanya dokter yang terdaftar yang ditampilkan di bawah.
                     </p>
                 </div>
                 <div class="flex flex-col gap-2 sm:flex-row">
@@ -403,7 +403,7 @@ onMounted(fetchList);
                                 clip-rule="evenodd"
                             />
                         </svg>
-                        {{ loading ? "Refreshing…" : "Refresh" }}
+                        {{ loading ? "Memuat ulang…" : "Muat Ulang" }}
                     </button>
                 </div>
             </header>
@@ -416,7 +416,7 @@ onMounted(fetchList);
                         key="flash-success"
                         class="rounded-xl border border-green-200 bg-green-50 text-green-800 px-4 py-3 text-sm"
                     >
-                        <strong class="font-medium">Success:</strong>
+                        <strong class="font-medium">Berhasil:</strong>
                         {{ flash.success }}
                     </div>
                     <div
@@ -424,7 +424,7 @@ onMounted(fetchList);
                         key="flash-error"
                         class="rounded-xl border border-red-200 bg-red-50 text-red-800 px-4 py-3 text-sm"
                     >
-                        <strong class="font-medium">Error:</strong>
+                        <strong class="font-medium">Gagal:</strong>
                         {{ flash.error }}
                     </div>
                 </TransitionGroup>
@@ -438,7 +438,7 @@ onMounted(fetchList);
                     <input
                         v-model="query"
                         type="search"
-                        placeholder="Search name, email, speciality…"
+                        placeholder="Cari nama, email, spesialisasi…"
                         class="w-full rounded-xl border border-gray-300 bg-white px-3 py-2 pl-9 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                     <svg
@@ -457,21 +457,21 @@ onMounted(fetchList);
                     </svg>
                 </div>
                 <div class="flex flex-wrap items-center gap-2">
-                    <label class="sr-only" for="sortBy">Sort by</label>
+                    <label class="sr-only" for="sortBy">Urutkan berdasarkan</label>
                     <select
                         id="sortBy"
                         v-model="sortBy"
                         class="rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm"
                     >
-                        <option value="name">Name</option>
+                        <option value="name">Nama</option>
                         <option value="email">Email</option>
-                        <option value="speciality">Speciality</option>
+                        <option value="speciality">Spesialisasi</option>
                     </select>
                     <button
                         @click="sortDir = sortDir === 'asc' ? 'desc' : 'asc'"
                         class="rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm"
-                        :title="`Sort ${
-                            sortDir === 'asc' ? 'descending' : 'ascending'
+                        :title="`Urutkan ${
+                            sortDir === 'asc' ? 'menurun' : 'menaik'
                         }`"
                         aria-label="Toggle sort direction"
                     >
@@ -497,7 +497,7 @@ onMounted(fetchList);
                     <thead class="bg-gray-50 text-gray-600">
                         <tr>
                             <th class="px-2 py-3 text-left font-medium sm:px-4">
-                                Name
+                                Nama
                             </th>
                             <th
                                 class="px-2 py-3 text-left font-medium sm:px-4 hidden sm:table-cell"
@@ -507,17 +507,17 @@ onMounted(fetchList);
                             <th
                                 class="px-2 py-3 text-left font-medium sm:px-4 hidden md:table-cell"
                             >
-                                Speciality
+                                Spesialisasi
                             </th>
                             <th
                                 class="px-2 py-3 text-left font-medium sm:px-4 hidden lg:table-cell"
                             >
-                                Phone
+                                Telepon
                             </th>
                             <th
                                 class="px-2 py-3 text-right font-medium sm:px-4"
                             >
-                                Actions
+                                Tindakan
                             </th>
                         </tr>
                     </thead>
@@ -579,7 +579,7 @@ onMounted(fetchList);
                                 <span
                                     v-else
                                     class="text-gray-400 italic text-xs"
-                                    >Not specified</span
+                                    >Tidak ditentukan</span
                                 >
                             </td>
                             <td class="px-2 py-3 sm:px-4 hidden lg:table-cell">
@@ -591,7 +591,7 @@ onMounted(fetchList);
                                 <span
                                     v-else
                                     class="text-gray-400 italic text-xs"
-                                    >Not provided</span
+                                    >Tidak tersedia</span
                                 >
                             </td>
                             <td class="px-2 py-3 sm:px-4">
@@ -624,11 +624,10 @@ onMounted(fetchList);
                                 <div
                                     class="mt-2 font-medium text-sm sm:text-base"
                                 >
-                                    No doctors found
+                                    Tidak ada dokter ditemukan
                                 </div>
                                 <p class="text-xs sm:text-sm">
-                                    Use the Add Doctor button to create a new
-                                    profile.
+                                    Gunakan tombol Tambah Dokter untuk membuat profil baru.
                                 </p>
                             </td>
                         </tr>
@@ -642,7 +641,7 @@ onMounted(fetchList);
                 class="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between text-sm"
             >
                 <div class="text-gray-600 text-xs sm:text-sm">
-                    Showing
+                    Menampilkan
                     <span class="font-medium">{{
                         (pageIndex - 1) * pageSize + 1
                     }}</span>
@@ -650,7 +649,7 @@ onMounted(fetchList);
                     <span class="font-medium">{{
                         Math.min(pageIndex * pageSize, filtered.length)
                     }}</span>
-                    of <span class="font-medium">{{ filtered.length }}</span>
+                    dari <span class="font-medium">{{ filtered.length }}</span>
                 </div>
                 <div
                     class="inline-flex rounded-lg border border-gray-300 overflow-hidden self-center sm:self-auto"
@@ -660,14 +659,14 @@ onMounted(fetchList);
                         :disabled="pageIndex === 1"
                         @click="pageIndex--"
                     >
-                        Prev
+                        Sebelumnya
                     </button>
                     <button
                         class="px-3 py-1.5 disabled:opacity-50 border-l border-gray-300 text-xs sm:text-sm"
                         :disabled="pageIndex * pageSize >= filtered.length"
                         @click="pageIndex++"
                     >
-                        Next
+                        Selanjutnya
                     </button>
                 </div>
             </div>
@@ -692,12 +691,12 @@ onMounted(fetchList);
                                 class="flex items-center justify-between p-6 border-b border-gray-100"
                             >
                                 <h3 class="text-lg font-semibold text-gray-900">
-                                    Add Doctor
+                                    Ubah Dokter
                                 </h3>
                                 <button
                                     class="rounded-lg p-1 text-gray-500 hover:bg-gray-100"
-                                    @click="showAdd = false"
-                                    aria-label="Close"
+                                    @click="showEdit = false"
+                                    aria-label="Tutup"
                                 >
                                     ✖️
                                 </button>
@@ -717,7 +716,7 @@ onMounted(fetchList);
                                             type="text"
                                             v-model.trim="form.name"
                                             class="mt-1 w-full rounded-xl border border-gray-300 bg-white px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                            placeholder="Dr. Jane Doe"
+                                            placeholder="Dr. Jane Doe (contoh)"
                                         />
                                         <p
                                             v-if="errors.name"
@@ -729,13 +728,13 @@ onMounted(fetchList);
                                     <div>
                                         <label
                                             class="block text-sm font-medium text-gray-700"
-                                            >Email Address</label
+                                            >Alamat Email</label
                                         >
                                         <input
                                             type="email"
                                             v-model.trim="form.email"
                                             class="mt-1 w-full rounded-xl border border-gray-300 bg-white px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                            placeholder="name@example.com"
+                                            placeholder="nama@contoh.com"
                                         />
                                         <p
                                             v-if="errors.email"
@@ -758,7 +757,7 @@ onMounted(fetchList);
                                                 "
                                                 v-model="form.password"
                                                 class="w-full rounded-xl border border-gray-300 bg-white px-3 py-2 pr-10 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                                placeholder="Minimum 8 characters"
+                                                placeholder="Minimal 8 karakter"
                                             />
                                             <button
                                                 type="button"
@@ -769,8 +768,8 @@ onMounted(fetchList);
                                                 :aria-pressed="showPassword"
                                                 :title="
                                                     showPassword
-                                                        ? 'Hide password'
-                                                        : 'Show password'
+                                                        ? 'Sembunyikan password'
+                                                        : 'Tampilkan password'
                                                 "
                                             >
                                                 <span v-if="showPassword"
@@ -792,31 +791,31 @@ onMounted(fetchList);
                                         <div>
                                             <label
                                                 class="block text-sm font-medium text-gray-700"
-                                                >Designation</label
+                                                >Jabatan</label
                                             >
                                             <input
                                                 type="text"
                                                 v-model.trim="form.designation"
                                                 class="mt-1 w-full rounded-xl border border-gray-300 bg-white px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                                placeholder="Senior Consultant"
+                                                placeholder="Konsultan Senior"
                                             />
                                         </div>
                                         <div>
                                             <label
                                                 class="block text-sm font-medium text-gray-700"
-                                                >Speciality</label
+                                                >Spesialisasi</label
                                             >
                                             <input
                                                 type="text"
                                                 v-model.trim="form.speciality"
                                                 class="mt-1 w-full rounded-xl border border-gray-300 bg-white px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                                placeholder="Cardiology"
+                                                placeholder="Kardiologi"
                                             />
                                         </div>
                                         <div>
                                             <label
                                                 class="block text-sm font-medium text-gray-700"
-                                                >Phone</label
+                                                >Telepon</label
                                             >
                                             <input
                                                 type="text"
@@ -828,13 +827,13 @@ onMounted(fetchList);
                                         <div class="sm:col-span-2">
                                             <label
                                                 class="block text-sm font-medium text-gray-700"
-                                                >About</label
+                                                >Tentang</label
                                             >
                                             <textarea
                                                 v-model.trim="form.about"
                                                 rows="3"
                                                 class="mt-1 w-full rounded-xl border border-gray-300 bg-white px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                                placeholder="Brief professional background"
+                                                placeholder="Latar belakang profesional singkat"
                                             ></textarea>
                                         </div>
                                         <div class="sm:col-span-2">
@@ -857,9 +856,8 @@ onMounted(fetchList);
                                         v-if="hasErrors"
                                         class="rounded-xl border border-red-200 bg-red-50 text-red-700 px-3 py-2 text-sm"
                                     >
-                                        <span class="font-medium"
-                                            >Please fix the highlighted
-                                            fields.</span
+                                            <span class="font-medium"
+                                                >Harap perbaiki bidang yang disorot.</span
                                         >
                                     </div>
                                     <div
@@ -870,7 +868,7 @@ onMounted(fetchList);
                                             class="rounded-xl border border-gray-300 px-4 py-2 hover:bg-gray-50"
                                             @click="showAdd = false"
                                         >
-                                            Cancel
+                                            Batal
                                         </button>
                                         <button
                                             type="submit"
@@ -879,8 +877,8 @@ onMounted(fetchList);
                                         >
                                             {{
                                                 submitting
-                                                    ? "Adding…"
-                                                    : "Add Doctor"
+                                                    ? "Menambahkan…"
+                                                    : "Tambah Dokter"
                                             }}
                                         </button>
                                     </div>
@@ -911,12 +909,12 @@ onMounted(fetchList);
                                 class="flex items-center justify-between p-6 border-b border-gray-100"
                             >
                                 <h3 class="text-lg font-semibold text-gray-900">
-                                    Edit Doctor
+                                    Tambah Dokter
                                 </h3>
                                 <button
                                     class="rounded-lg p-1 text-gray-500 hover:bg-gray-100"
-                                    @click="showEdit = false"
-                                    aria-label="Close"
+                                    @click="showAdd = false"
+                                    aria-label="Tutup"
                                 >
                                     ✖️
                                 </button>
@@ -929,7 +927,7 @@ onMounted(fetchList);
                                     <div>
                                         <label
                                             class="block text-sm font-medium text-gray-700"
-                                            >Full Name</label
+                                            >Nama Lengkap</label
                                         >
                                         <input
                                             type="text"
@@ -940,7 +938,7 @@ onMounted(fetchList);
                                     <div>
                                         <label
                                             class="block text-sm font-medium text-gray-700"
-                                            >Email Address</label
+                                            >Alamat Email</label
                                         >
                                         <input
                                             type="email"
@@ -962,7 +960,7 @@ onMounted(fetchList);
                                                 "
                                                 v-model="editForm.password"
                                                 class="w-full rounded-xl border border-gray-300 bg-white px-3 py-2 pr-10 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                                placeholder="Leave blank to keep current password"
+                                                placeholder="Kosongkan untuk mempertahankan password saat ini"
                                             />
                                             <button
                                                 type="button"
@@ -984,7 +982,7 @@ onMounted(fetchList);
                                         <div>
                                             <label
                                                 class="block text-sm font-medium text-gray-700"
-                                                >Designation</label
+                                                >Jabatan</label
                                             >
                                             <input
                                                 type="text"
@@ -997,7 +995,7 @@ onMounted(fetchList);
                                         <div>
                                             <label
                                                 class="block text-sm font-medium text-gray-700"
-                                                >Speciality</label
+                                                >Spesialisasi</label
                                             >
                                             <input
                                                 type="text"
@@ -1010,7 +1008,7 @@ onMounted(fetchList);
                                         <div>
                                             <label
                                                 class="block text-sm font-medium text-gray-700"
-                                                >Phone</label
+                                                >Telepon</label
                                             >
                                             <input
                                                 type="text"
@@ -1021,7 +1019,7 @@ onMounted(fetchList);
                                         <div class="sm:col-span-2">
                                             <label
                                                 class="block text-sm font-medium text-gray-700"
-                                                >About</label
+                                                >Tentang</label
                                             >
                                             <textarea
                                                 v-model.trim="editForm.about"
@@ -1032,7 +1030,7 @@ onMounted(fetchList);
                                         <div class="sm:col-span-2">
                                             <label
                                                 class="block text-sm font-medium text-gray-700"
-                                                >Photo</label
+                                                >Foto</label
                                             >
                                             <input
                                                 type="file"
@@ -1059,7 +1057,7 @@ onMounted(fetchList);
                                             type="submit"
                                             class="rounded-xl bg-blue-600 text-white px-4 py-2 font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                         >
-                                            Save Changes
+                                            Simpan Perubahan
                                         </button>
                                     </div>
                                 </form>
@@ -1084,14 +1082,14 @@ onMounted(fetchList);
                             class="relative w-full max-w-md rounded-2xl bg-white border border-gray-200 shadow-xl p-6 mx-4 sm:mx-0"
                         >
                             <h3 class="text-lg font-semibold text-gray-900">
-                                Delete doctor?
+                                Hapus dokter?
                             </h3>
                             <p class="mt-1 text-sm text-gray-600">
-                                This will also remove the user account for
+                                Ini juga akan menghapus akun pengguna untuk
                                 <span class="font-medium">{{
                                     toDelete?.name
                                 }}</span
-                                >. This action cannot be undone.
+                                >. Tindakan ini tidak dapat dibatalkan.
                             </p>
                             <div
                                 class="mt-6 flex items-center justify-end gap-3"
@@ -1100,13 +1098,13 @@ onMounted(fetchList);
                                     class="rounded-xl border border-gray-300 px-4 py-2 hover:bg-gray-50"
                                     @click="showDelete = false"
                                 >
-                                    Cancel
+                                    Batal
                                 </button>
                                 <button
                                     class="rounded-xl bg-red-600 text-white px-4 py-2 font-medium hover:bg-red-700"
                                     @click="removeRow"
                                 >
-                                    Delete
+                                    Hapus
                                 </button>
                             </div>
                         </div>

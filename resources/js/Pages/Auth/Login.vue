@@ -31,7 +31,7 @@ const submit = () => {
 </script>
 
 <template>
-    <Head title="Login - Xet Specialized Hospital" />
+    <Head title="Masuk - Xet Specialized Hospital" />
     <!-- Modern Header -->
     <Header :canLogin="canLogin" :canRegister="canRegister" />
 
@@ -62,10 +62,10 @@ const submit = () => {
                     </div> -->
 
                     <h2 class="text-2xl md:text-3xl font-bold text-gray-900">
-                        Welcome back
+                        Selamat Datang Kembali
                     </h2>
                     <p class="mt-2 text-sm md:text-base text-gray-600">
-                        Access the hospital management portal
+                        Akses portal manajemen rumah sakit
                     </p>
                 </div>
 
@@ -104,7 +104,7 @@ const submit = () => {
                         <div>
                             <InputLabel
                                 for="email"
-                                value="Email Address"
+                                value="Alamat Email"
                                 class="block text-sm font-medium text-gray-700 mb-2"
                             />
                             <div class="relative">
@@ -112,7 +112,7 @@ const submit = () => {
                                     id="email"
                                     type="email"
                                     class="block w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-sm md:text-base"
-                                    placeholder="Enter your email"
+                                    placeholder="Masukkan email Anda"
                                     v-model="form.email"
                                     required
                                     autofocus
@@ -150,7 +150,7 @@ const submit = () => {
                         <div>
                             <InputLabel
                                 for="password"
-                                value="Password"
+                                value="Kata Sandi"
                                 class="block text-sm font-medium text-gray-700 mb-2"
                             />
                             <div class="relative">
@@ -158,7 +158,7 @@ const submit = () => {
                                     id="password"
                                     :type="showPassword ? 'text' : 'password'"
                                     class="block w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-sm md:text-base"
-                                    placeholder="Enter your password"
+                                    placeholder="Masukkan kata sandi Anda"
                                     v-model="form.password"
                                     required
                                     autocomplete="current-password"
@@ -225,7 +225,7 @@ const submit = () => {
                                 class="w-4 h-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                             />
                             <span class="ml-2 text-sm text-gray-600"
-                                >Remember me</span
+                                >Ingat saya</span
                             >
                         </label>
 
@@ -234,7 +234,7 @@ const submit = () => {
                             :href="route('password.request')"
                             class="text-sm font-medium text-blue-600 hover:text-blue-500 transition-colors duration-200"
                         >
-                            Forgot password?
+                            Lupa kata sandi?
                         </Link>
                     </div>
 
@@ -268,8 +268,8 @@ const submit = () => {
                                 </svg>
                                 {{
                                     form.processing
-                                        ? "Signing in..."
-                                        : "Sign in to portal"
+                                        ? "Sedang masuk..."
+                                        : "Masuk ke portal"
                                 }}
                             </span>
                         </PrimaryButton>
@@ -278,12 +278,12 @@ const submit = () => {
                     <!-- Sign Up Link -->
                     <div class="text-center mt-3 md:mt-4">
                         <p class="text-sm md:text-base text-gray-600">
-                            Don't have an account?
+                            Belum punya akun?
                             <Link
                                 :href="route('register')"
                                 class="font-medium text-blue-600 hover:text-blue-500 transition-colors duration-200"
                             >
-                                Sign up
+                                Daftar
                             </Link>
                         </p>
                     </div>
@@ -293,12 +293,12 @@ const submit = () => {
                         class="text-center pt-3 md:pt-4 border-t border-gray-200"
                     >
                         <p class="text-xs md:text-sm text-gray-500">
-                            Need help accessing your account?
+                            Butuh bantuan mengakses akun Anda?
                             <a
                                 href="mailto:support@xethospital.com"
                                 class="font-medium text-blue-600 hover:text-blue-500"
                             >
-                                Contact support
+                                Hubungi dukungan
                             </a>
                         </p>
                     </div>
@@ -322,7 +322,7 @@ const submit = () => {
                         Xet Specialized Hospital
                     </h1>
                     <p class="text-lg md:text-xl text-blue-100 mb-6">
-                        Management & Support System
+                        Sistem Manajemen & Dukungan
                     </p>
 
                     <div
@@ -342,7 +342,7 @@ const submit = () => {
                                     d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
                                 />
                             </svg>
-                            <span>Secure patient data management</span>
+                            <span>Manajemen data pasien yang aman</span>
                         </div>
                         <div class="flex items-center space-x-3">
                             <svg
@@ -358,7 +358,7 @@ const submit = () => {
                                     d="M13 10V3L4 14h7v7l9-11h-7z"
                                 />
                             </svg>
-                            <span>Real-time medical records access</span>
+                            <span>Akses rekam medis secara real-time</span>
                         </div>
                         <div class="flex items-center space-x-3">
                             <svg
@@ -374,7 +374,7 @@ const submit = () => {
                                     d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                                 />
                             </svg>
-                            <span>Staff collaboration tools</span>
+                            <span>Alat kolaborasi staf</span>
                         </div>
                     </div>
                 </div>
@@ -397,7 +397,7 @@ const submit = () => {
                                 d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
                             />
                         </svg>
-                        <span>HIPAA Compliant • Encrypted Connection</span>
+                        <span>Sesuai HIPAA • Koneksi Terenkripsi</span>
                     </div>
                 </div>
             </div>

@@ -4,12 +4,12 @@ import { Head } from "@inertiajs/vue3";
 </script>
 
 <template>
-    <Head title="Staff Dashboard" />
+    <Head title="Dasbor Staf" />
 
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Staff Dashboard
+                Dasbor Staf
             </h2>
         </template>
 
@@ -18,20 +18,20 @@ import { Head } from "@inertiajs/vue3";
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
                         <h3 class="text-lg font-medium mb-4">
-                            Welcome, Staff Member!
+                            Selamat Datang, Anggota Staf!
                         </h3>
                         <p class="mb-4">
-                            Access your profile and manage your information
-                            here.
+                            Akses profil Anda dan kelola informasi Anda
+                            di sini.
                         </p>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="bg-blue-50 p-4 rounded-lg">
-                                <h4 class="font-semibold">Your Profile</h4>
-                                <p>View and update your personal details.</p>
+                                <h4 class="font-semibold">Profil Anda</h4>
+                                <p>Lihat dan perbarui detail pribadi Anda.</p>
                             </div>
                             <div class="bg-green-50 p-4 rounded-lg">
-                                <h4 class="font-semibold">Department Info</h4>
-                                <p>Check your department and designation.</p>
+                                <h4 class="font-semibold">Info Departemen</h4>
+                                <p>Periksa departemen dan jabatan Anda.</p>
                             </div>
                         </div>
                     </div>

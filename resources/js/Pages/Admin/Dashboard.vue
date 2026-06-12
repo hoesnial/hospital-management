@@ -26,7 +26,7 @@ defineProps({
 </script>
 
 <template>
-    <Head title="Admin Dashboard" />
+    <Head title="Dasbor Admin" />
 
     <AuthenticatedLayout>
         <template #header>
@@ -37,10 +37,10 @@ defineProps({
                     <h2
                         class="font-semibold text-xl md:text-2xl text-gray-800 leading-tight"
                     >
-                        Admin Dashboard
+                        Dasbor Admin
                     </h2>
                     <p class="text-gray-600 mt-1">
-                        Welcome back! Here's what's happening today.
+                        Selamat Datang Kembali! Berikut yang terjadi hari ini.
                     </p>
                 </div>
                 <div class="flex items-center">
@@ -49,7 +49,7 @@ defineProps({
                     >
                         <i class="fas fa-calendar-day text-blue-500 mr-2"></i>
                         <span class="text-xs md:text-sm font-medium">{{
-                            new Date().toLocaleDateString("en-US", {
+                            new Date().toLocaleDateString("id-ID", {
                                 weekday: "long",
                                 year: "numeric",
                                 month: "long",
@@ -75,7 +75,7 @@ defineProps({
                                 <p
                                     class="text-sm font-medium text-gray-600 mb-1"
                                 >
-                                    Doctors
+                                    Dokter
                                 </p>
 
                                 <p class="text-3xl font-bold text-gray-800">
@@ -100,7 +100,7 @@ defineProps({
                                     ></i>
                                     {{
                                         Math.abs(summaries.doctors_percentage)
-                                    }}% from last month
+                                    }}% dari bulan lalu
                                 </p>
                             </div>
                         </div>
@@ -114,7 +114,7 @@ defineProps({
                                 <p
                                     class="text-sm font-medium text-gray-600 mb-1"
                                 >
-                                    Patients
+                                    Pasien
                                 </p>
                                 <p class="text-3xl font-bold text-gray-800">
                                     {{ summaries.patients }}
@@ -137,7 +137,7 @@ defineProps({
                                     ></i>
                                     {{
                                         Math.abs(summaries.patients_percentage)
-                                    }}% from last month
+                                    }}% dari bulan lalu
                                 </p>
                             </div>
                         </div>
@@ -151,7 +151,7 @@ defineProps({
                                 <p
                                     class="text-sm font-medium text-gray-600 mb-1"
                                 >
-                                    Appointments
+                                    Janji Temu
                                 </p>
                                 <p class="text-3xl font-bold text-gray-800">
                                     {{ summaries.appointments }}
@@ -161,7 +161,7 @@ defineProps({
                                 >
                                     <i class="fas fa-circle mr-1"></i>
                                     {{ summaries.appointments_today }}
-                                    scheduled today
+                                    dijadwalkan hari ini
                                 </p>
                             </div>
                         </div>
@@ -175,7 +175,7 @@ defineProps({
                                 <p
                                     class="text-sm font-medium text-gray-600 mb-1"
                                 >
-                                    Health Checks
+                                    Paket Kesehatan
                                 </p>
                                 <p class="text-3xl font-bold text-gray-800">
                                     {{ summaries.healthChecks }}
@@ -184,8 +184,8 @@ defineProps({
                                     class="text-xs text-orange-500 mt-1 flex items-center"
                                 >
                                     <i class="fas fa-clock mr-1"></i>
-                                    {{ summaries.pending_reviews }} pending
-                                    reviews
+                                    {{ summaries.pending_reviews }} ulasan
+                                    tertunda
                                 </p>
                             </div>
                         </div>
@@ -199,7 +199,7 @@ defineProps({
                                 <p
                                     class="text-sm font-medium text-gray-600 mb-1"
                                 >
-                                    Staff
+                                    Staf
                                 </p>
                                 <p class="text-3xl font-bold text-gray-800">
                                     {{ summaries.staff }}
@@ -226,14 +226,14 @@ defineProps({
                                     ></i>
                                     {{
                                         summaries.staff_percentage === 0
-                                            ? "No change"
+                                            ? "Tidak ada perubahan"
                                             : Math.abs(
                                                   summaries.staff_percentage
                                               ) + "%"
                                     }}
                                     <span
                                         v-if="summaries.staff_percentage !== 0"
-                                        >from last month</span
+                                        >dari bulan lalu</span
                                     >
                                 </p>
                             </div>
@@ -256,29 +256,28 @@ defineProps({
                             </div>
                             <div>
                                 <h4 class="font-semibold text-gray-800 text-lg">
-                                    Doctors Management
+                                    Kelola Dokter
                                 </h4>
                                 <p class="text-sm text-gray-500">
-                                    Manage medical professionals
+                                    Kelola tenaga medis
                                 </p>
                             </div>
                         </div>
                         <p class="text-gray-600 mb-6">
-                            Add, edit, or remove doctor accounts and manage
-                            their schedules and specializations.
+                            Tambah, ubah, atau hapus akun dokter serta kelola jadwal dan spesialisasi mereka.
                         </p>
                         <div class="flex space-x-3">
                             <Link
                                 href="/admin/doctors"
                                 class="bg-sky-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium flex items-center"
                             >
-                                <i class="fas fa-plus mr-2"></i> Add Doctor
+                                <i class="fas fa-plus mr-2"></i> Tambah Dokter
                             </Link>
                             <Link
                                 href="/admin/doctors"
                                 class="bg-white text-blue-600 border border-blue-600 px-4 py-2 rounded-lg hover:bg-blue-50 transition-colors text-sm font-medium"
                             >
-                                All Doctors
+                                Semua Dokter
                             </Link>
                         </div>
                     </div>
@@ -294,29 +293,28 @@ defineProps({
                             </div>
                             <div>
                                 <h4 class="font-semibold text-gray-800 text-lg">
-                                    Schedule Management
+                                    Kelola Jadwal
                                 </h4>
                                 <p class="text-sm text-gray-500">
-                                    Organize appointments
+                                    Atur janji temu
                                 </p>
                             </div>
                         </div>
                         <p class="text-gray-600 mb-6">
-                            View, create, and manage appointment schedules
-                            across all departments and doctors.
+                            Lihat, buat, dan kelola jadwal janji temu di semua departemen dan dokter.
                         </p>
                         <div class="flex space-x-3">
                             <Link
                                 href="/admin/schedules"
                                 class="bg-sky-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium flex items-center"
                             >
-                                <i class="fas fa-plus mr-2"></i> Schedule
+                                <i class="fas fa-plus mr-2"></i> Jadwal
                             </Link>
                             <Link
                                 href="/admin/schedules"
                                 class="bg-white text-sky-600 border border-green-600 px-4 py-2 rounded-lg hover:bg-green-50 transition-colors text-sm font-medium"
                             >
-                                Calendar View
+                                Tampilan Kalender
                             </Link>
                         </div>
                     </div>
@@ -332,30 +330,29 @@ defineProps({
                             </div>
                             <div>
                                 <h4 class="font-semibold text-gray-800 text-lg">
-                                    Health Records
+                                    Rekam Kesehatan
                                 </h4>
                                 <p class="text-sm text-gray-500">
-                                    Patient health data
+                                    Data kesehatan pasien
                                 </p>
                             </div>
                         </div>
                         <p class="text-gray-600 mb-6">
-                            Access and manage patient health check records, test
-                            results, and medical history.
+                            Akses dan kelola catatan pemeriksaan kesehatan pasien, hasil tes, dan riwayat medis.
                         </p>
                         <div class="flex space-x-3">
                             <Link
                                 href="/admin/health-checks/create"
                                 class="bg-sky-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 transition-colors text-sm font-medium flex items-center"
                             >
-                                <i class="fas fa-file-medical mr-2"></i> New
-                                Record
+                                <i class="fas fa-file-medical mr-2"></i> Rekam
+                                Baru
                             </Link>
                             <Link
                                 href="/admin/health-checks"
                                 class="bg-white text-sky-600 border border-yellow-600 px-4 py-2 rounded-lg hover:bg-yellow-50 transition-colors text-sm font-medium"
                             >
-                                View Reports
+                                Lihat Laporan
                             </Link>
                         </div>
                     </div>
@@ -370,13 +367,13 @@ defineProps({
                     >
                         <div class="flex justify-between items-center mb-6">
                             <h3 class="font-semibold text-gray-800 text-lg">
-                                Recent Appointments
+                                Janji Temu Terbaru
                             </h3>
                             <Link
                                 href="/admin/appointments"
                                 class="text-blue-600 text-sm font-medium"
                             >
-                                View All
+                                Lihat Semua
                             </Link>
                         </div>
                         <div class="space-y-4">
@@ -422,10 +419,10 @@ defineProps({
                     >
                         <div class="flex justify-between items-center mb-6">
                             <h3 class="font-semibold text-gray-800 text-lg">
-                                Quick Actions
+                                Tindakan Cepat
                             </h3>
                             <button class="text-blue-600 text-sm font-medium">
-                                More Options
+                                Opsi Lainnya
                             </button>
                         </div>
                         <div class="grid grid-cols-2 gap-4">
@@ -436,7 +433,7 @@ defineProps({
                                     class="fas fa-user-plus text-blue-500 text-xl mb-2"
                                 ></i>
                                 <p class="font-medium text-gray-800 text-sm">
-                                    Add Patient
+                                    Tambah Pasien
                                 </p>
                             </button>
                             <button
@@ -446,7 +443,7 @@ defineProps({
                                     class="fas fa-file-invoice text-green-500 text-xl mb-2"
                                 ></i>
                                 <p class="font-medium text-gray-800 text-sm">
-                                    Generate Report
+                                    Buat Laporan
                                 </p>
                             </button>
                             <button
@@ -456,7 +453,7 @@ defineProps({
                                     class="fas fa-bell text-yellow-500 text-xl mb-2"
                                 ></i>
                                 <p class="font-medium text-gray-800 text-sm">
-                                    Notifications
+                                    Notifikasi
                                 </p>
                             </button>
                             <button
@@ -466,7 +463,7 @@ defineProps({
                                     class="fas fa-cog text-gray-500 text-xl mb-2"
                                 ></i>
                                 <p class="font-medium text-gray-800 text-sm">
-                                    Settings
+                                    Pengaturan
                                 </p>
                             </button>
                         </div>

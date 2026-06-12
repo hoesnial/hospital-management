@@ -36,7 +36,7 @@ onMounted(loadMessages);
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Messages
+                Pesan
             </h2>
         </template>
 
@@ -45,20 +45,20 @@ onMounted(loadMessages);
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-4 sm:p-6 text-gray-900">
                         <h3 class="text-base sm:text-lg font-medium mb-4">
-                            All Messages from Admin
+                            Semua Pesan dari Admin
                         </h3>
                         <div class="mt-2">
                             <div
                                 v-if="loadingMessages"
                                 class="text-sm text-gray-500"
                             >
-                                Loading...
+                                Memuat...
                             </div>
                             <div
                                 v-else-if="messages.length === 0"
                                 class="text-sm text-gray-500"
                             >
-                                No messages yet.
+                                Belum ada pesan.
                             </div>
                             <div v-else class="space-y-3 sm:space-y-4">
                                 <div
@@ -69,9 +69,9 @@ onMounted(loadMessages);
                                     <span
                                         v-if="index === 0"
                                         class="absolute top-1 right-1 sm:top-2 sm:right-2 bg-red-500 text-white text-xs px-1 py-0.5 sm:px-2 sm:py-1 rounded"
-                                        title="New Message"
+                                        title="Pesan Baru"
                                     >
-                                        New
+                                        Baru
                                     </span>
                                     <div
                                         class="font-medium text-gray-800 text-sm sm:text-base"

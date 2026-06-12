@@ -14,13 +14,13 @@ import {
 } from "lucide-vue-next";
 
 const days = [
-    { v: "sat", t: "Saturday" },
-    { v: "sun", t: "Sunday" },
-    { v: "mon", t: "Monday" },
-    { v: "tue", t: "Tuesday" },
-    { v: "wed", t: "Wednesday" },
-    { v: "thu", t: "Thursday" },
-    { v: "fri", t: "Friday" },
+    { v: "sat", t: "Sabtu" },
+    { v: "sun", t: "Minggu" },
+    { v: "mon", t: "Senin" },
+    { v: "tue", t: "Selasa" },
+    { v: "wed", t: "Rabu" },
+    { v: "thu", t: "Kamis" },
+    { v: "fri", t: "Jumat" },
 ];
 
 const items = ref([]);
@@ -56,7 +56,7 @@ async function fetchList() {
         const { data } = await api.get("/doctor/schedules/list");
         items.value = data;
     } catch (e) {
-        alert(e.response?.data?.message || "Failed to load schedules.");
+        alert(e.response?.data?.message || "Gagal memuat jadwal.");
     } finally {
         loading.value = false;
     }
@@ -101,7 +101,7 @@ async function save() {
         }
         resetForm();
     } catch (e) {
-        alert(e.response?.data?.message || "Validation error");
+        alert(e.response?.data?.message || "Kesalahan validasi");
     } finally {
         saving.value = false;
     }
@@ -123,12 +123,12 @@ function edit(row) {
 }
 
 async function removeRow(row) {
-    if (!confirm("Are you sure you want to delete this schedule?")) return;
+    if (!confirm("Apakah Anda yakin ingin menghapus jadwal ini?")) return;
     try {
         await api.delete(`/doctor/schedules/${row.id}`);
         items.value = items.value.filter((i) => i.id !== row.id);
     } catch (e) {
-        alert(e.response?.data?.message || "Failed to delete schedule.");
+        alert(e.response?.data?.message || "Gagal menghapus jadwal.");
     }
 }
 
@@ -155,10 +155,8 @@ onMounted(fetchList);
                             >
                                 <Calendar class="w-4 h-4" />
                                 <span
-                                    >{{ items.length }} schedule{{
-                                        items.length !== 1 ? "s" : ""
-                                    }}
-                                    configured</span
+                                    >{{ items.length }} jadwal
+                                    dikonfigurasi</span
                                 >
                             </div>
                         </div>
@@ -168,7 +166,7 @@ onMounted(fetchList);
                             :disabled="showForm && !isEditing"
                         >
                             <Plus class="w-4 h-4" />
-                            <span>New Schedule</span>
+                            <span>Jadwal Baru</span>
                         </button>
                     </div>
 
@@ -192,13 +190,13 @@ onMounted(fetchList);
                                     >
                                         {{
                                             isEditing
-                                                ? "Edit Schedule"
-                                                : "Create New Schedule"
+                                                ? "Ubah Jadwal"
+                                                : "Buat Jadwal Baru"
                                         }}
                                     </h2>
                                     <p class="text-gray-500 text-sm mt-1">
-                                        Configure consultation hours and
-                                        availability
+                                        Konfigurasi jam konsultasi dan
+                                        ketersediaan
                                     </p>
                                 </div>
                                 <span
@@ -206,7 +204,7 @@ onMounted(fetchList);
                                     class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
                                 >
                                     <Edit3 class="w-3 h-3" />
-                                    Editing
+                                    Mengubah
                                 </span>
                             </div>
 
@@ -218,7 +216,7 @@ onMounted(fetchList);
                                         class="flex items-center gap-2 text-sm font-medium text-gray-700"
                                     >
                                         <Calendar class="w-4 h-4" />
-                                        Days of Week (Available)
+                                        Hari dalam Seminggu (Tersedia)
                                     </label>
                                     <div
                                         class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2"
@@ -247,7 +245,7 @@ onMounted(fetchList);
                                         class="flex items-center gap-2 text-sm font-medium text-gray-700"
                                     >
                                         <Clock class="w-4 h-4" />
-                                        Start Time
+                                        Waktu Mulai
                                     </label>
                                     <input
                                         v-model="form.start_time"
@@ -261,7 +259,7 @@ onMounted(fetchList);
                                         class="flex items-center gap-2 text-sm font-medium text-gray-700"
                                     >
                                         <Clock class="w-4 h-4" />
-                                        End Time
+                                        Waktu Selesai
                                     </label>
                                     <input
                                         v-model="form.end_time"
@@ -274,7 +272,7 @@ onMounted(fetchList);
                                     <label
                                         class="text-sm font-medium text-gray-700"
                                     >
-                                        Slot Duration (Minutes)
+                                        Durasi Sesi (Menit)
                                     </label>
                                     <input
                                         v-model.number="form.slot_minutes"
@@ -291,7 +289,7 @@ onMounted(fetchList);
                                         class="flex items-center gap-2 text-sm font-medium text-gray-700"
                                     >
                                         <Users class="w-4 h-4" />
-                                        Max Patients/Day
+                                        Maks Pasien/Hari
                                     </label>
                                     <input
                                         v-model.number="
@@ -308,7 +306,7 @@ onMounted(fetchList);
                                         class="flex items-center gap-2 text-sm font-medium text-gray-700"
                                     >
                                         <DollarSign class="w-4 h-4" />
-                                        Consultation Fee
+                                        Biaya Konsultasi
                                     </label>
                                     <div class="relative">
                                         <span
@@ -341,8 +339,8 @@ onMounted(fetchList);
                                     <span>
                                         {{
                                             isEditing
-                                                ? "Update Schedule"
-                                                : "Create Schedule"
+                                                ? "Perbarui Jadwal"
+                                                : "Buat Jadwal"
                                         }}
                                     </span>
                                 </button>
@@ -350,7 +348,7 @@ onMounted(fetchList);
                                     @click="resetForm"
                                     class="btn-secondary w-full sm:w-auto"
                                 >
-                                    Cancel
+                                    Batal
                                 </button>
                             </div>
                         </div>
@@ -364,7 +362,7 @@ onMounted(fetchList);
                             class="px-6 py-4 border-b border-gray-200/80 bg-gray-50/50"
                         >
                             <h3 class="text-lg font-semibold text-gray-900">
-                                Configured Schedules
+                                Jadwal yang Dikonfigurasi
                             </h3>
                         </div>
 
@@ -377,32 +375,32 @@ onMounted(fetchList);
                                         <th
                                             class="px-4 sm:px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
                                         >
-                                            Days
+                                            Hari
                                         </th>
                                         <th
                                             class="px-4 sm:px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
                                         >
-                                            Time Slot
+                                            Sesi Waktu
                                         </th>
                                         <th
                                             class="px-4 sm:px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
                                         >
-                                            Duration
+                                            Durasi
                                         </th>
                                         <th
                                             class="px-4 sm:px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
                                         >
-                                            Capacity
+                                            Kapasitas
                                         </th>
                                         <th
                                             class="px-4 sm:px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
                                         >
-                                            Fee
+                                            Biaya
                                         </th>
                                         <th
                                             class="px-4 sm:px-6 py-4 text-right text-xs font-semibold text-gray-600 uppercase tracking-wider"
                                         >
-                                            Actions
+                                            Tindakan
                                         </th>
                                     </tr>
                                 </thead>
@@ -420,7 +418,7 @@ onMounted(fetchList);
                                                 />
                                                 <span
                                                     class="text-gray-500 font-medium"
-                                                    >Loading schedules...</span
+                                                    >Memuat jadwal...</span
                                                 >
                                             </div>
                                         </td>
@@ -470,7 +468,7 @@ onMounted(fetchList);
                                         <td
                                             class="px-4 sm:px-6 py-4 whitespace-nowrap text-gray-600"
                                         >
-                                            {{ row.slot_minutes }} minutes
+                                            {{ row.slot_minutes }} menit
                                         </td>
                                         <td
                                             class="px-4 sm:px-6 py-4 whitespace-nowrap"
@@ -485,7 +483,7 @@ onMounted(fetchList);
                                                     >{{
                                                         row.max_patients_per_day
                                                     }}
-                                                    patients</span
+                                                    pasien</span
                                                 >
                                             </div>
                                         </td>
@@ -510,14 +508,14 @@ onMounted(fetchList);
                                                 <button
                                                     @click="edit(row)"
                                                     class="action-btn bg-blue-50 text-blue-600 hover:bg-blue-100"
-                                                    title="Edit schedule"
+                                                    title="Ubah jadwal"
                                                 >
                                                     <Edit3 class="w-4 h-4" />
                                                 </button>
                                                 <button
                                                     @click="removeRow(row)"
                                                     class="action-btn bg-red-50 text-red-600 hover:bg-red-100"
-                                                    title="Delete schedule"
+                                                    title="Hapus jadwal"
                                                 >
                                                     <Trash2 class="w-4 h-4" />
                                                 </button>
@@ -540,11 +538,11 @@ onMounted(fetchList);
                                                     <p
                                                         class="font-medium text-gray-900 mb-1"
                                                     >
-                                                        No schedules configured
+                                                        Belum ada jadwal dikonfigurasi
                                                     </p>
                                                     <p class="text-sm">
-                                                        Get started by creating
-                                                        your first schedule
+                                                        Mulai dengan membuat
+                                                        jadwal pertama Anda
                                                     </p>
                                                 </div>
                                                 <button
@@ -552,7 +550,7 @@ onMounted(fetchList);
                                                     class="btn-primary flex items-center gap-2 mt-2 w-full sm:w-auto"
                                                 >
                                                     <Plus class="w-4 h-4" />
-                                                    <span>Create Schedule</span>
+                                                    <span>Buat Jadwal</span>
                                                 </button>
                                             </div>
                                         </td>
@@ -571,7 +569,7 @@ onMounted(fetchList);
                                         class="w-8 h-8 animate-spin text-blue-600"
                                     />
                                     <span class="text-gray-500 font-medium"
-                                        >Loading schedules...</span
+                                        >Memuat jadwal...</span
                                     >
                                 </div>
                             </div>
@@ -586,7 +584,7 @@ onMounted(fetchList);
                                         <div
                                             class="font-medium text-gray-900 mb-2"
                                         >
-                                            Days:
+                                            Hari:
                                             {{
                                                 row.day_of_week
                                                     .map((d) => getDayName(d))
@@ -599,11 +597,11 @@ onMounted(fetchList);
                                             <Clock
                                                 class="w-4 h-4 text-gray-400"
                                             />
-                                            Time: {{ row.start_time }} -
+                                            Waktu: {{ row.start_time }} -
                                             {{ row.end_time }}
                                         </div>
                                         <div class="text-sm text-gray-600 mb-1">
-                                            Duration:
+                                            Durasi:
                                             {{ row.slot_minutes }} minutes
                                         </div>
                                         <div
@@ -612,9 +610,9 @@ onMounted(fetchList);
                                             <Users
                                                 class="w-4 h-4 text-gray-400"
                                             />
-                                            Capacity:
+                                            Kapasitas:
                                             {{ row.max_patients_per_day }}
-                                            patients
+                                            pasien
                                         </div>
                                         <div
                                             class="text-sm text-gray-600 flex items-center gap-2"
@@ -622,7 +620,7 @@ onMounted(fetchList);
                                             <DollarSign
                                                 class="w-4 h-4 text-gray-400"
                                             />
-                                            Fee: ${{ row.fee }}
+                                            Biaya: ${{ row.fee }}
                                         </div>
                                     </div>
                                     <div class="flex gap-2 ml-4">
@@ -656,11 +654,11 @@ onMounted(fetchList);
                                         <p
                                             class="font-medium text-gray-900 mb-1"
                                         >
-                                            No schedules configured
+                                            Belum ada jadwal dikonfigurasi
                                         </p>
                                         <p class="text-sm">
-                                            Get started by creating your first
-                                            schedule
+                                            Mulai dengan membuat jadwal
+                                            pertama Anda
                                         </p>
                                     </div>
                                     <button
@@ -668,7 +666,7 @@ onMounted(fetchList);
                                         class="btn-primary flex items-center gap-2 mt-2 w-full"
                                     >
                                         <Plus class="w-4 h-4" />
-                                        <span>Create Schedule</span>
+                                        <span>Buat Jadwal</span>
                                     </button>
                                 </div>
                             </div>

@@ -25,9 +25,9 @@ const updateStatus = () => {
 };
 
 const statusOptions = [
-    { value: "pending", label: "Pending", color: "amber" },
-    { value: "confirmed", label: "Confirmed", color: "emerald" },
-    { value: "cancelled", label: "Cancelled", color: "rose" },
+    { value: "pending", label: "Tertunda", color: "amber" },
+    { value: "confirmed", label: "Dikonfirmasi", color: "emerald" },
+    { value: "cancelled", label: "Dibatalkan", color: "rose" },
 ];
 
 const statusColors = {
@@ -54,7 +54,7 @@ const statusIcons = {
 // Format dates for display
 const formattedDate = computed(() => {
     return new Date(props.appointment.preferred_date).toLocaleDateString(
-        "en-US",
+        "id-ID",
         {
             weekday: "long",
             year: "numeric",
@@ -65,7 +65,7 @@ const formattedDate = computed(() => {
 });
 
 const createdDate = computed(() => {
-    return new Date(props.appointment.created_at).toLocaleDateString("en-US", {
+    return new Date(props.appointment.created_at).toLocaleDateString("id-ID", {
         year: "numeric",
         month: "short",
         day: "numeric",
@@ -75,7 +75,7 @@ const createdDate = computed(() => {
 });
 
 const updatedDate = computed(() => {
-    return new Date(props.appointment.updated_at).toLocaleDateString("en-US", {
+    return new Date(props.appointment.updated_at).toLocaleDateString("id-ID", {
         year: "numeric",
         month: "short",
         day: "numeric",
@@ -86,7 +86,7 @@ const updatedDate = computed(() => {
 </script>
 
 <template>
-    <Head :title="`Appointment #${appointment.id} - Details`" />
+    <Head :title="`Janji Temu #${appointment.id} - Detail`" />
 
     <AuthenticatedLayout>
         <div
@@ -96,10 +96,10 @@ const updatedDate = computed(() => {
                 <h2
                     class="font-semibold text-lg sm:text-xl lg:text-2xl text-gray-900 leading-tight"
                 >
-                    Appointment Details
+                    Detail Janji Temu
                 </h2>
                 <p class="text-gray-600 mt-1 text-xs sm:text-sm">
-                    Complete information for appointment #{{ appointment.id }}
+                    Informasi lengkap untuk janji temu #{{ appointment.id }}
                 </p>
             </div>
             <Link
@@ -119,7 +119,7 @@ const updatedDate = computed(() => {
                         d="M10 19l-7-7m0 0l7-7m-7 7h18"
                     />
                 </svg>
-                Back to Appointments
+                Kembali ke Janji Temu
             </Link>
         </div>
 
@@ -136,11 +136,11 @@ const updatedDate = computed(() => {
                                 class="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4"
                             >
                                 <h3 class="text-lg font-semibold text-gray-900">
-                                    Patient Information
+                                    Informasi Pasien
                                 </h3>
                                 <div class="flex items-center space-x-2">
                                     <span class="text-sm text-gray-500"
-                                        >Appointment ID</span
+                                        >ID Janji Temu</span
                                     >
                                     <span
                                         class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium"
@@ -179,21 +179,21 @@ const updatedDate = computed(() => {
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 <div class="space-y-4">
                                     <div>
-                                        <label
-                                            class="block text-sm font-medium text-gray-700 mb-1"
-                                        >
-                                            Contact Information
-                                        </label>
+                                    <label
+                                        class="block text-sm font-medium text-gray-700 mb-1"
+                                    >
+                                        Informasi Kontak
+                                    </label>
                                         <p class="text-sm text-gray-900">
                                             {{ appointment.phone }}
                                         </p>
                                     </div>
                                     <div>
-                                        <label
-                                            class="block text-sm font-medium text-gray-700 mb-1"
-                                        >
-                                            Appointment Date
-                                        </label>
+                                    <label
+                                        class="block text-sm font-medium text-gray-700 mb-1"
+                                    >
+                                        Tanggal Janji Temu
+                                    </label>
                                         <p class="text-sm text-gray-900">
                                             {{ formattedDate }}
                                         </p>
@@ -201,21 +201,21 @@ const updatedDate = computed(() => {
                                 </div>
                                 <div class="space-y-4">
                                     <div>
-                                        <label
-                                            class="block text-sm font-medium text-gray-700 mb-1"
-                                        >
-                                            Preferred Time
-                                        </label>
+                                    <label
+                                        class="block text-sm font-medium text-gray-700 mb-1"
+                                    >
+                                        Waktu yang Diinginkan
+                                    </label>
                                         <p class="text-sm text-gray-900">
                                             {{ appointment.preferred_time }}
                                         </p>
                                     </div>
                                     <div>
-                                        <label
-                                            class="block text-sm font-medium text-gray-700 mb-1"
-                                        >
-                                            Medical Speciality
-                                        </label>
+                                    <label
+                                        class="block text-sm font-medium text-gray-700 mb-1"
+                                    >
+                                        Spesialisasi Medis
+                                    </label>
                                         <p
                                             class="text-sm text-gray-900 capitalize"
                                         >
@@ -248,7 +248,7 @@ const updatedDate = computed(() => {
                                     </svg>
                                 </div>
                                 <h3 class="text-lg font-semibold text-gray-900">
-                                    Additional Notes
+                                    Catatan Tambahan
                                 </h3>
                             </div>
                             <div
@@ -286,7 +286,7 @@ const updatedDate = computed(() => {
                                     </svg>
                                 </div>
                                 <h3 class="text-lg font-semibold text-gray-900">
-                                    Appointment Status
+                                    Status Janji Temu
                                 </h3>
                             </div>
 
@@ -295,7 +295,7 @@ const updatedDate = computed(() => {
                                 <label
                                     class="block text-sm font-medium text-gray-700 mb-3"
                                 >
-                                    Current Status
+                                    Status Saat Ini
                                 </label>
                                 <div class="flex items-center space-x-3">
                                     <span
@@ -341,7 +341,7 @@ const updatedDate = computed(() => {
                                             for="status"
                                             class="block text-sm font-medium text-gray-700 mb-2"
                                         >
-                                            Update Status
+                                            Perbarui Status
                                         </label>
                                         <select
                                             v-model="form.status"
@@ -402,8 +402,8 @@ const updatedDate = computed(() => {
                                         </svg>
                                         {{
                                             form.processing
-                                                ? "Updating..."
-                                                : "Update Status"
+                                                ? "Memperbarui..."
+                                                : "Perbarui Status"
                                         }}
                                     </button>
                                 </div>
@@ -431,7 +431,7 @@ const updatedDate = computed(() => {
                                     </svg>
                                 </div>
                                 <h3 class="text-lg font-semibold text-gray-900">
-                                    Timeline
+                                    Garis Waktu
                                 </h3>
                             </div>
 
@@ -444,7 +444,7 @@ const updatedDate = computed(() => {
                                         <p
                                             class="text-sm font-medium text-gray-900"
                                         >
-                                            Appointment Created
+                                            Janji Temu Dibuat
                                         </p>
                                         <p class="text-sm text-gray-500">
                                             {{ createdDate }}
@@ -459,7 +459,7 @@ const updatedDate = computed(() => {
                                         <p
                                             class="text-sm font-medium text-gray-900"
                                         >
-                                            Last Updated
+                                            Terakhir Diperbarui
                                         </p>
                                         <p class="text-sm text-gray-500">
                                             {{ updatedDate }}

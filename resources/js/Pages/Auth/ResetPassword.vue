@@ -32,23 +32,24 @@ const submit = () => {
 
 <template>
     <GuestLayout>
-        <Head title="Reset Password" />
+        <Head title="Atur Ulang Kata Sandi" />
 
         <div
             class="flex justify-center bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-6 sm:px-8"
         >
             <div>
                 <h2 class="text-2xl font-semibold text-gray-900 text-center">
-                    Reset your password
+                    Atur ulang kata sandi Anda
                 </h2>
                 <p class="text-sm text-gray-500 text-center">
-                    Enter your new password below to regain access.
+                    Masukkan kata sandi baru Anda di bawah untuk mendapatkan
+                    kembali akses.
                 </p>
 
                 <form @submit.prevent="submit" class="space-y-5">
                     <!-- Email -->
                     <div>
-                        <InputLabel for="email" value="Email" />
+                        <InputLabel for="email" value="Surel" />
                         <div class="relative mt-1">
                             <Mail
                                 class="absolute left-3 top-3 h-5 w-5 text-gray-400"
@@ -67,7 +68,7 @@ const submit = () => {
 
                     <!-- Password -->
                     <div>
-                        <InputLabel for="password" value="New Password" />
+                        <InputLabel for="password" value="Kata Sandi Baru" />
                         <div class="relative mt-1">
                             <Lock
                                 class="absolute left-3 top-3 h-5 w-5 text-gray-400"
@@ -101,7 +102,7 @@ const submit = () => {
                     <div>
                         <InputLabel
                             for="password_confirmation"
-                            value="Confirm Password"
+                            value="Konfirmasi Kata Sandi"
                         />
                         <div class="relative mt-1">
                             <Lock
@@ -148,15 +149,15 @@ const submit = () => {
                             :class="{ 'opacity-50': form.processing }"
                             :disabled="form.processing"
                         >
-                            Reset Password
+                            Atur Ulang Kata Sandi
                         </PrimaryButton>
                     </div>
                     <p class="text-sm mt-4 text-right text-gray-500">
-                        Remembered your password?
+                        Ingat kata sandi Anda?
                         <a
                             :href="route('login')"
                             class="text-indigo-600 hover:text-indigo-500 font-medium"
-                            >Sign in</a
+                            >Masuk</a
                         >
                     </p>
                 </form>
